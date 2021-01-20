@@ -10,8 +10,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Goal {
+	
+	public enum Shell {CMD, BASH, POWERSHELL};
+	
 	private StringProperty descripcion = new SimpleStringProperty();
-	private Enumeration<String> shell;
 	private StringProperty ruta = new SimpleStringProperty();
 	private StringProperty usuario = new SimpleStringProperty();
 	private ListProperty<String> comandos = new SimpleListProperty<String>();
@@ -27,14 +29,6 @@ public class Goal {
 
 	public final void setDescripcion(final String descripcion) {
 		this.descripcionProperty().set(descripcion);
-	}
-
-	public Enumeration<String> getShell() {
-		return shell;
-	}
-
-	public void setShell(Enumeration<String> shell) {
-		this.shell = shell;
 	}
 
 	public final StringProperty rutaProperty() {
@@ -85,4 +79,11 @@ public class Goal {
 		this.tipsProperty().set(tips);
 	}
 
+	
+	public static void main(String[] args) {
+		Goal goal = new Goal();
+	}
 }
+
+
+
