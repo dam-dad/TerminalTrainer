@@ -1,9 +1,9 @@
 package dad.javafx.terminaltrainer.model;
 
+import java.util.Enumeration;
+
 import javafx.beans.property.ListProperty;
-import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -11,7 +11,7 @@ import javafx.collections.ObservableList;
 
 public class Goal {
 	private StringProperty descripcion = new SimpleStringProperty();
-	private ObjectProperty<Shell> shell = new SimpleObjectProperty<Shell>();
+	private Enumeration<String> shell;
 	private StringProperty ruta = new SimpleStringProperty();
 	private StringProperty usuario = new SimpleStringProperty();
 	private ListProperty<String> comandos = new SimpleListProperty<String>();
@@ -29,16 +29,12 @@ public class Goal {
 		this.descripcionProperty().set(descripcion);
 	}
 
-	public final ObjectProperty<Shell> shellProperty() {
-		return this.shell;
+	public Enumeration<String> getShell() {
+		return shell;
 	}
 
-	public final Shell getShell() {
-		return this.shellProperty().get();
-	}
-
-	public final void setShell(final Shell shell) {
-		this.shellProperty().set(shell);
+	public void setShell(Enumeration<String> shell) {
+		this.shell = shell;
 	}
 
 	public final StringProperty rutaProperty() {
