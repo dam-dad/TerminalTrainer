@@ -15,22 +15,21 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-
-<BorderPane prefHeight="800.0" prefWidth="800.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1">
+<BorderPane fx:id="view" prefHeight="766.0" prefWidth="648.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar BorderPane.alignment="CENTER">
         <menus>
-          <Menu mnemonicParsing="false" text="File">
+          <Menu mnemonicParsing="false" text="Archivo">
             <items>
               <MenuItem mnemonicParsing="false" text="Close" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Edit">
+          <Menu mnemonicParsing="false" text="Editar">
             <items>
               <MenuItem mnemonicParsing="false" text="Delete" />
             </items>
           </Menu>
-          <Menu mnemonicParsing="false" text="Help">
+          <Menu mnemonicParsing="false" text="Ayuda">
             <items>
               <MenuItem mnemonicParsing="false" text="About" />
             </items>
@@ -46,29 +45,38 @@
         </columnConstraints>
         <rowConstraints>
           <RowConstraints maxHeight="254.0" minHeight="0.0" prefHeight="89.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="665.0" minHeight="0.0" prefHeight="38.0" vgrow="SOMETIMES" />
-          <RowConstraints maxHeight="705.0" minHeight="0.0" prefHeight="207.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="705.0" minHeight="0.0" prefHeight="31.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="705.0" minHeight="10.0" prefHeight="117.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="705.0" minHeight="10.0" prefHeight="270.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="665.0" minHeight="0.0" prefHeight="42.0" vgrow="SOMETIMES" />
+          <RowConstraints maxHeight="705.0" minHeight="0.0" prefHeight="180.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="705.0" minHeight="0.0" prefHeight="35.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="705.0" minHeight="10.0" prefHeight="25.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="705.0" minHeight="10.0" prefHeight="335.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
             <Label text="Editor de desafíos &quot;Terminal Trainer&quot;" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-            <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="textName" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets right="8.0" />
+               </GridPane.margin></TextField>
             <Label text="Nombre del desafío:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
             <Label text="Descripción:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-            <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <TextArea fx:id="textDescription" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <GridPane.margin>
-                  <Insets bottom="5.0" />
+                  <Insets bottom="5.0" right="8.0" />
                </GridPane.margin>
             </TextArea>
-            <ListView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" GridPane.rowSpan="2" />
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="4">
                <children>
-                  <Label text="Soluciones:" />
-                  <Button mnemonicParsing="false" text="+" />
+                  <Label text="Objetivos:" />
+                  <Button fx:id="btnAddGoal" maxHeight="25.0" maxWidth="25.0" mnemonicParsing="false" onAction="#onAddGoalAction" prefHeight="25.0" prefWidth="25.0" text="+" />
                </children>
             </HBox>
+            <Button fx:id="btnRemoveGoal" maxHeight="25.0" maxWidth="25.0" mnemonicParsing="false" onAction="#onRemoveGoalAction" prefHeight="25.0" prefWidth="25.0" text="-" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP" />
+            <ListView fx:id="listGoals" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="2">
+               <GridPane.margin>
+                  <Insets bottom="5.0" right="8.0" />
+               </GridPane.margin>
+            </ListView>
          </children>
          <padding>
             <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
