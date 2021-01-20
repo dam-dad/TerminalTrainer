@@ -1,4 +1,4 @@
-package controller;
+package dad.javafx.terminaltrainer.controller;
 
 import java.net.URL;
 import java.util.ResourceBundle;
