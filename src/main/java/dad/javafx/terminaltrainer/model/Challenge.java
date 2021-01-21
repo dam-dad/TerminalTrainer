@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
 public class Challenge {
 
 	private StringProperty name = new SimpleStringProperty();
-	private StringProperty descripcion = new SimpleStringProperty();
+	private StringProperty description = new SimpleStringProperty();
 	private ListProperty<Goal> goals = new SimpleListProperty<Goal>(FXCollections.observableArrayList());
 
 	public StringProperty nameProperty() {
@@ -25,18 +25,6 @@ public class Challenge {
 		this.nameProperty().set(name);
 	}
 
-	public StringProperty descripcionProperty() {
-		return this.descripcion;
-	}
-
-	public String getDescripcion() {
-		return this.descripcionProperty().get();
-	}
-
-	public void setDescripcion(final String descripcion) {
-		this.descripcionProperty().set(descripcion);
-	}
-
 	public ListProperty<Goal> goalsProperty() {
 		return this.goals;
 	}
@@ -47,6 +35,18 @@ public class Challenge {
 
 	public void setGoals(final ObservableList<Goal> goals) {
 		this.goalsProperty().set(goals);
+	}
+
+	public final StringProperty descriptionProperty() {
+		return this.description;
+	}
+
+	public final String getDescription() {
+		return this.descriptionProperty().get();
+	}
+
+	public final void setDescription(final String description) {
+		this.descriptionProperty().set(description);
 	}
 
 }

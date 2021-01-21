@@ -10,13 +10,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class Goal {
-	
-	
+
 	private ObjectProperty<Shell> shell = new SimpleObjectProperty<>();
+	private ObjectProperty<OS> operativeSystem = new SimpleObjectProperty<>();
 	private StringProperty description = new SimpleStringProperty();
 	private StringProperty rute = new SimpleStringProperty();
 	private StringProperty user = new SimpleStringProperty();
-	private ListProperty<String> commands = new SimpleListProperty<String>();
+	private ListProperty<String> commands = new SimpleListProperty<String>(FXCollections.observableArrayList());
 	private ListProperty<String> tips = new SimpleListProperty<String>(FXCollections.observableArrayList());
 
 	public final StringProperty descriptionProperty() {
@@ -78,11 +78,11 @@ public class Goal {
 	public final void setTips(final ObservableList<String> tips) {
 		this.tipsProperty().set(tips);
 	}
-	
+
 	public ObjectProperty<Shell> shellProperty() {
 		return shell;
 	}
-	
+
 	public Shell getShell() {
 		return this.shellProperty().get();
 	}
@@ -90,21 +90,23 @@ public class Goal {
 	public void setShell(Shell shell) {
 		this.shell.set(shell);
 	}
-	
-	
-	
-	
-	public static void main(String[] args) {
-		/*
-		Goal goal = new Goal();
-		goal.setShell(Shell.CMD);
-		*/
+
+	public final ObjectProperty<OS> operativeSystemProperty() {
+		return this.operativeSystem;
 	}
 
-	
+	public final OS getOperativeSystem() {
+		return this.operativeSystemProperty().get();
+	}
 
-	
+	public final void setOperativeSystem(final OS operativeSystem) {
+		this.operativeSystemProperty().set(operativeSystem);
+	}
+
+	public static void main(String[] args) {
+		/*
+		 * Goal goal = new Goal(); goal.setShell(Shell.CMD);
+		 */
+	}
+
 }
-
-
-
