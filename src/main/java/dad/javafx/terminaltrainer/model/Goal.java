@@ -1,9 +1,9 @@
 package dad.javafx.terminaltrainer.model;
 
-import java.util.Enumeration;
-
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -11,60 +11,60 @@ import javafx.collections.ObservableList;
 
 public class Goal {
 	
-	public enum Shell {CMD, BASH, POWERSHELL};
 	
-	private StringProperty descripcion = new SimpleStringProperty();
-	private StringProperty ruta = new SimpleStringProperty();
-	private StringProperty usuario = new SimpleStringProperty();
-	private ListProperty<String> comandos = new SimpleListProperty<String>();
+	private ObjectProperty<Shell> shell = new SimpleObjectProperty<>();
+	private StringProperty description = new SimpleStringProperty();
+	private StringProperty rute = new SimpleStringProperty();
+	private StringProperty user = new SimpleStringProperty();
+	private ListProperty<String> commands = new SimpleListProperty<String>();
 	private ListProperty<String> tips = new SimpleListProperty<String>(FXCollections.observableArrayList());
 
-	public final StringProperty descripcionProperty() {
-		return this.descripcion;
+	public final StringProperty descriptionProperty() {
+		return this.description;
 	}
 
-	public final String getDescripcion() {
-		return this.descripcionProperty().get();
+	public final String getDescription() {
+		return this.descriptionProperty().get();
 	}
 
-	public final void setDescripcion(final String descripcion) {
-		this.descripcionProperty().set(descripcion);
+	public final void setDescription(final String descripcion) {
+		this.descriptionProperty().set(descripcion);
 	}
 
-	public final StringProperty rutaProperty() {
-		return this.ruta;
+	public final StringProperty ruteProperty() {
+		return this.rute;
 	}
 
-	public final String getRuta() {
-		return this.rutaProperty().get();
+	public final String getRute() {
+		return this.ruteProperty().get();
 	}
 
-	public final void setRuta(final String ruta) {
-		this.rutaProperty().set(ruta);
+	public final void setRuta(final String rute) {
+		this.ruteProperty().set(rute);
 	}
 
-	public final StringProperty usuarioProperty() {
-		return this.usuario;
+	public final StringProperty userProperty() {
+		return this.user;
 	}
 
-	public final String getUsuario() {
-		return this.usuarioProperty().get();
+	public final String getUser() {
+		return this.userProperty().get();
 	}
 
-	public final void setUsuario(final String usuario) {
-		this.usuarioProperty().set(usuario);
+	public final void setUsuario(final String user) {
+		this.userProperty().set(user);
 	}
 
-	public final ListProperty<String> comandosProperty() {
-		return this.comandos;
+	public final ListProperty<String> commandsProperty() {
+		return this.commands;
 	}
 
 	public final ObservableList<String> getComandos() {
-		return this.comandosProperty().get();
+		return this.commandsProperty().get();
 	}
 
-	public final void setComandos(final ObservableList<String> comandos) {
-		this.comandosProperty().set(comandos);
+	public final void setComandos(final ObservableList<String> commands) {
+		this.commandsProperty().set(commands);
 	}
 
 	public final ListProperty<String> tipsProperty() {
@@ -78,11 +78,32 @@ public class Goal {
 	public final void setTips(final ObservableList<String> tips) {
 		this.tipsProperty().set(tips);
 	}
+	
+	public ObjectProperty<Shell> shellProperty() {
+		return shell;
+	}
+	
+	public Shell getShell() {
+		return this.shellProperty().get();
+	}
 
+	public void setShell(Shell shell) {
+		this.shell.set(shell);
+	}
+	
+	
+	
 	
 	public static void main(String[] args) {
+		/*
 		Goal goal = new Goal();
+		goal.setShell(Shell.CMD);
+		*/
 	}
+
+	
+
+	
 }
 
 
