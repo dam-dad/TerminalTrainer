@@ -2,7 +2,9 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.MenuItem?>
@@ -18,7 +20,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1228.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="view" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="673.0" prefWidth="1228.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar prefHeight="26.0" prefWidth="1138.0" BorderPane.alignment="CENTER">
         <menus>
@@ -41,9 +43,9 @@
       </MenuBar>
    </top>
    <center>
-      <SplitPane dividerPositions="0.5364842454394693" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <SplitPane dividerPositions="0.5122349102773246" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER">
         <items>
-            <GridPane hgap="3.0" prefHeight="658.0" prefWidth="642.0" vgap="3.0">
+            <GridPane fx:id="gridChallenge" hgap="3.0" prefHeight="658.0" prefWidth="642.0" vgap="3.0">
                <columnConstraints>
                   <ColumnConstraints hgrow="SOMETIMES" maxWidth="395.0" minWidth="10.0" prefWidth="196.0" />
                   <ColumnConstraints hgrow="ALWAYS" maxWidth="666.0" minWidth="10.0" prefWidth="604.0" />
@@ -58,14 +60,14 @@
                </rowConstraints>
                <children>
                   <Label text="Challenge editor &quot;Terminal Trainer&quot;" GridPane.columnSpan="2147483647" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                  <TextField fx:id="textName" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <TextField fx:id="textNameChallenge" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <GridPane.margin>
                         <Insets right="8.0" />
                      </GridPane.margin>
                   </TextField>
                   <Label text="Name of challenge:" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                   <Label text="Description:" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="TOP" />
-                  <TextArea fx:id="textDescription" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                  <TextArea fx:id="textDescriptionChallengue" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
                      <GridPane.margin>
                         <Insets bottom="5.0" right="8.0" />
                      </GridPane.margin>
@@ -79,8 +81,10 @@
                   </HBox>
                   <TableView fx:id="tableGoals" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="2">
                      <columns>
-                        <TableColumn prefWidth="75.0" text="C1" />
-                        <TableColumn prefWidth="75.0" text="C2" />
+                        <TableColumn prefWidth="127.0" text="Description" />
+                        <TableColumn prefWidth="121.0" text="Shell" />
+                        <TableColumn prefWidth="117.0" text="PWD" />
+                        <TableColumn prefWidth="137.0" text="User" />
                      </columns>
                      <GridPane.margin>
                         <Insets bottom="5.0" right="8.0" />
@@ -88,8 +92,8 @@
                   </TableView>
                   <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
                      <children>
-                        <RadioButton mnemonicParsing="false" text="Windows" />
-                        <RadioButton mnemonicParsing="false" text="Linux" />
+                        <RadioButton fx:id="radioOSChallenge" mnemonicParsing="false" text="Windows" />
+                        <RadioButton fx:id="radioOSChallenge2" mnemonicParsing="false" text="Linux" />
                      </children>
                   </HBox>
                   <Label text="O.S. :" GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="TOP" />
@@ -99,16 +103,73 @@
                   <Insets bottom="4.0" left="4.0" right="4.0" top="4.0" />
                </padding>
             </GridPane>
-            <GridPane>
+            <GridPane fx:id="gridGoal">
               <columnConstraints>
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="278.0" minWidth="10.0" prefWidth="118.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="478.0" minWidth="10.0" prefWidth="447.0" />
               </columnConstraints>
               <rowConstraints>
-                <RowConstraints maxHeight="258.0" minHeight="34.0" prefHeight="34.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="555.0" minHeight="10.0" prefHeight="555.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="258.0" minHeight="34.0" prefHeight="118.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="555.0" minHeight="34.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="559.0" minHeight="16.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="517.0" minHeight="34.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="517.0" minHeight="34.0" prefHeight="34.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="517.0" minHeight="34.0" prefHeight="175.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="517.0" minHeight="10.0" prefHeight="191.0" vgrow="SOMETIMES" />
               </rowConstraints>
+               <children>
+                  <Label text="Description: " GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                  <Label text="Selected goal:" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                  <TextField fx:id="textDescriptionGoal" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <GridPane.margin>
+                        <Insets right="8.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="Shell: " GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                  <ChoiceBox fx:id="choicheShell" prefHeight="25.0" prefWidth="398.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                  <Label text="PWD: " GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                  <TextField fx:id="textPWDGoal" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                     <GridPane.margin>
+                        <Insets right="8.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <TextField fx:id="textUserGoal" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                     <GridPane.margin>
+                        <Insets right="8.0" />
+                     </GridPane.margin>
+                  </TextField>
+                  <Label text="User: " GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER" />
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="5">
+                     <children>
+                        <Label text="Commands: " />
+                        <Button fx:id="btnAddCommand" maxHeight="25.0" maxWidth="25.0" mnemonicParsing="false" onAction="#onAddCommandAction" prefHeight="25.0" prefWidth="25.0" text="+" />
+                        <Button fx:id="btnRemoveCommand" maxHeight="25.0" maxWidth="25.0" mnemonicParsing="false" onAction="#onRemoveCommandAction" prefHeight="25.0" prefWidth="25.0" text="-" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets right="3.0" />
+                     </GridPane.margin>
+                  </HBox>
+                  <HBox alignment="TOP_RIGHT" prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="6">
+                     <children>
+                        <Label text="Tips: " />
+                        <Button fx:id="btnAddTip" maxHeight="25.0" maxWidth="25.0" mnemonicParsing="false" onAction="#onAddTipAction" prefHeight="25.0" prefWidth="25.0" text="+" />
+                        <Button fx:id="btnRemoveTip" maxHeight="25.0" maxWidth="25.0" mnemonicParsing="false" onAction="#onRemoveTipAction" prefHeight="25.0" prefWidth="25.0" text="-" />
+                     </children>
+                     <GridPane.margin>
+                        <Insets right="3.0" />
+                     </GridPane.margin>
+                  </HBox>
+                  <ListView fx:id="listCommands" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                     <GridPane.margin>
+                        <Insets bottom="4.0" right="8.0" />
+                     </GridPane.margin>
+                  </ListView>
+                  <ListView fx:id="listTips" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                     <GridPane.margin>
+                        <Insets bottom="4.0" right="8.0" />
+                     </GridPane.margin>
+                  </ListView>
+               </children>
             </GridPane>
         </items>
       </SplitPane>
