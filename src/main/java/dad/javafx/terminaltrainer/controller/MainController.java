@@ -1,9 +1,17 @@
 package dad.javafx.terminaltrainer.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import dad.javafx.terminaltrainer.model.Challenge;
+import dad.javafx.terminaltrainer.model.Goal;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -16,6 +24,9 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 public class MainController implements Initializable{
+	
+	//model
+	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
 	
 	@FXML
     private BorderPane view;
@@ -36,7 +47,7 @@ public class MainController implements Initializable{
     private Button btnRemoveGoal;
 
     @FXML
-    private TableView<?> tableGoals;
+    private TableView<Goal> tableGoals;
 
     @FXML
     private RadioButton radioOSChallenge;
@@ -72,10 +83,10 @@ public class MainController implements Initializable{
     private Button btnRemoveTip;
 
     @FXML
-    private ListView<?> listCommands;
+    private ListView<String> listCommands;
 
     @FXML
-    private ListView<?> listTips;
+    private ListView<String> listTips;
 
     @FXML
     void onAddCommandAction(ActionEvent event) {
@@ -106,11 +117,38 @@ public class MainController implements Initializable{
     void onRemoveTipAction(ActionEvent event) {
 
     }
+    
+    public MainController() throws IOException{
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
+		loader.setController(this);
+		loader.load();
+    }
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
+		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
+	}
+	
+	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
 		
+		if (ov != null) {
+			textDescriptionChallengue.textProperty().unbindBidirectional(ov.descriptionProperty());
+			textNameChallenge.textProperty().unbindBidirectional(ov.nameProperty());
+			tableGoals.itemsProperty().unbindBidirectional(ov.goalsProperty());
+			// TODO unbind properties
+		}
+
+		if (nv != null) {
+			textDescriptionChallengue.textProperty().bindBidirectional(ov.descriptionProperty());
+			textNameChallenge.textProperty().bindBidirectional(ov.nameProperty());
+			tableGoals.itemsProperty().bindBidirectional(ov.goalsProperty());
+			// TODO bind properties
+		}
+	}
+	
+	public BorderPane getView() {
+		return this.view;
 	}
 
 }
