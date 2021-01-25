@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import dad.javafx.terminaltrainer.model.Challenge;
 import dad.javafx.terminaltrainer.model.Goal;
+import dad.javafx.terminaltrainer.model.Shell;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
@@ -17,6 +18,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -27,6 +29,7 @@ public class MainController implements Initializable{
 	
 	//model
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
+	private ObjectProperty<Goal> goals = new SimpleObjectProperty<>();
 	
 	@FXML
     private BorderPane view;
@@ -48,6 +51,18 @@ public class MainController implements Initializable{
 
     @FXML
     private TableView<Goal> tableGoals;
+    
+    @FXML
+    private TableColumn<Goal, String> descriptionColumn;
+
+    @FXML
+    private TableColumn<Goal, Shell> shellColumn;
+
+    @FXML
+    private TableColumn<Goal, String> pwdColumn;
+
+    @FXML
+    private TableColumn<Goal, String> userColumn;
 
     @FXML
     private RadioButton radioOSChallenge;
@@ -62,7 +77,7 @@ public class MainController implements Initializable{
     private TextField textDescriptionGoal;
 
     @FXML
-    private ChoiceBox<?> choicheShell;
+    private ChoiceBox<Shell> choicheShell;
 
     @FXML
     private TextField textPWDGoal;
@@ -128,8 +143,24 @@ public class MainController implements Initializable{
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
+		goals.addListener((o, ov, nv) -> onGoalsChanged(o, ov, nv));	
 	}
 	
+	private void onGoalsChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
+		// TODO Auto-generated method stub
+		
+		if( ov != null ) {
+			textDescriptionGoal.textProperty().unbindBidirectional(ov.descriptionProperty());
+			textPWDGoal.textProperty().unbindBidirectional(ov.ruteProperty());
+		}
+		
+		if( nv != null ) {
+			textDescriptionGoal.textProperty().bindBidirectional(nv.descriptionProperty());
+			textPWDGoal.textProperty().bindBidirectional(nv.ruteProperty());
+		}
+		
+	}
+
 	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
 		
 		if (ov != null) {
