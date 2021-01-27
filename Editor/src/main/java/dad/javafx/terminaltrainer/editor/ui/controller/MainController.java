@@ -7,9 +7,12 @@ import java.util.ResourceBundle;
 import dad.javafx.terminaltrainer.editor.model.Challenge;
 import dad.javafx.terminaltrainer.editor.model.Goal;
 import dad.javafx.terminaltrainer.editor.model.Shell;
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,7 +32,7 @@ public class MainController implements Initializable{
 	
 	//model
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
-	private ObjectProperty<Goal> goals = new SimpleObjectProperty<>();
+	private ListProperty<Goal> goals = new SimpleListProperty<Goal>(FXCollections.observableArrayList());
 	
 	@FXML
     private BorderPane view;
@@ -102,6 +105,8 @@ public class MainController implements Initializable{
 
     @FXML
     private ListView<String> listTips;
+    
+    Challenge modeloChallenge = new Challenge();
 
     @FXML
     void onAddCommandAction(ActionEvent event) {
@@ -110,7 +115,14 @@ public class MainController implements Initializable{
 
     @FXML
     void onAddGoalAction(ActionEvent event) {
-
+    	Goal goal = new Goal();
+    	goal.setDescription("Descripción por defecto");
+    	goal.setPath("C:\\Users");
+    	Shell shell = null;
+    	goal.setShell(shell.CMD);
+    	goal.setUsername("Usuario");
+    	goals.add(goal);
+		tableGoals.getSelectionModel().selectLast();
     }
 
     @FXML
@@ -141,20 +153,32 @@ public class MainController implements Initializable{
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// TODO Auto-generated method stub
 		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
-		goals.addListener((o, ov, nv) -> onGoalsChanged(o, ov, nv));	
+		goals.addListener((o, ov, nv) -> onGoalsChanged(o, ov, nv));
+		
+		//deshabilita el botón si la tabla está vacía
+		btnRemoveGoal.disableProperty().bind(tableGoals.getSelectionModel().selectedItemProperty().isNull());
+		
+		//bindeo de columnas de la tabla goal
+//		descriptionColumn.setCellValueFactory(v -> v.getValue().descriptionProperty());
+//		shellColumn.setCellValueFactory(v -> v.getValue().shellProperty());
+//		pwdColumn.setCellValueFactory(v -> v.getValue().pathProperty());
+//		userColumn.setCellValueFactory(v -> v.getValue().usernameProperty());
+		
 	}
 	
 	private void onGoalsChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
-		// TODO Auto-generated method stub
 		
 		if( ov != null ) {
+			//bindeos de la tabla de goals
+			
+			
 			textDescriptionGoal.textProperty().unbindBidirectional(ov.descriptionProperty());
 			textPWDGoal.textProperty().unbindBidirectional(ov.pathProperty());
 		}
 		
 		if( nv != null ) {
+			
 			textDescriptionGoal.textProperty().bindBidirectional(nv.descriptionProperty());
 			textPWDGoal.textProperty().bindBidirectional(nv.pathProperty());
 		}
@@ -164,6 +188,8 @@ public class MainController implements Initializable{
 	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
 		
 		if (ov != null) {
+			tableGoals.itemsProperty().unbindBidirectional(ov.goalsProperty());
+			
 			textDescriptionChallengue.textProperty().unbindBidirectional(ov.descriptionProperty());
 			textNameChallenge.textProperty().unbindBidirectional(ov.nameProperty());
 			tableGoals.itemsProperty().unbindBidirectional(ov.goalsProperty());
@@ -171,9 +197,12 @@ public class MainController implements Initializable{
 		}
 
 		if (nv != null) {
-			textDescriptionChallengue.textProperty().bindBidirectional(ov.descriptionProperty());
-			textNameChallenge.textProperty().bindBidirectional(ov.nameProperty());
-			tableGoals.itemsProperty().bindBidirectional(ov.goalsProperty());
+			//bindeo de la tabla goals
+			tableGoals.itemsProperty().bindBidirectional(nv.goalsProperty());
+			
+			textDescriptionChallengue.textProperty().bindBidirectional(nv.descriptionProperty());
+			textNameChallenge.textProperty().bindBidirectional(nv.nameProperty());
+			tableGoals.itemsProperty().bindBidirectional(nv.goalsProperty());
 			// TODO bind properties
 		}
 	}
