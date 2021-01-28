@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<GridPane fx:id="view" hgap="5.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="600.0" vgap="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+  <columnConstraints>
+    <ColumnConstraints halignment="RIGHT" hgrow="NEVER" maxWidth="-Infinity" minWidth="10.0" />
+    <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+      <RowConstraints minHeight="50.0" vgrow="NEVER" />
+    <RowConstraints minHeight="10.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="NEVER" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <Label alignment="CENTER" maxWidth="1.7976931348623157E308" text="Selected goal" GridPane.columnSpan="2" GridPane.hgrow="NEVER" />
+      <Label maxWidth="-Infinity" text="Description:" GridPane.rowIndex="1" />
+      <Label text="Shell:" GridPane.rowIndex="2" />
+      <Label text="PWD:" GridPane.rowIndex="3" />
+      <Label text="User:" GridPane.rowIndex="4" />
+      <TextField fx:id="textDescription" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+      <ComboBox fx:id="comboShell" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+      <TextField fx:id="textPWD" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+      <TextField fx:id="textUser" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+      <ListView fx:id="ListCommands" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+      <ListView fx:id="ListTips" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+      <VBox GridPane.rowIndex="5">
+         <children>
+            <Label alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" text="Commands:" />
+            <HBox alignment="TOP_RIGHT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="5.0">
+               <children>
+                  <Button fx:id="btnAddCommand" minWidth="30.0" mnemonicParsing="false" onAction="#onAddCommandAction" text="+" />
+                  <Button fx:id="btnRemoveCommand" minWidth="30.0" mnemonicParsing="false" onAction="#onRemoveCommandAction" text="-" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+      <VBox GridPane.rowIndex="6">
+         <children>
+            <Label alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" text="Tips:" />
+            <HBox alignment="TOP_RIGHT" spacing="5.0">
+               <children>
+                  <Button fx:id="btnAddTip" minWidth="30.0" mnemonicParsing="false" onAction="#onAddTipAction" text="+" />
+                  <Button fx:id="btnRemoveTip" minWidth="30.0" mnemonicParsing="false" onAction="#onRemoveTipAction" text="-" />
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+   </padding>
+</GridPane>
