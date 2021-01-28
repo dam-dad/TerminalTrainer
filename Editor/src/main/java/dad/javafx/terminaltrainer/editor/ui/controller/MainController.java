@@ -26,6 +26,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
@@ -106,7 +107,13 @@ public class MainController implements Initializable {
 
 	@FXML
 	private ListView<String> listTips;
-
+	
+	private ToggleGroup grupoRadioButtons;
+	
+	Challenge modeloChallenge = new Challenge();
+	
+	int pos;
+	
 	@FXML
 	void onAddCommandAction(ActionEvent event) {
 
@@ -137,7 +144,7 @@ public class MainController implements Initializable {
 
 	@FXML
 	void onRemoveGoalAction(ActionEvent event) {
-
+		//modeloChallenge.getGoals().remove(tableGoals.getSelectionModel().getSelectedIndex());
 	}
 
 	@FXML
@@ -155,6 +162,10 @@ public class MainController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
 		goals.addListener((o, ov, nv) -> onGoalsChanged(o, ov, nv));
+		
+		//ToggleGroup para que al marcar un radioButton se desmarque el otro.
+		grupoRadioButtons = new ToggleGroup();
+		grupoRadioButtons.getToggles().addAll(radioOSChallenge, radioOSChallenge2);
 
 		// deshabilita el botón de eliminar goals si la tabla está vacía
 		btnRemoveGoal.disableProperty().bind(tableGoals.getSelectionModel().selectedItemProperty().isNull());
@@ -164,7 +175,9 @@ public class MainController implements Initializable {
 		shellColumn.setCellValueFactory(v -> v.getValue().shellProperty());
 		pwdColumn.setCellValueFactory(v -> v.getValue().pathProperty());
 		userColumn.setCellValueFactory(v -> v.getValue().usernameProperty());
-
+		
+		pos = tableGoals.getSelectionModel().getSelectedIndex();
+		
 	}
 
 	private void onGoalsChanged(ObservableValue<? extends ObservableList<Goal>> o, ObservableList<Goal> ov,
@@ -176,6 +189,7 @@ public class MainController implements Initializable {
 			// textDescriptionGoal.textProperty().unbindBidirectional(((Challenge)
 			// ov).descriptionProperty());
 			// textPWDGoal.textProperty().unbindBidirectional(((Goal) ov).pathProperty());
+			textUserGoal.textProperty().unbindBidirectional(goals);
 
 		}
 
@@ -183,9 +197,10 @@ public class MainController implements Initializable {
 			// bindeo de la tabla goals
 			tableGoals.itemsProperty().bindBidirectional(goals);
 
-			// textDescriptionGoal.textProperty().bindBidirectional(((Challenge)
-			// nv).descriptionProperty());
+			// textDescriptionGoal.textProperty().bindBidirectional(((Goal)nv).descriptionProperty());
 			// textPWDGoal.textProperty().bindBidirectional(((Goal) nv).pathProperty());
+			//textUserGoal.textProperty().bindBidirectional(goals.get().get(0).usernameProperty());
+			textUserGoal.textProperty().bindBidirectional(goals.get().get(pos).usernameProperty());
 		}
 	}
 
@@ -202,6 +217,7 @@ public class MainController implements Initializable {
 
 			textDescriptionChallengue.textProperty().bindBidirectional(nv.descriptionProperty());
 			textNameChallenge.textProperty().bindBidirectional(nv.nameProperty());
+			
 			// TODO bind properties
 		}
 	}
