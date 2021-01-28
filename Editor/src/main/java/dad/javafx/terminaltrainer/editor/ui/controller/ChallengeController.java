@@ -22,12 +22,13 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 
 public class ChallengeController implements Initializable {
 	private ListProperty<Goal> goals = new SimpleListProperty<Goal>(FXCollections.observableArrayList());
 
 	@FXML
-	private BorderPane view;
+	private GridPane view;
 
 	@FXML
 	private Button btnAddGoal;
@@ -83,7 +84,7 @@ public class ChallengeController implements Initializable {
 		// modeloChallenge.getGoals().remove(tableGoals.getSelectionModel().getSelectedIndex());
 	}
 
-	public BorderPane getView() {
+	public GridPane getView() {
 		return view;
 	}
 

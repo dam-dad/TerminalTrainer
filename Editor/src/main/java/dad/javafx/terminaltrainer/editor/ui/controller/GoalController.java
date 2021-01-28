@@ -1,11 +1,13 @@
 package dad.javafx.terminaltrainer.editor.ui.controller;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -14,7 +16,6 @@ import javafx.scene.layout.GridPane;
 
 public class GoalController implements Initializable {
 
-	
 	@FXML
     private GridPane view;
 
@@ -68,11 +69,22 @@ public class GoalController implements Initializable {
     	
     }
     	
+    
+    public GoalController() throws IOException {
+		// TODO Auto-generated constructor stub
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/GoalView.fxml"));
+		loader.setController(this);
+		loader.load();
+	}
+    
+    public GridPane getView() {
+		return view;
+	}
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-
+		
 	}
 
 }

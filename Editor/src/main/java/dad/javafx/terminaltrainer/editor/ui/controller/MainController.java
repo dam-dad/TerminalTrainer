@@ -20,7 +20,8 @@ import javafx.scene.layout.BorderPane;
 public class MainController implements Initializable {
 	// controladores
 	ChallengeController challengeController = new ChallengeController();
-
+	GoalController goalController = new GoalController();
+	
 	// model
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
 	private ListProperty<Goal> goals = new SimpleListProperty<Goal>(FXCollections.observableArrayList());
@@ -39,7 +40,8 @@ public class MainController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		split.getItems().addAll(challengeController.getView());
+		split.getItems().addAll(challengeController.getView(), goalController.getView());
+		//split.setDividerPositions(challengeController.getView().getWidth(), goalController.getView().getWidth());
 
 //		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
 //		goals.addListener((o, ov, nv) -> onGoalsChanged(o, ov, nv));
