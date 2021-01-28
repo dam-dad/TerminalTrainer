@@ -24,7 +24,7 @@ private static Stage primaryStage;
 		
 		primaryStage.setScene(escena);
 		primaryStage.setTitle("MiCV");
-//		primaryStage.getIcons().add(new Image("/images/cv64x64.png"));
+		//primaryStage.getIcons().add(new Image("/images/cv64x64.png"));
 		primaryStage.show();
 	}
 	
