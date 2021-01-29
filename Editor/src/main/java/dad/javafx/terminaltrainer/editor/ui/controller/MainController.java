@@ -40,8 +40,9 @@ public class MainController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		split.setDividerPositions(0.5);
 		split.getItems().addAll(challengeController.getView(), goalController.getView());
-		//split.setDividerPositions(challengeController.getView().getWidth(), goalController.getView().getWidth());
+		
 
 //		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
 //		goals.addListener((o, ov, nv) -> onGoalsChanged(o, ov, nv));
