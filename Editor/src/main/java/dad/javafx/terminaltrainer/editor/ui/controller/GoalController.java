@@ -13,7 +13,9 @@ import dad.javafx.terminaltrainer.editor.model.Goal;
 import dad.javafx.terminaltrainer.editor.model.Shell;
 import javafx.fxml.Initializable;
 import javafx.beans.property.ListProperty;
+import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,6 +25,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
 
 public class GoalController implements Initializable {
+	private ObjectProperty<Goal> goal = new SimpleObjectProperty<Goal>();
 	private ListProperty<Goal> goals = new SimpleListProperty<Goal>(FXCollections.observableArrayList());
 
 	@FXML
@@ -107,6 +110,18 @@ public class GoalController implements Initializable {
 
 	public GridPane getView() {
 		return view;
+	}
+
+	public final ObjectProperty<Goal> goalProperty() {
+		return this.goal;
+	}
+
+	public final Goal getGoal() {
+		return this.goalProperty().get();
+	}
+
+	public final void setGoal(final Goal goal) {
+		this.goalProperty().set(goal);
 	}
 
 }

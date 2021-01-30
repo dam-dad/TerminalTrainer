@@ -84,13 +84,12 @@ public class ChallengeController implements Initializable {
 		goal.setShell(shell.CMD);
 		goal.setUsername("Usuario");
 		goals.add(goal);
-		tableGoals.getItems().addAll(goals);
 		tableGoals.getSelectionModel().selectLast();
 	}
 
 	@FXML
 	void onRemoveGoalAction(ActionEvent event) {// No borra
-		modeloChallenge.getGoals().remove(tableGoals.getSelectionModel().getSelectedItem());
+		goals.remove(tableGoals.getSelectionModel().getSelectedItem());
 	}
 
 	public ChallengeController() throws IOException {
@@ -119,6 +118,7 @@ public class ChallengeController implements Initializable {
 
 		tableGoals.getSelectionModel().selectedItemProperty()
 				.addListener((o, ov, nv) -> onSelectedItemChanged(o, ov, nv));
+		tableGoals.itemsProperty().bindBidirectional(goals);
 
 	}
 
@@ -128,18 +128,20 @@ public class ChallengeController implements Initializable {
 
 	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
 		if (ov != null) {
-			tableGoals.itemsProperty().unbindBidirectional(goals);
-
 			textDescriptionChallengue.textProperty().unbindBidirectional(ov.descriptionProperty());
 			textNameChallenge.textProperty().unbindBidirectional(ov.nameProperty());
+			//radioOSChallenge.selectedProperty().unbindBidirectional(ov.osProperty());
+			//radioOSChallenge2.selectedProperty().unbindBidirectional(ov.osProperty());
+			tableGoals.itemsProperty().unbindBidirectional(goals);
 			// TODO unbind properties
 		}
 
 		if (nv != null) {
-			tableGoals.itemsProperty().bindBidirectional(goals);
-
 			textDescriptionChallengue.textProperty().bindBidirectional(nv.descriptionProperty());
 			textNameChallenge.textProperty().bindBidirectional(nv.nameProperty());
+			//radioOSChallenge.selectedProperty().bindBidirectional(nv.osProperty());
+			//radioOSChallenge2.selectedProperty().bindBidirectional(nv.osProperty());
+			tableGoals.itemsProperty().bindBidirectional(goals);
 
 			// TODO bind properties
 		}
