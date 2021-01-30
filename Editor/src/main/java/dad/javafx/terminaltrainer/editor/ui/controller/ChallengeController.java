@@ -4,6 +4,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXTextField;
+
 import dad.javafx.terminaltrainer.editor.model.Challenge;
 import dad.javafx.terminaltrainer.editor.model.Goal;
 import dad.javafx.terminaltrainer.editor.model.Shell;
@@ -31,37 +36,37 @@ public class ChallengeController implements Initializable {
 	private GridPane view;
 
 	@FXML
-	private Button btnAddGoal;
+	private JFXButton btnAddGoal;
 
 	@FXML
-	private Button btnRemoveGoal;
+	private JFXButton btnRemoveGoal;
 
 	@FXML
-	private TextField textNameChallenge;
+	private JFXRadioButton radioOSChallenge;
 
 	@FXML
-	private TextArea textDescriptionChallengue;
+	private JFXRadioButton radioOSChallenge2;
 
 	@FXML
-	private TableView<?> tableGoals;
+	private JFXTextField textNameChallenge;
 
 	@FXML
-	private TableColumn<?, ?> descriptionColumn;
+	private JFXTextArea textDescriptionChallengue;
 
 	@FXML
-	private TableColumn<?, ?> shellColumn;
+	private TableView<Goal> tableGoals;
 
 	@FXML
-	private TableColumn<?, ?> pwdColumn;
+	private TableColumn<Goal, String> descriptionColumn;
 
 	@FXML
-	private TableColumn<?, ?> userColumn;
+	private TableColumn<Goal, String> shellColumn;
 
 	@FXML
-	private RadioButton radioOSChallenge;
+	private TableColumn<Goal, String> pwdColumn;
 
 	@FXML
-	private RadioButton radioOSChallenge2;
+	private TableColumn<Goal, String> userColumn;
 
 	private ToggleGroup grupoRadioButtons;
 
@@ -76,6 +81,7 @@ public class ChallengeController implements Initializable {
 		goal.setShell(shell.CMD);
 		goal.setUsername("Usuario");
 		goals.add(goal);
+		tableGoals.getItems().addAll(goals);
 		tableGoals.getSelectionModel().selectLast();
 	}
 
@@ -99,6 +105,6 @@ public class ChallengeController implements Initializable {
 		// ToggleGroup para que al marcar un radioButton se desmarque el otro.
 		grupoRadioButtons = new ToggleGroup();
 		grupoRadioButtons.getToggles().addAll(radioOSChallenge, radioOSChallenge2);
-
+		
 	}
 }

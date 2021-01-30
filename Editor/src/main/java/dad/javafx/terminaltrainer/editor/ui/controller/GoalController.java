@@ -12,6 +12,7 @@ import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import com.jfoenix.controls.JFXTreeTableView;
 
+import dad.javafx.terminaltrainer.editor.model.Shell;
 import javafx.fxml.Initializable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -24,37 +25,57 @@ import javafx.scene.layout.GridPane;
 
 public class GoalController implements Initializable {
 
-	@FXML
+
+    @FXML
     private GridPane view;
 
     @FXML
-    private JFXButton btnAddGoal;
+    private JFXButton btnAddCommand;
 
     @FXML
-    private JFXButton btnRemoveGoal;
+    private JFXButton btnRemoveCommand;
 
     @FXML
-    private JFXRadioButton radioOSChallenge;
+    private JFXButton btnAddTip;
 
     @FXML
-    private JFXRadioButton radioOSChallenge2;
+    private JFXButton btnRemoveTip;
 
     @FXML
-    private JFXTextField textNameChallenge;
+    private JFXTextField textDescription;
 
     @FXML
-    private JFXTextArea textDescriptionChallengue;
+    private JFXComboBox<Shell> comboShell;
 
     @FXML
-    private JFXTreeTableView<?> tableGoals;
+    private JFXTextField textPWD;
 
     @FXML
-    void onAddGoalAction(ActionEvent event) {
+    private JFXTextField textUser;
+
+    @FXML
+    private JFXListView<String> ListCommands;
+
+    @FXML
+    private JFXListView<String> ListTips;
+
+    @FXML
+    void onAddCommandAction(ActionEvent event) {
 
     }
 
     @FXML
-    void onRemoveGoalAction(ActionEvent event) {
+    void onAddTippAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onRemoveCommandAction(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onRemoveTipAction(ActionEvent event) {
 
     }
     	

@@ -4,16 +4,17 @@
 <?import com.jfoenix.controls.JFXRadioButton?>
 <?import com.jfoenix.controls.JFXTextArea?>
 <?import com.jfoenix.controls.JFXTextField?>
-<?import com.jfoenix.controls.JFXTreeTableView?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="view" hgap="5.0" prefHeight="400.0" prefWidth="600.0" vgap="5.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="view" hgap="5.0" prefHeight="400.0" prefWidth="600.0" vgap="5.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="10.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -54,7 +55,14 @@
       </HBox>
       <JFXTextField fx:id="textNameChallenge" GridPane.columnIndex="1" GridPane.rowIndex="1" />
       <JFXTextArea fx:id="textDescriptionChallengue" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-      <JFXTreeTableView fx:id="tableGoals" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="2147483647" />
+      <TableView fx:id="tableGoals" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="2147483647">
+        <columns>
+          <TableColumn fx:id="descriptionColumn" prefWidth="185.0" text="Description" />
+          <TableColumn fx:id="shellColumn" prefWidth="112.0" text="Shell" />
+            <TableColumn fx:id="pwdColumn" prefWidth="102.0" text="PWD" />
+            <TableColumn fx:id="userColumn" prefWidth="95.0" text="User" />
+        </columns>
+      </TableView>
    </children>
    <padding>
       <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
