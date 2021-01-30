@@ -5,12 +5,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dad.javafx.terminaltrainer.editor.model.Challenge;
-import dad.javafx.terminaltrainer.editor.model.Goal;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
+import javafx.beans.value.ObservableValue;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -22,9 +20,8 @@ public class MainController implements Initializable {
 	ChallengeController challengeController = new ChallengeController();
 	GoalController goalController = new GoalController();
 	
-	// model
+	//Model
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
-	private ListProperty<Goal> goals = new SimpleListProperty<Goal>(FXCollections.observableArrayList());
 
 	@FXML
 	private BorderPane view;
@@ -40,65 +37,29 @@ public class MainController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		split.setDividerPositions(0.5);
+		split.setDividerPositions(0.5, 0.5);
 		split.getItems().addAll(challengeController.getView(), goalController.getView());
 		
-
-//		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
-//		goals.addListener((o, ov, nv) -> onGoalsChanged(o, ov, nv));
-
-		// deshabilita el botón de eliminar goals si la tabla está vacía
-		// btnRemoveGoal.disableProperty().bind(tableGoals.getSelectionModel().selectedItemProperty().isNull());
-
-		// bindeo de columnas de la tabla goal
-//		descriptionColumn.setCellValueFactory(v -> v.getValue().descriptionProperty());
-//		shellColumn.setCellValueFactory(v -> v.getValue().shellProperty());
-//		pwdColumn.setCellValueFactory(v -> v.getValue().pathProperty());
-//		userColumn.setCellValueFactory(v -> v.getValue().usernameProperty());
-//		
-//		tableGoals.getSelectionModel().selectedItemProperty().addListener((o, ov, nv) -> onSelectedItemChanged(o, ov, nv));
+		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
 
 	}
 
-//	private void onSelectedItemChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
-//		
-//	}
+	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
+		if(ov != null) {
+			challengeController.challengeProperty().unbind();
+			//TODO desbindear el resto de elementos
+		}
+		
+		if(nv != null) {
+			challengeController.challengeProperty().bind(challenge);
+			//TODO bindear el resto de elementos
+		}
+	}
 
-//	private void onGoalsChanged(ObservableValue<? extends ObservableList<Goal>> o, ObservableList<Goal> ov,
-//			ObservableList<Goal> nv) {
-//		if (ov != null) {
-//			// desbindeo de la tabla de goals
-//			tableGoals.itemsProperty().unbindBidirectional(goals);
-//
-//			textUserGoal.textProperty().unbindBidirectional(goals);
-//
-//		}
-//
-//		if (nv != null) {
-//			// bindeo de la tabla goals
-//			tableGoals.itemsProperty().bindBidirectional(goals);
-//
-//			textUserGoal.textProperty().bindBidirectional(goals.get().get(0).usernameProperty());
-//		}
-//	}
-//
-//	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
-//
-//		if (ov != null) {
-//
-//			textDescriptionChallengue.textProperty().unbindBidirectional(ov.descriptionProperty());
-//			textNameChallenge.textProperty().unbindBidirectional(ov.nameProperty());
-//			// TODO unbind properties
-//		}
-//
-//		if (nv != null) {
-//
-//			textDescriptionChallengue.textProperty().bindBidirectional(nv.descriptionProperty());
-//			textNameChallenge.textProperty().bindBidirectional(nv.nameProperty());
-//			
-//			// TODO bind properties
-//		}
-//	}
+	@FXML
+	void onNuevoAction(ActionEvent event) {//Sólo desbindea 1 elemento de la tabla, mirar desbindeos.
+		challenge.set(new Challenge());
+	}
 
 	public BorderPane getView() {
 		return this.view;
