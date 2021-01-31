@@ -36,6 +36,8 @@ public class MainController implements Initializable {
 	@FXML
 	private SplitPane split;
 
+	String ruta;
+
 	public MainController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
 		loader.setController(this);
@@ -73,15 +75,32 @@ public class MainController implements Initializable {
 	}
 
 	@FXML
+	void onOpenAction(ActionEvent event) {
+		FileChooser fileChooser = new FileChooser();
+		fileChooser.setTitle("Open a challenge file.");
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("Challenge (*.ch)", "*.ch"));
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("All types of files", "."));
+		File chFile = fileChooser.showOpenDialog(App.getPrimaryStage());
+		if (chFile != null) {
+			try {
+				ruta = chFile.getAbsolutePath();
+				challenge.set(JSONUtils.fromJson(chFile, Challenge.class));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+	}
+
+	@FXML
 	void onSaveAction(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Guardar un challenge.");
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Challenge (*.ch)", "*.ch"));
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Todos los archivos", "*.*"));
-		File cvFile = fileChooser.showSaveDialog(App.getPrimaryStage());
-		if (cvFile != null) {
+		File chFile = fileChooser.showSaveDialog(App.getPrimaryStage());
+		if (chFile != null) {
 			try {
-				JSONUtils.toJson(cvFile, challenge.get());
+				JSONUtils.toJson(chFile, challenge.get());
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
