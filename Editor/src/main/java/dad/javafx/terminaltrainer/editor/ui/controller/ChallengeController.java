@@ -5,34 +5,31 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXRadioButton;
+import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import dad.javafx.terminaltrainer.editor.model.Challenge;
 import dad.javafx.terminaltrainer.editor.model.Goal;
+import dad.javafx.terminaltrainer.editor.model.OS;
 import dad.javafx.terminaltrainer.editor.model.Shell;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
 
 public class ChallengeController implements Initializable {
+	
 	// Controllers
 	GoalController goalController = new GoalController();
 	// Model
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
-	private ListProperty<Goal> goals = new SimpleListProperty<Goal>(FXCollections.observableArrayList());
 
 	@FXML
 	private GridPane view;
@@ -43,11 +40,8 @@ public class ChallengeController implements Initializable {
 	@FXML
 	private JFXButton btnRemoveGoal;
 
-	@FXML
-	private JFXRadioButton radioOSChallenge;
-
-	@FXML
-	private JFXRadioButton radioOSChallenge2;
+    @FXML
+    private JFXComboBox<OS> comboOS;
 
 	@FXML
 	private JFXTextField textNameChallenge;
@@ -70,7 +64,6 @@ public class ChallengeController implements Initializable {
 	@FXML
 	private TableColumn<Goal, String> userColumn;
 
-	private ToggleGroup grupoRadioButtons;
 
 	Challenge modeloChallenge = new Challenge();
 
@@ -78,18 +71,18 @@ public class ChallengeController implements Initializable {
 	@FXML
 	void onAddGoalAction(ActionEvent event) {
 		Goal goal = new Goal();
-		goal.setDescription("Descripción por defecto");
+		goal.setDescription("Default description");
 		goal.setPath("C:\\Users");
 		Shell shell = null;
 		goal.setShell(shell.CMD);
-		goal.setUsername("Usuario");
-		goals.add(goal);
+		goal.setUsername("User");
+		tableGoals.getItems().add(goal);
 		tableGoals.getSelectionModel().selectLast();
 	}
 
 	@FXML
-	void onRemoveGoalAction(ActionEvent event) {// No borra
-		goals.remove(tableGoals.getSelectionModel().getSelectedItem());
+	void onRemoveGoalAction(ActionEvent event) {
+		tableGoals.getItems().remove(tableGoals.getSelectionModel().getSelectedItem());
 	}
 
 	public ChallengeController() throws IOException {
@@ -101,9 +94,6 @@ public class ChallengeController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		// ToggleGroup para que al marcar un radioButton se desmarque el otro.
-		grupoRadioButtons = new ToggleGroup();
-		grupoRadioButtons.getToggles().addAll(radioOSChallenge, radioOSChallenge2);
 
 		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
 
@@ -118,8 +108,11 @@ public class ChallengeController implements Initializable {
 
 		tableGoals.getSelectionModel().selectedItemProperty()
 				.addListener((o, ov, nv) -> onSelectedItemChanged(o, ov, nv));
-		tableGoals.itemsProperty().bindBidirectional(goals);
-
+		
+		
+		//Agrega los datos de el enum OS al combobox y selecciona el primero
+		comboOS.getItems().setAll(OS.values());
+		comboOS.getSelectionModel().selectFirst();
 	}
 
 	private void onSelectedItemChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
@@ -130,18 +123,16 @@ public class ChallengeController implements Initializable {
 		if (ov != null) {
 			textDescriptionChallengue.textProperty().unbindBidirectional(ov.descriptionProperty());
 			textNameChallenge.textProperty().unbindBidirectional(ov.nameProperty());
-			//radioOSChallenge.selectedProperty().unbindBidirectional(ov.osProperty());
-			//radioOSChallenge2.selectedProperty().unbindBidirectional(ov.osProperty());
-			tableGoals.itemsProperty().unbindBidirectional(goals);
+			comboOS.valueProperty().unbindBidirectional(ov.osProperty());
+			tableGoals.itemsProperty().unbindBidirectional(ov.goalsProperty());
 			// TODO unbind properties
 		}
 
 		if (nv != null) {
 			textDescriptionChallengue.textProperty().bindBidirectional(nv.descriptionProperty());
 			textNameChallenge.textProperty().bindBidirectional(nv.nameProperty());
-			//radioOSChallenge.selectedProperty().bindBidirectional(nv.osProperty());
-			//radioOSChallenge2.selectedProperty().bindBidirectional(nv.osProperty());
-			tableGoals.itemsProperty().bindBidirectional(goals);
+			comboOS.valueProperty().bindBidirectional(nv.osProperty());
+			tableGoals.itemsProperty().bindBidirectional(nv.goalsProperty());
 
 			// TODO bind properties
 		}
