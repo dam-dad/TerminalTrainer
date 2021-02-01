@@ -23,7 +23,7 @@ private static Stage primaryStage;
 		Scene escena = new Scene(controller.getView());
 		
 		primaryStage.setScene(escena);
-		primaryStage.setTitle("MiCV");
+		primaryStage.setTitle("Terminal Trainer");
 		//primaryStage.getIcons().add(new Image("/images/cv64x64.png"));
 		primaryStage.show();
 	}

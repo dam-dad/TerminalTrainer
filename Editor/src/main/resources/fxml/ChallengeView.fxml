@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 
-<GridPane fx:id="view" hgap="7.0" prefHeight="443.0" prefWidth="600.0" stylesheets="@../css/challengeStyle.css" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="view" hgap="7.0" prefHeight="443.0" prefWidth="600.0" stylesheets="@../css/challengeStyle.css" vgap="10.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="50.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -70,14 +70,17 @@
          </GridPane.margin></JFXTextArea>
       <TableView fx:id="tableGoals" prefHeight="200.0" prefWidth="200.0" styleClass="field" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="2147483647">
         <columns>
-          <TableColumn fx:id="descriptionColumn" maxWidth="1.7976931348623157E308" prefWidth="146.0" styleClass="field" text="Description" />
-          <TableColumn fx:id="shellColumn" maxWidth="1.7976931348623157E308" prefWidth="114.0" text="Shell" />
-            <TableColumn fx:id="pwdColumn" maxWidth="1.7976931348623157E308" prefWidth="88.0" text="PWD" />
-            <TableColumn fx:id="userColumn" maxWidth="1.7976931348623157E308" prefWidth="104.0" text="User" />
+          <TableColumn fx:id="descriptionColumn" prefWidth="146.0" styleClass="field" text="Description" />
+          <TableColumn fx:id="shellColumn" minWidth="-1.0" prefWidth="114.0" text="Shell" />
+            <TableColumn fx:id="pwdColumn" prefWidth="88.0" text="PWD" />
+            <TableColumn fx:id="userColumn" prefWidth="104.0" text="User" />
         </columns>
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
    </children>
    <padding>

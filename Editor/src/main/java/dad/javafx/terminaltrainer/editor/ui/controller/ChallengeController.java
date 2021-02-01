@@ -13,9 +13,12 @@ import dad.javafx.terminaltrainer.editor.model.Challenge;
 import dad.javafx.terminaltrainer.editor.model.Goal;
 import dad.javafx.terminaltrainer.editor.model.OS;
 import dad.javafx.terminaltrainer.editor.model.Shell;
+import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -25,7 +28,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.layout.GridPane;
 
 public class ChallengeController implements Initializable {
-	
+
 	// Controllers
 	GoalController goalController = new GoalController();
 	// Model
@@ -40,8 +43,8 @@ public class ChallengeController implements Initializable {
 	@FXML
 	private JFXButton btnRemoveGoal;
 
-    @FXML
-    private JFXComboBox<OS> comboOS;
+	@FXML
+	private JFXComboBox<OS> comboOS;
 
 	@FXML
 	private JFXTextField textNameChallenge;
@@ -64,33 +67,7 @@ public class ChallengeController implements Initializable {
 	@FXML
 	private TableColumn<Goal, String> userColumn;
 
-
 	Challenge modeloChallenge = new Challenge();
-
-	@SuppressWarnings("static-access")
-	@FXML
-	void onAddGoalAction(ActionEvent event) {
-		Goal goal = new Goal();
-		goal.setDescription("Default description");
-		goal.setPath("C:\\Users");
-		Shell shell = null;
-		goal.setShell(shell.CMD);
-		goal.setUsername("User");
-		tableGoals.getItems().add(goal);
-		tableGoals.getSelectionModel().selectLast();
-	}
-
-	@FXML
-	void onRemoveGoalAction(ActionEvent event) {
-		tableGoals.getItems().remove(tableGoals.getSelectionModel().getSelectedItem());
-	}
-
-	public ChallengeController() throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChallengeView.fxml"));
-		loader.setController(this);
-		loader.load();
-
-	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -108,15 +85,34 @@ public class ChallengeController implements Initializable {
 
 		tableGoals.getSelectionModel().selectedItemProperty()
 				.addListener((o, ov, nv) -> onSelectedItemChanged(o, ov, nv));
-		
-		
-		//Agrega los datos de el enum OS al combobox y selecciona el primero
+
+		// Agrega los datos de el enum OS al combobox y selecciona el primero
 		comboOS.getItems().setAll(OS.values());
 		comboOS.getSelectionModel().selectFirst();
 	}
 
 	private void onSelectedItemChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
+		if (ov != null) {
+//			ObjectProperty<Goal> goal = new SimpleObjectProperty<Goal>(ov);
+//			goalController.goalProperty().unbindBidirectional(goal);
 
+			ov.descriptionProperty().unbindBidirectional(goalController.textDescription.textProperty());
+// 			ov.shellProperty().unbindBidirectional(goalController.comboShell.valueProperty());
+//			ov.usernameProperty().unbindBidirectional(goalController.textUser.textProperty());
+//			ov.pathProperty().unbindBidirectional(goalController.textPWD.textProperty());
+
+		}
+
+		if (nv != null) {
+//			ObjectProperty<Goal> goal = new SimpleObjectProperty<Goal>(nv);
+//			goalController.goalProperty().bindBidirectional(goal);
+
+			nv.descriptionProperty().bindBidirectional(goalController.textDescription.textProperty());
+//			nv.shellProperty().bindBidirectional(goalController.comboShell.valueProperty());
+//			nv.usernameProperty().bindBidirectional(goalController.textUser.textProperty());
+//			nv.pathProperty().bindBidirectional(goalController.textPWD.textProperty());
+
+		}
 	}
 
 	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
@@ -125,7 +121,6 @@ public class ChallengeController implements Initializable {
 			textNameChallenge.textProperty().unbindBidirectional(ov.nameProperty());
 			comboOS.valueProperty().unbindBidirectional(ov.osProperty());
 			tableGoals.itemsProperty().unbindBidirectional(ov.goalsProperty());
-			// TODO unbind properties
 		}
 
 		if (nv != null) {
@@ -133,9 +128,33 @@ public class ChallengeController implements Initializable {
 			textNameChallenge.textProperty().bindBidirectional(nv.nameProperty());
 			comboOS.valueProperty().bindBidirectional(nv.osProperty());
 			tableGoals.itemsProperty().bindBidirectional(nv.goalsProperty());
-
-			// TODO bind properties
 		}
+	}
+
+	@SuppressWarnings("static-access")
+	@FXML
+	void onAddGoalAction(ActionEvent event) {
+		Goal goal = new Goal();
+		goal.setDescription("Default description");
+		goal.setPath("C:\\Users");
+		Shell shell = null;
+		goal.setShell(shell.CMD);
+		goal.setUsername("User");
+		tableGoals.getItems().add(goal);
+		tableGoals.getSelectionModel().selectLast();
+
+	}
+
+	@FXML
+	void onRemoveGoalAction(ActionEvent event) {
+		tableGoals.getItems().remove(tableGoals.getSelectionModel().getSelectedItem());
+	}
+
+	public ChallengeController() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChallengeView.fxml"));
+		loader.setController(this);
+		loader.load();
+
 	}
 
 	public GridPane getView() {

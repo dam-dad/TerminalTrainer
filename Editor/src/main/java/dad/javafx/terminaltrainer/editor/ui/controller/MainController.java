@@ -45,7 +45,7 @@ public class MainController implements Initializable {
 	}
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {
+	public void initialize(URL location, ResourceBundle resources) {//.terminaltrainer en usuarios. Bindfx con preferences(solo 1 instancia).
 		split.setDividerPositions(0.5, 0.5);
 		split.getItems().addAll(challengeController.getView(), goalController.getView());
 

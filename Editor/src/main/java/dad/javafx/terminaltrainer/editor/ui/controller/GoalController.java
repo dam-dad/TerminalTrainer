@@ -18,7 +18,6 @@ import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,17 +42,17 @@ public class GoalController implements Initializable {
 	@FXML
 	private JFXButton btnRemoveTip;
 
-	@FXML
-	private JFXTextField textDescription;
+	@FXML // quité private para acceder al textField en el challengeController
+	public JFXTextField textDescription;
 
-	@FXML
-	private JFXComboBox<Shell> comboShell;
+	@FXML // quité private para acceder al textField en el challengeController
+	public JFXComboBox<Shell> comboShell;
 
-	@FXML
-	private JFXTextField textPWD;
+	@FXML // quité private para acceder al textField en el challengeController
+	public JFXTextField textPWD;
 
-	@FXML
-	private JFXTextField textUser;
+	@FXML // quité private para acceder al textField en el challengeController
+	public JFXTextField textUser;
 
 	@FXML
 	private JFXListView<String> ListCommands;
@@ -89,22 +88,25 @@ public class GoalController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		goals.addListener((o, ov, nv) -> onGoalsChanged(o, ov, nv));
+		goal.addListener((o, ov, nv) -> onGoalsChanged(o, ov, nv));
 
 		comboShell.getItems().setAll(Shell.values());
 	}
 
-	private void onGoalsChanged(ObservableValue<? extends ObservableList<Goal>> o, ObservableList<Goal> ov,
-			ObservableList<Goal> nv) {
+	private void onGoalsChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
 		if (ov != null) {
-			textDescription.textProperty().unbindBidirectional(goals);
-			textUser.textProperty().unbindBidirectional(goals);
+			textDescription.textProperty().unbindBidirectional(ov.descriptionProperty());
+			comboShell.valueProperty().unbindBidirectional(ov.shellProperty());
+			textPWD.textProperty().unbindBidirectional(ov.pathProperty());
+			textUser.textProperty().unbindBidirectional(ov.usernameProperty());
 
 		}
 
 		if (nv != null) {
-			textDescription.textProperty().bindBidirectional(goals.get().get(0).descriptionProperty());
-			textUser.textProperty().bindBidirectional(goals.get().get(0).usernameProperty());
+			textDescription.textProperty().bindBidirectional(nv.descriptionProperty());
+			comboShell.valueProperty().bindBidirectional(nv.shellProperty());
+			textPWD.textProperty().bindBidirectional(nv.pathProperty());
+			textUser.textProperty().bindBidirectional(nv.usernameProperty());
 		}
 	}
 
