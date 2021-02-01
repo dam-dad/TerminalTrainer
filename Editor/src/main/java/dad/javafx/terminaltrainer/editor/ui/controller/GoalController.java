@@ -12,12 +12,9 @@ import com.jfoenix.controls.JFXTextField;
 import dad.javafx.terminaltrainer.editor.model.Goal;
 import dad.javafx.terminaltrainer.editor.model.Shell;
 import javafx.fxml.Initializable;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -107,6 +104,13 @@ public class GoalController implements Initializable {
 			comboShell.valueProperty().bindBidirectional(nv.shellProperty());
 			textPWD.textProperty().bindBidirectional(nv.pathProperty());
 			textUser.textProperty().bindBidirectional(nv.usernameProperty());
+		}else {
+			textDescription.clear();
+			comboShell.getSelectionModel().clearSelection();
+			textPWD.clear();
+			textUser.clear();
+			ListCommands.refresh();
+			ListTips.refresh();
 		}
 	}
 

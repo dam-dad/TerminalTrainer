@@ -13,12 +13,9 @@ import dad.javafx.terminaltrainer.editor.model.Challenge;
 import dad.javafx.terminaltrainer.editor.model.Goal;
 import dad.javafx.terminaltrainer.editor.model.OS;
 import dad.javafx.terminaltrainer.editor.model.Shell;
-import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -34,8 +31,7 @@ public class ChallengeController implements Initializable {
 
 	// Model
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
-	private Challenge modeloChallenge = new Challenge();
-	
+
 	// view
 
 	@FXML
@@ -71,7 +67,6 @@ public class ChallengeController implements Initializable {
 	@FXML
 	private TableColumn<Goal, String> userColumn;
 
-
 	public ChallengeController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChallengeView.fxml"));
 		loader.setController(this);
@@ -103,28 +98,14 @@ public class ChallengeController implements Initializable {
 	private void onSelectedItemChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
 
 		if (ov != null) {
-//			ObjectProperty<Goal> goal = new SimpleObjectProperty<Goal>(ov);
-//			goalController.goalProperty().unbindBidirectional(goal);
 
 			goalController.setGoal(null);
-
-//			ov.descriptionProperty().unbindBidirectional(goalController.textDescription.textProperty());
-// 			ov.shellProperty().unbindBidirectional(goalController.comboShell.valueProperty());
-//			ov.usernameProperty().unbindBidirectional(goalController.textUser.textProperty());
-//			ov.pathProperty().unbindBidirectional(goalController.textPWD.textProperty());
 
 		}
 
 		if (nv != null) {
 
-			System.out.println("new selected goal: " + nv);
-
 			goalController.setGoal(nv);
-
-//			nv.descriptionProperty().bindBidirectional(goalController.textDescription.textProperty());
-//			nv.shellProperty().bindBidirectional(goalController.comboShell.valueProperty());
-//			nv.usernameProperty().bindBidirectional(goalController.textUser.textProperty());
-//			nv.pathProperty().bindBidirectional(goalController.textPWD.textProperty());
 
 		}
 	}

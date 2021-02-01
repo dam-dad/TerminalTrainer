@@ -6,7 +6,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dad.javafx.terminaltrainer.editor.model.Challenge;
-import dad.javafx.terminaltrainer.editor.model.Goal;
 import dad.javafx.terminaltrainer.editor.ui.app.App;
 import dad.javafx.terminaltrainer.utils.JSONUtils;
 import javafx.beans.property.ObjectProperty;
@@ -71,7 +70,7 @@ public class MainController implements Initializable {
 	}
 
 	@FXML
-	void onNewAction(ActionEvent event) {// No desbindea la tabla.
+	void onNewAction(ActionEvent event) {
 		challenge.set(new Challenge());
 	}
 
@@ -95,7 +94,7 @@ public class MainController implements Initializable {
 	@FXML
 	void onSaveAction(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
-		fileChooser.setTitle("Guardar un challenge.");
+		fileChooser.setTitle("Save a challenge.");
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Challenge (*.challenge)", "*.challenge"));
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Todos los archivos", "*.*"));
 		File chFile = fileChooser.showSaveDialog(App.getPrimaryStage());
