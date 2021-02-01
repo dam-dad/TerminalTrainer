@@ -30,9 +30,13 @@ import javafx.scene.layout.GridPane;
 public class ChallengeController implements Initializable {
 
 	// Controllers
-	GoalController goalController = new GoalController();
+	GoalController goalController;
+
 	// Model
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
+	private Challenge modeloChallenge = new Challenge();
+	
+	// view
 
 	@FXML
 	private GridPane view;
@@ -67,7 +71,12 @@ public class ChallengeController implements Initializable {
 	@FXML
 	private TableColumn<Goal, String> userColumn;
 
-	Challenge modeloChallenge = new Challenge();
+
+	public ChallengeController() throws IOException {
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChallengeView.fxml"));
+		loader.setController(this);
+		loader.load();
+	}
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
@@ -92,11 +101,14 @@ public class ChallengeController implements Initializable {
 	}
 
 	private void onSelectedItemChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
+
 		if (ov != null) {
 //			ObjectProperty<Goal> goal = new SimpleObjectProperty<Goal>(ov);
 //			goalController.goalProperty().unbindBidirectional(goal);
 
-			ov.descriptionProperty().unbindBidirectional(goalController.textDescription.textProperty());
+			goalController.setGoal(null);
+
+//			ov.descriptionProperty().unbindBidirectional(goalController.textDescription.textProperty());
 // 			ov.shellProperty().unbindBidirectional(goalController.comboShell.valueProperty());
 //			ov.usernameProperty().unbindBidirectional(goalController.textUser.textProperty());
 //			ov.pathProperty().unbindBidirectional(goalController.textPWD.textProperty());
@@ -104,10 +116,12 @@ public class ChallengeController implements Initializable {
 		}
 
 		if (nv != null) {
-//			ObjectProperty<Goal> goal = new SimpleObjectProperty<Goal>(nv);
-//			goalController.goalProperty().bindBidirectional(goal);
 
-			nv.descriptionProperty().bindBidirectional(goalController.textDescription.textProperty());
+			System.out.println("new selected goal: " + nv);
+
+			goalController.setGoal(nv);
+
+//			nv.descriptionProperty().bindBidirectional(goalController.textDescription.textProperty());
 //			nv.shellProperty().bindBidirectional(goalController.comboShell.valueProperty());
 //			nv.usernameProperty().bindBidirectional(goalController.textUser.textProperty());
 //			nv.pathProperty().bindBidirectional(goalController.textPWD.textProperty());
@@ -120,14 +134,14 @@ public class ChallengeController implements Initializable {
 			textDescriptionChallengue.textProperty().unbindBidirectional(ov.descriptionProperty());
 			textNameChallenge.textProperty().unbindBidirectional(ov.nameProperty());
 			comboOS.valueProperty().unbindBidirectional(ov.osProperty());
-			tableGoals.itemsProperty().unbindBidirectional(ov.goalsProperty());
+			tableGoals.setItems(null);
 		}
 
 		if (nv != null) {
 			textDescriptionChallengue.textProperty().bindBidirectional(nv.descriptionProperty());
 			textNameChallenge.textProperty().bindBidirectional(nv.nameProperty());
 			comboOS.valueProperty().bindBidirectional(nv.osProperty());
-			tableGoals.itemsProperty().bindBidirectional(nv.goalsProperty());
+			tableGoals.setItems(nv.getGoals());
 		}
 	}
 
@@ -140,21 +154,16 @@ public class ChallengeController implements Initializable {
 		Shell shell = null;
 		goal.setShell(shell.CMD);
 		goal.setUsername("User");
-		tableGoals.getItems().add(goal);
-		tableGoals.getSelectionModel().selectLast();
+
+		getChallenge().getGoals().add(goal);
+
+		tableGoals.getSelectionModel().select(goal);
 
 	}
 
 	@FXML
 	void onRemoveGoalAction(ActionEvent event) {
 		tableGoals.getItems().remove(tableGoals.getSelectionModel().getSelectedItem());
-	}
-
-	public ChallengeController() throws IOException {
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChallengeView.fxml"));
-		loader.setController(this);
-		loader.load();
-
 	}
 
 	public GridPane getView() {
@@ -171,6 +180,14 @@ public class ChallengeController implements Initializable {
 
 	public final void setChallenge(final Challenge challenge) {
 		this.challengeProperty().set(challenge);
+	}
+
+	public GoalController getGoalController() {
+		return goalController;
+	}
+
+	public void setGoalController(GoalController goalController) {
+		this.goalController = goalController;
 	}
 
 }

@@ -90,4 +90,12 @@ public class Goal {
 		this.tipsProperty().set(tips);
 	}
 
+	@Override
+	public String toString() {
+		return "Goal [shell=" + getShell() + ", description=" + getDescription() + ", path=" + getPath() + ", username=" + getUsername()
+				+ ", validCommands=" + getValidCommands() + ", tips=" + getTips() + "]";
+	}
+	
+	
+
 }

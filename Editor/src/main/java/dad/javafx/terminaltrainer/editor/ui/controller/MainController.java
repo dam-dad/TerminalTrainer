@@ -22,13 +22,13 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class MainController implements Initializable {
+	
 	// controladores
 	ChallengeController challengeController = new ChallengeController();
 	GoalController goalController = new GoalController();
 
 	// Model
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
-	private ObjectProperty<Goal> goal = new SimpleObjectProperty<>();
 
 	@FXML
 	private BorderPane view;
@@ -46,6 +46,9 @@ public class MainController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {//.terminaltrainer en usuarios. Bindfx con preferences(solo 1 instancia).
+		
+		challengeController.setGoalController(goalController);
+		
 		split.setDividerPositions(0.5, 0.5);
 		split.getItems().addAll(challengeController.getView(), goalController.getView());
 
@@ -58,13 +61,11 @@ public class MainController implements Initializable {
 	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
 		if (ov != null) {
 			challengeController.challengeProperty().unbind();
-			goalController.goalProperty().unbind();
 			// TODO desbindear el resto de elementos
 		}
 
 		if (nv != null) {
 			challengeController.challengeProperty().bind(challenge);
-			goalController.goalProperty().bind(goal);
 			// TODO bindear el resto de elementos
 		}
 	}
@@ -78,7 +79,7 @@ public class MainController implements Initializable {
 	void onOpenAction(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open a challenge file.");
-		fileChooser.getExtensionFilters().add(new ExtensionFilter("Challenge (*.ch)", "*.ch"));
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("Challenge (*.challenge)", "*.challenge"));
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("All types of files", "."));
 		File chFile = fileChooser.showOpenDialog(App.getPrimaryStage());
 		if (chFile != null) {
@@ -95,7 +96,7 @@ public class MainController implements Initializable {
 	void onSaveAction(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Guardar un challenge.");
-		fileChooser.getExtensionFilters().add(new ExtensionFilter("Challenge (*.ch)", "*.ch"));
+		fileChooser.getExtensionFilters().add(new ExtensionFilter("Challenge (*.challenge)", "*.challenge"));
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Todos los archivos", "*.*"));
 		File chFile = fileChooser.showSaveDialog(App.getPrimaryStage());
 		if (chFile != null) {

@@ -24,8 +24,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
 
 public class GoalController implements Initializable {
+	
 	private ObjectProperty<Goal> goal = new SimpleObjectProperty<Goal>();
-	private ListProperty<Goal> goals = new SimpleListProperty<Goal>(FXCollections.observableArrayList());
 
 	@FXML
 	private GridPane view;
@@ -42,17 +42,17 @@ public class GoalController implements Initializable {
 	@FXML
 	private JFXButton btnRemoveTip;
 
-	@FXML // quité private para acceder al textField en el challengeController
-	public JFXTextField textDescription;
+	@FXML 
+	private JFXTextField textDescription;
 
-	@FXML // quité private para acceder al textField en el challengeController
-	public JFXComboBox<Shell> comboShell;
+	@FXML 
+	private JFXComboBox<Shell> comboShell;
 
-	@FXML // quité private para acceder al textField en el challengeController
-	public JFXTextField textPWD;
+	@FXML 
+	private JFXTextField textPWD;
 
-	@FXML // quité private para acceder al textField en el challengeController
-	public JFXTextField textUser;
+	@FXML 
+	private JFXTextField textUser;
 
 	@FXML
 	private JFXListView<String> ListCommands;
