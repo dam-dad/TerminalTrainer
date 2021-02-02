@@ -61,14 +61,14 @@ public class GoalController implements Initializable {
 	@FXML
 	void onAddCommandAction(ActionEvent event) {
 		String command = "default command";
-		ListCommands.getItems().add(command);
+		getGoal().getValidCommands().add(command);
 		ListCommands.getSelectionModel().selectLast();
 	}
 
 	@FXML
 	void onAddTippAction(ActionEvent event) {
 		String tip = "default tip";
-		ListTips.getItems().add(tip);
+		getGoal().getTips().add(tip);
 		ListTips.getSelectionModel().selectLast();
 	}
 
@@ -123,8 +123,6 @@ public class GoalController implements Initializable {
 			comboShell.getSelectionModel().clearSelection();
 			textPWD.clear();
 			textUser.clear();
-			ListCommands.getItems().clear();
-			ListTips.getItems().clear();
 		}
 	}
 
