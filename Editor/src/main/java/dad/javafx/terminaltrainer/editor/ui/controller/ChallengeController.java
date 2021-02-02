@@ -98,15 +98,11 @@ public class ChallengeController implements Initializable {
 	private void onSelectedItemChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
 
 		if (ov != null) {
-
 			goalController.setGoal(null);
-
 		}
 
 		if (nv != null) {
-
 			goalController.setGoal(nv);
-
 		}
 	}
 
@@ -149,6 +145,10 @@ public class ChallengeController implements Initializable {
 
 	public GridPane getView() {
 		return view;
+	}
+	
+	public TableView getTableGoals() {
+		return this.tableGoals;
 	}
 
 	public final ObjectProperty<Challenge> challengeProperty() {

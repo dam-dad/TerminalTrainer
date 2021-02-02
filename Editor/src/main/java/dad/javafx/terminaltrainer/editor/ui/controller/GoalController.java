@@ -18,10 +18,11 @@ import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.cell.TextFieldListCell;
 import javafx.scene.layout.GridPane;
 
 public class GoalController implements Initializable {
-	
+
 	private ObjectProperty<Goal> goal = new SimpleObjectProperty<Goal>();
 
 	@FXML
@@ -39,16 +40,16 @@ public class GoalController implements Initializable {
 	@FXML
 	private JFXButton btnRemoveTip;
 
-	@FXML 
+	@FXML
 	private JFXTextField textDescription;
 
-	@FXML 
+	@FXML
 	private JFXComboBox<Shell> comboShell;
 
-	@FXML 
+	@FXML
 	private JFXTextField textPWD;
 
-	@FXML 
+	@FXML
 	private JFXTextField textUser;
 
 	@FXML
@@ -59,22 +60,26 @@ public class GoalController implements Initializable {
 
 	@FXML
 	void onAddCommandAction(ActionEvent event) {
-
+		String command = "default command";
+		ListCommands.getItems().add(command);
+		ListCommands.getSelectionModel().selectLast();
 	}
 
 	@FXML
 	void onAddTippAction(ActionEvent event) {
-
+		String tip = "default tip";
+		ListTips.getItems().add(tip);
+		ListTips.getSelectionModel().selectLast();
 	}
 
 	@FXML
 	void onRemoveCommandAction(ActionEvent event) {
-
+		ListCommands.getItems().remove(ListCommands.getSelectionModel().getSelectedItem());
 	}
 
 	@FXML
 	void onRemoveTipAction(ActionEvent event) {
-
+		ListTips.getItems().remove(ListTips.getSelectionModel().getSelectedItem());
 	}
 
 	public GoalController() throws IOException {
@@ -85,6 +90,12 @@ public class GoalController implements Initializable {
 
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		ListCommands.setCellFactory(TextFieldListCell.forListView());
+		ListTips.setCellFactory(TextFieldListCell.forListView());
+
+		btnRemoveCommand.disableProperty().bind(ListCommands.getSelectionModel().selectedItemProperty().isNull());
+		btnRemoveTip.disableProperty().bind(ListTips.getSelectionModel().selectedItemProperty().isNull());
+
 		goal.addListener((o, ov, nv) -> onGoalsChanged(o, ov, nv));
 
 		comboShell.getItems().setAll(Shell.values());
@@ -96,7 +107,8 @@ public class GoalController implements Initializable {
 			comboShell.valueProperty().unbindBidirectional(ov.shellProperty());
 			textPWD.textProperty().unbindBidirectional(ov.pathProperty());
 			textUser.textProperty().unbindBidirectional(ov.usernameProperty());
-
+			ListCommands.itemsProperty().unbindBidirectional(ov.validCommandsProperty());
+			ListTips.itemsProperty().unbindBidirectional(ov.tipsProperty());
 		}
 
 		if (nv != null) {
@@ -104,13 +116,15 @@ public class GoalController implements Initializable {
 			comboShell.valueProperty().bindBidirectional(nv.shellProperty());
 			textPWD.textProperty().bindBidirectional(nv.pathProperty());
 			textUser.textProperty().bindBidirectional(nv.usernameProperty());
+			ListCommands.itemsProperty().bindBidirectional(nv.validCommandsProperty());
+			ListTips.itemsProperty().bindBidirectional(nv.tipsProperty());
 		}else {
 			textDescription.clear();
 			comboShell.getSelectionModel().clearSelection();
 			textPWD.clear();
 			textUser.clear();
-			ListCommands.refresh();
-			ListTips.refresh();
+			ListCommands.getItems().clear();
+			ListTips.getItems().clear();
 		}
 	}
 

@@ -88,11 +88,11 @@
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin></JFXTextField>
-      <JFXListView fx:id="ListCommands" GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <JFXListView fx:id="ListCommands" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="5">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin></JFXListView>
-      <JFXListView fx:id="ListTips" GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <JFXListView fx:id="ListTips" editable="true" GridPane.columnIndex="1" GridPane.rowIndex="6">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin></JFXListView>

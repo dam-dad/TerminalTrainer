@@ -54,6 +54,9 @@ public class MainController implements Initializable {
 		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
 
 		challenge.set(new Challenge());
+		
+		
+		goalController.getView().disableProperty().bind(challengeController.getTableGoals().getSelectionModel().selectedItemProperty().isNull());
 
 	}
 
