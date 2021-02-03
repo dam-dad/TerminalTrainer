@@ -51,26 +51,16 @@ public class MainController implements Initializable {
 		split.setDividerPositions(0.5, 0.5);
 		split.getItems().addAll(challengeController.getView(), goalController.getView());
 
-		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
 
+		challengeController.challengeProperty().bind(challenge);
 		challenge.set(new Challenge());
+		
 		
 		
 		goalController.getView().disableProperty().bind(challengeController.getTableGoals().getSelectionModel().selectedItemProperty().isNull());
 
 	}
 
-	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
-		if (ov != null) {
-			challengeController.challengeProperty().unbind();
-			// TODO desbindear el resto de elementos
-		}
-
-		if (nv != null) {
-			challengeController.challengeProperty().bind(challenge);
-			// TODO bindear el resto de elementos
-		}
-	}
 
 	@FXML
 	void onNewAction(ActionEvent event) {

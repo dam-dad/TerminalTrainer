@@ -147,7 +147,7 @@ public class ChallengeController implements Initializable {
 		return view;
 	}
 	
-	public TableView getTableGoals() {
+	public TableView<Goal> getTableGoals() {
 		return this.tableGoals;
 	}
 
