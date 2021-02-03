@@ -15,6 +15,7 @@ import javafx.fxml.Initializable;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -103,16 +104,22 @@ public class GoalController implements Initializable {
 
 	private void onGoalsChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
 		if (ov != null) {
+			
 			textDescription.textProperty().unbindBidirectional(ov.descriptionProperty());
-			comboShell.valueProperty().unbindBidirectional(ov.shellProperty());
-			textPWD.textProperty().unbindBidirectional(ov.pathProperty());
-			textUser.textProperty().unbindBidirectional(ov.usernameProperty());
-			listCommands.setItems(null);
-			listTips.setItems(null);
 			textDescription.clear();
+			
+			comboShell.valueProperty().unbindBidirectional(ov.shellProperty());
 			comboShell.getSelectionModel().clearSelection();
+
+			textPWD.textProperty().unbindBidirectional(ov.pathProperty());
 			textPWD.clear();
+			
+			textUser.textProperty().unbindBidirectional(ov.usernameProperty());
 			textUser.clear();
+			
+			listCommands.setItems(FXCollections.observableArrayList());
+			listTips.setItems(FXCollections.observableArrayList());
+			
 		}
 
 		if (nv != null) {
