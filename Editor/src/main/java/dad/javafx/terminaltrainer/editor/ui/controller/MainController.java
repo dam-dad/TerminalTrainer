@@ -10,7 +10,6 @@ import dad.javafx.terminaltrainer.editor.ui.app.App;
 import dad.javafx.terminaltrainer.utils.JSONUtils;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
