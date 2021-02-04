@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<GridPane fx:id="view" hgap="7.0" prefHeight="443.0" prefWidth="600.0" stylesheets="@../css/challengeStyle.css" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<GridPane fx:id="view" hgap="7.0" prefHeight="443.0" prefWidth="600.0" styleClass="body" stylesheets="@../css/light-theme.css" vgap="10.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
   <columnConstraints>
     <ColumnConstraints halignment="RIGHT" hgrow="NEVER" minWidth="50.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -43,8 +43,8 @@
             <Label alignment="TOP_RIGHT" maxWidth="1.7976931348623157E308" text="Goals" />
             <HBox alignment="CENTER_RIGHT" spacing="5.0">
                <children>
-                  <JFXButton fx:id="btnAddGoal" onAction="#onAddGoalAction" text="+" />
-                  <JFXButton fx:id="btnRemoveGoal" onAction="#onRemoveGoalAction" text="-" />
+                  <JFXButton fx:id="btnAddGoal" minWidth="30.0" onAction="#onAddGoalAction" prefWidth="30.0" styleClass="btn" text="+" />
+                  <JFXButton fx:id="btnRemoveGoal" minWidth="30.0" onAction="#onRemoveGoalAction" prefWidth="30.0" styleClass="btn" text="-" />
                </children>
             </HBox>
          </children>
@@ -56,28 +56,20 @@
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
-         <children>
-            <JFXComboBox fx:id="comboOS" prefHeight="25.0" prefWidth="472.0" promptText="Select an option.." styleClass="field">
-               <HBox.margin>
-                  <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-               </HBox.margin></JFXComboBox>
-         </children>
-      </HBox>
-      <JFXTextField fx:id="textNameChallenge" styleClass="field" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <JFXTextField fx:id="textNameChallenge" focusColor="#20d2ff" styleClass="field" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin></JFXTextField>
-      <JFXTextArea fx:id="textDescriptionChallengue" styleClass="field" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <JFXTextArea fx:id="textDescriptionChallengue" focusColor="#20d2ff" styleClass="field" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" />
          </GridPane.margin></JFXTextArea>
-      <TableView fx:id="tableGoals" prefHeight="200.0" prefWidth="200.0" styleClass="field" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="2147483647">
+      <TableView fx:id="tableGoals" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.rowSpan="2147483647">
         <columns>
-          <TableColumn fx:id="descriptionColumn" prefWidth="146.0" text="Description" />
-          <TableColumn fx:id="shellColumn" minWidth="-1.0" prefWidth="114.0" text="Shell" />
-            <TableColumn fx:id="pwdColumn" prefWidth="88.0" text="PWD" />
-            <TableColumn fx:id="userColumn" prefWidth="104.0" text="User" />
+          <TableColumn fx:id="descriptionColumn" prefWidth="162.0" styleClass="tablefield" text="Description" />
+          <TableColumn fx:id="shellColumn" minWidth="-1.0" prefWidth="-1.0" styleClass="tablefield" text="Shell" />
+            <TableColumn fx:id="pwdColumn" prefWidth="-1.0" styleClass="tablefield" text="PWD" />
+            <TableColumn fx:id="userColumn" prefWidth="-1.0" styleClass="tablefield" text="User" />
         </columns>
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
@@ -86,6 +78,11 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
+      <JFXComboBox fx:id="comboOS" focusColor="#20d2ff" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Select an option.." styleClass="field" GridPane.columnIndex="1" GridPane.rowIndex="3">
+         <GridPane.margin>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </GridPane.margin>
+      </JFXComboBox>
    </children>
    <padding>
       <Insets bottom="7.0" left="7.0" right="7.0" top="7.0" />
