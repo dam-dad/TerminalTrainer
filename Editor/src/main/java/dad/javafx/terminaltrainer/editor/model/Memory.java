@@ -19,7 +19,8 @@ public class Memory {
 	private DoubleProperty ancho;
 	private DoubleProperty posX;
 	private DoubleProperty posY;
-	private DoubleProperty splitPos;
+	private DoubleProperty splitPosLeft;
+	private DoubleProperty splitPosRight;
 
 	public Memory() {
 		pathDirectorio = System.getProperty("user.home") + File.separator + ".terminaltrainer";
@@ -29,9 +30,10 @@ public class Memory {
 		ancho = new SimpleDoubleProperty();
 		posX = new SimpleDoubleProperty();
 		posY = new SimpleDoubleProperty();
-		splitPos = new SimpleDoubleProperty();
+		splitPosLeft = new SimpleDoubleProperty();
+		splitPosRight = new SimpleDoubleProperty();
 	}
-	
+
 	public void saveFile() throws FileNotFoundException, IOException {
 		try (OutputStream fichero = new FileOutputStream(pathFichero)) {
 			Properties prop = new Properties();
@@ -40,7 +42,8 @@ public class Memory {
 			prop.setProperty("size.height", alto.get() + "");
 			prop.setProperty("location.x", posX.get() + "");
 			prop.setProperty("location.y", posY.get() + "");
-			prop.setProperty("position.Divider", splitPos.get() + "");
+			prop.setProperty("positionLeft.Divider", splitPosLeft.get() + "");
+			prop.setProperty("positionRight.Divider", splitPosRight.get() + "");
 
 			prop.store(fichero, null);
 		} catch (Exception e) {
@@ -48,7 +51,7 @@ public class Memory {
 		}
 
 	}
-	
+
 	public void loadFile() {
 		try {
 
@@ -66,7 +69,8 @@ public class Memory {
 					prop.setProperty("size.height", "650");
 					prop.setProperty("location.x", "440");
 					prop.setProperty("location.y", "244");
-					prop.setProperty("position.Divider", "0.5, 0.5");
+					prop.setProperty("positionLeft.Divider", "0.5");
+					prop.setProperty("positionRight.Divider", "0.5");
 
 					prop.store(output, null);
 				} catch (IOException ex) {
@@ -83,6 +87,8 @@ public class Memory {
 				ancho.set(Double.parseDouble(prop.getProperty("size.width")));
 				posX.set(Double.parseDouble(prop.getProperty("location.x")));
 				posY.set(Double.parseDouble(prop.getProperty("location.y")));
+				splitPosLeft.set(Double.parseDouble(prop.getProperty("positionLeft.Divider")));
+				splitPosRight.set(Double.parseDouble(prop.getProperty("positionRight.Divider")));
 
 			} catch (IOException ex) {
 				ex.printStackTrace();
@@ -96,77 +102,73 @@ public class Memory {
 	public final DoubleProperty altoProperty() {
 		return this.alto;
 	}
-	
 
 	public final double getAlto() {
 		return this.altoProperty().get();
 	}
-	
 
 	public final void setAlto(final double alto) {
 		this.altoProperty().set(alto);
 	}
-	
 
 	public final DoubleProperty anchoProperty() {
 		return this.ancho;
 	}
-	
 
 	public final double getAncho() {
 		return this.anchoProperty().get();
 	}
-	
 
 	public final void setAncho(final double ancho) {
 		this.anchoProperty().set(ancho);
 	}
-	
 
 	public final DoubleProperty posXProperty() {
 		return this.posX;
 	}
-	
 
 	public final double getPosX() {
 		return this.posXProperty().get();
 	}
-	
 
 	public final void setPosX(final double posX) {
 		this.posXProperty().set(posX);
 	}
-	
 
 	public final DoubleProperty posYProperty() {
 		return this.posY;
 	}
-	
 
 	public final double getPosY() {
 		return this.posYProperty().get();
 	}
-	
 
 	public final void setPosY(final double posY) {
 		this.posYProperty().set(posY);
 	}
 
-	public final DoubleProperty splitPosProperty() {
-		return this.splitPos;
+	public final DoubleProperty splitPosLeftProperty() {
+		return this.splitPosLeft;
 	}
-	
 
-	public final double getSplitPos() {
-		return this.splitPosProperty().get();
+	public final double getSplitPosLeft() {
+		return this.splitPosLeftProperty().get();
 	}
-	
 
-	public final void setSplitPos(final double splitPos) {
-		this.splitPosProperty().set(splitPos);
+	public final void setSplitPosLeft(final double splitPosLeft) {
+		this.splitPosLeftProperty().set(splitPosLeft);
 	}
-	
-	
-	
-	
+
+	public final DoubleProperty splitPosRightProperty() {
+		return this.splitPosRight;
+	}
+
+	public final double getSplitPosRight() {
+		return this.splitPosRightProperty().get();
+	}
+
+	public final void setSplitPosRight(final double splitPosRight) {
+		this.splitPosRightProperty().set(splitPosRight);
+	}
+
 }

@@ -20,7 +20,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class MainController implements Initializable {
-	
+
 	// controladores
 	ChallengeController challengeController = new ChallengeController();
 	GoalController goalController = new GoalController();
@@ -43,23 +43,21 @@ public class MainController implements Initializable {
 	}
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {//.terminaltrainer en usuarios. Bindfx con preferences(solo 1 instancia).
-		
+	public void initialize(URL location, ResourceBundle resources) {// .terminaltrainer en usuarios. Bindfx con
+																	// preferences(solo 1 instancia).
+
 		challengeController.setGoalController(goalController);
-		
+
 		split.setDividerPositions(0.5, 0.5);
 		split.getItems().addAll(challengeController.getView(), goalController.getView());
 
-
 		challengeController.challengeProperty().bind(challenge);
 		challenge.set(new Challenge());
-		
-		
-		
-		goalController.getView().disableProperty().bind(challengeController.getTableGoals().getSelectionModel().selectedItemProperty().isNull());
+
+		goalController.getView().disableProperty()
+				.bind(challengeController.getTableGoals().getSelectionModel().selectedItemProperty().isNull());
 
 	}
-
 
 	@FXML
 	void onNewAction(ActionEvent event) {
@@ -102,6 +100,10 @@ public class MainController implements Initializable {
 
 	public BorderPane getView() {
 		return this.view;
+	}
+
+	public void setSplitDivider(Double n, Double i) {
+		split.setDividerPositions(n, i);
 	}
 
 }
