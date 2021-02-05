@@ -48,7 +48,8 @@ public class MainController implements Initializable {
 
 		challengeController.setGoalController(goalController);
 
-		split.setDividerPositions(0.5, 0.5);
+		split.setDividerPositions(App.config.getSplitPosLeft());
+
 		split.getItems().addAll(challengeController.getView(), goalController.getView());
 
 		challengeController.challengeProperty().bind(challenge);
@@ -102,8 +103,8 @@ public class MainController implements Initializable {
 		return this.view;
 	}
 
-	public void setSplitDivider(Double n, Double i) {
-		split.setDividerPositions(n, i);
+	public double getSplitPos() {
+		return split.getDividerPositions()[0];
 	}
 
 }

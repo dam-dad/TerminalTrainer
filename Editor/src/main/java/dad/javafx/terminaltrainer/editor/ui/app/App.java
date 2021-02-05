@@ -13,7 +13,7 @@ public class App extends Application {
 
 	private MainController controller;
 
-	Memory config = new Memory();
+	public static Memory config = new Memory();
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -32,7 +32,6 @@ public class App extends Application {
 		config.posXProperty().bind(primaryStage.xProperty());
 		config.posYProperty().bind(primaryStage.yProperty());
 		
-		//controller.setSplitDivider(config.getSplitPosLeft(), config.getSplitPosRight());
 		
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Terminal Trainer");
@@ -47,6 +46,7 @@ public class App extends Application {
 
 	@Override
 	public void stop() throws Exception {
+		config.setSplitPosLeft(controller.getSplitPos());
 		config.saveFile();
 	}
 
