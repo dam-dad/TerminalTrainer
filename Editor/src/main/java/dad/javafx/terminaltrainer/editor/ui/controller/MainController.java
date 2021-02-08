@@ -43,8 +43,14 @@ public class MainController implements Initializable {
 	}
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {// .terminaltrainer en usuarios. Bindfx con
-																	// preferences(solo 1 instancia).
+	public void initialize(URL location, ResourceBundle resources) {
+
+		this.getView().getStylesheets().clear();
+		this.getView().getStylesheets().add(App.getConfig().getTheme());
+		challengeController.getView().getStylesheets().clear();
+		challengeController.getView().getStylesheets().add(App.getConfig().getTheme());
+		goalController.getView().getStylesheets().clear();
+		goalController.getView().getStylesheets().add(App.getConfig().getTheme());
 
 		challengeController.setGoalController(goalController);
 
@@ -101,11 +107,22 @@ public class MainController implements Initializable {
 
 	@FXML
 	void onDarkThemeAction(ActionEvent event) {
-
+		this.getView().getStylesheets().clear();
+		this.getView().getStylesheets().add("/css/dark-theme.css");
+		challengeController.getView().getStylesheets().clear();
+		challengeController.getView().getStylesheets().add("/css/dark-theme.css");
+		goalController.getView().getStylesheets().clear();
+		goalController.getView().getStylesheets().add("/css/dark-theme.css");
 	}
 
 	@FXML
 	void onLightThemeAction(ActionEvent event) {
+		this.getView().getStylesheets().clear();
+		this.getView().getStylesheets().add("/css/light-theme.css");
+		challengeController.getView().getStylesheets().clear();
+		challengeController.getView().getStylesheets().add("/css/light-theme.css");
+		goalController.getView().getStylesheets().clear();
+		goalController.getView().getStylesheets().add("/css/light-theme.css");
 
 	}
 

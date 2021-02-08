@@ -20,6 +20,7 @@ public class Memory {
 	private DoubleProperty posX;
 	private DoubleProperty posY;
 	private DoubleProperty splitPos;
+	private String theme;
 
 	public Memory() {
 		pathDirectorio = System.getProperty("user.home") + File.separator + ".terminaltrainer";
@@ -41,6 +42,7 @@ public class Memory {
 			prop.setProperty("location.x", posX.get() + "");
 			prop.setProperty("location.y", posY.get() + "");
 			prop.setProperty("positionLeft.Divider", splitPos.get() + "");
+			prop.setProperty("theme", theme + "");
 
 			prop.store(fichero, null);
 		} catch (Exception e) {
@@ -61,12 +63,14 @@ public class Memory {
 			if (created) {
 				try (OutputStream output = new FileOutputStream(memory.getPath())) {
 					Properties prop = new Properties();
+					theme = "/css/light-theme.css";
 
 					prop.setProperty("size.width", "1200");
 					prop.setProperty("size.height", "650");
 					prop.setProperty("location.x", "440");
 					prop.setProperty("location.y", "244");
 					prop.setProperty("positionLeft.Divider", "0.5");
+					prop.setProperty("theme", theme);
 
 					prop.store(output, null);
 				} catch (IOException ex) {
@@ -84,7 +88,7 @@ public class Memory {
 				posX.set(Double.parseDouble(prop.getProperty("location.x")));
 				posY.set(Double.parseDouble(prop.getProperty("location.y")));
 				splitPos.set(Double.parseDouble(prop.getProperty("positionLeft.Divider")));
-
+				theme = prop.getProperty("theme");
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
@@ -152,6 +156,14 @@ public class Memory {
 
 	public final void setSplitPosLeft(final double splitPosLeft) {
 		this.splitPosLeftProperty().set(splitPosLeft);
+	}
+
+	public String getTheme() {
+		return theme;
+	}
+
+	public void setTheme(String theme) {
+		this.theme = theme;
 	}
 
 }
