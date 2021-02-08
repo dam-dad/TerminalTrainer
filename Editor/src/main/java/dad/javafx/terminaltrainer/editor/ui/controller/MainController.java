@@ -99,6 +99,16 @@ public class MainController implements Initializable {
 		}
 	}
 
+	@FXML
+	void onDarkThemeAction(ActionEvent event) {
+
+	}
+
+	@FXML
+	void onLightThemeAction(ActionEvent event) {
+
+	}
+
 	public BorderPane getView() {
 		return this.view;
 	}
