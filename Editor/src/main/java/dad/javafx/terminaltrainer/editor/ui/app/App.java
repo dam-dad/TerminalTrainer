@@ -45,13 +45,8 @@ public class App extends Application {
 
 	@Override
 	public void stop() throws Exception {
-		if (controller.getView().getStylesheets().get(0).contains("dark-theme")) {
-			config.setTheme("/css/dark-theme.css");
-		}
-
-		if (controller.getView().getStylesheets().get(0).contains("light-theme")) {
-			config.setTheme("/css/light-theme.css");
-		}
+		
+		config.setTheme(controller.getView().getStylesheets().get(0).toString());
 
 		config.setSplitPosLeft(controller.getSplitPos());
 		config.saveFile();

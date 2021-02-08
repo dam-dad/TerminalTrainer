@@ -63,7 +63,8 @@ public class Memory {
 			if (created) {
 				try (OutputStream output = new FileOutputStream(memory.getPath())) {
 					Properties prop = new Properties();
-					theme = "/css/light-theme.css";
+					theme = getClass().getResource("/css/light-theme.css").toString();
+					System.out.println(theme);
 
 					prop.setProperty("size.width", "1200");
 					prop.setProperty("size.height", "650");
