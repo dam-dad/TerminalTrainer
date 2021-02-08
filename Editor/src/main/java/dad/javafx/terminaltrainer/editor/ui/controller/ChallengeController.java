@@ -92,7 +92,7 @@ public class ChallengeController implements Initializable {
 
 		// Agrega los datos de el enum OS al combobox y selecciona el primero
 		comboOS.getItems().setAll(OS.values());
-		comboOS.getSelectionModel().selectFirst();
+		comboOS.getSelectionModel().select(0);
 	}
 
 	private void onSelectedItemChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
