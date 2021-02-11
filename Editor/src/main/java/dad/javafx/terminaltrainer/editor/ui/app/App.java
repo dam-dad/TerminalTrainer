@@ -34,7 +34,7 @@ public class App extends Application {
 
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Terminal Trainer");
-		// primaryStage.getIcons().add(new Image("/images/cv64x64.png"));
+		primaryStage.getIcons().add(new Image("/images/icon-small.png"));
 		primaryStage.show();
 	}
 
