@@ -8,7 +8,12 @@
       "path": "C:\\Users",
       "username": "User",
       "validCommands": [
-        "mkdir Prueba"
+        "mkdir Prueba",
+        "comando1",
+        "coamdno2",
+        "comando3",
+        "comando4",
+        "coamndo5"
       ],
       "tips": []
     }
