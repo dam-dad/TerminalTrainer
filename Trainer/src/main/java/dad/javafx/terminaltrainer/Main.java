@@ -3,6 +3,7 @@ package dad.javafx.terminaltrainer;
 import dad.javafx.terminaltrainer.config.Config;
 import dad.javafx.terminaltrainer.monitoring.ExecutedCommand;
 import dad.javafx.terminaltrainer.monitoring.Monitoring;
+import dad.javafx.terminaltrainer.ui.app.App;
 import dad.javafx.terminaltrainer.utils.Sleep;
 import javafx.collections.ListChangeListener;
 
@@ -28,6 +29,8 @@ public class Main {
 			Monitoring.stop();
 			if (Config.CONFIG.isEnabled()) Config.CONFIG.disable();
 		}).start();
+		
+		App.main(args);
 	
 //		Config.CONFIG.disable();
 		
