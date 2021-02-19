@@ -36,6 +36,11 @@ public class MainController implements Initializable {
 
 	String ruta;
 
+	/**
+	 * Loads the MainView.fxml view.
+	 * 
+	 * @throws IOException
+	 */
 	public MainController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
 		loader.setController(this);
@@ -66,11 +71,22 @@ public class MainController implements Initializable {
 
 	}
 
+	/**
+	 * Initializes a new challenge.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onNewAction(ActionEvent event) {
 		challenge.set(new Challenge());
 	}
 
+	/**
+	 * Opens a .challenge file with a FileChooser, and proceeds to set the challenge
+	 * properties.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onOpenAction(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
@@ -88,6 +104,11 @@ public class MainController implements Initializable {
 		}
 	}
 
+	/**
+	 * Saves the challenge properties with a FileChooser.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onSaveAction(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
@@ -105,6 +126,11 @@ public class MainController implements Initializable {
 		}
 	}
 
+	/**
+	 * Sets the app theme to a more dark one.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onDarkThemeAction(ActionEvent event) {
 		this.getView().getStylesheets().clear();
@@ -115,6 +141,11 @@ public class MainController implements Initializable {
 		goalController.getView().getStylesheets().add("/css/dark-theme.css");
 	}
 
+	/**
+	 * Sets the app theme to a lighter one(oh my eyes, the light).
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onLightThemeAction(ActionEvent event) {
 		this.getView().getStylesheets().clear();

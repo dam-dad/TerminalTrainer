@@ -22,6 +22,10 @@ public class Memory {
 	private DoubleProperty splitPos;
 	private String theme;
 
+	/**
+	 * Initializes the path variable to the user's home path and creates a folder
+	 * named ".terminaltrainer" which has a property file named "window.config"
+	 */
 	public Memory() {
 		pathDirectorio = System.getProperty("user.home") + File.separator + ".terminaltrainer";
 		pathFichero = pathDirectorio + File.separator + "window.config";
@@ -33,6 +37,13 @@ public class Memory {
 		splitPos = new SimpleDoubleProperty();
 	}
 
+	/**
+	 * Saves a file with default properties(height, width, location, theme and the
+	 * split position) for the stage.
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public void saveFile() throws FileNotFoundException, IOException {
 		try (OutputStream fichero = new FileOutputStream(pathFichero)) {
 			Properties prop = new Properties();
@@ -51,6 +62,10 @@ public class Memory {
 
 	}
 
+	/**
+	 * Loads a file that sets the stage height, width, location, theme and the split
+	 * position.
+	 */
 	public void loadFile() {
 		try {
 

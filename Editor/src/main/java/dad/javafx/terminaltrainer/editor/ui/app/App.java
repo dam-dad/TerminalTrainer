@@ -37,12 +37,16 @@ public class App extends Application {
 		primaryStage.getIcons().add(new Image("/images/icon-small.png"));
 		primaryStage.show();
 	}
-
+	/**
+	 * Loads the property file from the .terminaltrainer folder.
+	 */
 	@Override
 	public void init() throws Exception {
 		config.loadFile();
 	}
-
+	/**
+	 * Saves a property file.
+	 */
 	@Override
 	public void stop() throws Exception {
 		
