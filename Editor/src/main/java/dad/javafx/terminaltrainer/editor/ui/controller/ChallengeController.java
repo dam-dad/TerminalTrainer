@@ -124,7 +124,7 @@ public class ChallengeController implements Initializable {
 
 	/**
 	 * 
-	 * Adds a goal with defaults parameters to the list of goals
+	 * Adds a goal with defaults parameters to the list of goals.
 	 * 
 	 * @param event
 	 */
@@ -148,7 +148,7 @@ public class ChallengeController implements Initializable {
 	
 	/**
 	 * 
-	 * Deletes the selected goal from the list of goals
+	 * Deletes the selected goal from the list of goals.
 	 * 
 	 * @param event
 	 */

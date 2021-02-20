@@ -62,7 +62,7 @@ public class GoalController implements Initializable {
 	
 	/**
 	 * 
-	 * Adds a default command to the list of commands of the selected goal
+	 * Adds a default command to the list of commands of the selected goal.
 	 * 
 	 * @param event
 	 */
@@ -75,7 +75,7 @@ public class GoalController implements Initializable {
 
 	/**
 	 * 
-	 * Adds a default tip to the list of tips of the selected goal
+	 * Adds a default tip to the list of tips of the selected goal.
 	 * 
 	 * @param event
 	 */
@@ -89,7 +89,7 @@ public class GoalController implements Initializable {
 	
 	/**
 	 * 
-	 * Deletes the command which is selected from the list of commands of the selected goal
+	 * Deletes the command which is selected from the list of commands of the selected goal.
 	 * 
 	 * @param event
 	 */
@@ -100,7 +100,7 @@ public class GoalController implements Initializable {
 
 	/**
 	 * 
-	 * Deletes the tip which is selected from the list of tips of the selected goal
+	 * Deletes the tip which is selected from the list of tips of the selected goal.
 	 * 
 	 * @param event
 	 */
