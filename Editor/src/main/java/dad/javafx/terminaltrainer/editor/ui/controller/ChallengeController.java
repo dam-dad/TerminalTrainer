@@ -122,6 +122,13 @@ public class ChallengeController implements Initializable {
 		}
 	}
 
+	/**
+	 * 
+	 * Adds a goal with defaults parameters to the list of goals
+	 * 
+	 * @param event
+	 */
+	
 	@SuppressWarnings("static-access")
 	@FXML
 	void onAddGoalAction(ActionEvent event) {
@@ -138,6 +145,13 @@ public class ChallengeController implements Initializable {
 
 	}
 
+	
+	/**
+	 * 
+	 * Deletes the selected goal from the list of goals
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onRemoveGoalAction(ActionEvent event) {
 		tableGoals.getItems().remove(tableGoals.getSelectionModel().getSelectedItem());

@@ -59,6 +59,13 @@ public class GoalController implements Initializable {
 	@FXML
 	private JFXListView<String> listTips;
 
+	
+	/**
+	 * 
+	 * Adds a default command to the list of commands of the selected goal
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onAddCommandAction(ActionEvent event) {
 		String command = "default command";
@@ -66,6 +73,12 @@ public class GoalController implements Initializable {
 		listCommands.getSelectionModel().selectLast();
 	}
 
+	/**
+	 * 
+	 * Adds a default tip to the list of tips of the selected goal
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onAddTippAction(ActionEvent event) {
 		String tip = "default tip";
@@ -73,11 +86,24 @@ public class GoalController implements Initializable {
 		listTips.getSelectionModel().selectLast();
 	}
 
+	
+	/**
+	 * 
+	 * Deletes the command which is selected from the list of commands of the selected goal
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onRemoveCommandAction(ActionEvent event) {
 		listCommands.getItems().remove(listCommands.getSelectionModel().getSelectedItem());
 	}
 
+	/**
+	 * 
+	 * Deletes the tip which is selected from the list of tips of the selected goal
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onRemoveTipAction(ActionEvent event) {
 		listTips.getItems().remove(listTips.getSelectionModel().getSelectedItem());
