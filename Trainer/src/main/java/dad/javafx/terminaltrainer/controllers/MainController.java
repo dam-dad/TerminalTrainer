@@ -19,7 +19,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class MainController implements Initializable {
+public class MainController {
+	
 	//Model
 	ExecutionResult executionResult = new ExecutionResult();
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
@@ -40,16 +41,18 @@ public class MainController implements Initializable {
 			try {
 				path = chFile.getAbsolutePath();
 				challenge.set(JSONUtils.fromJson(chFile, Challenge.class));
-//				System.out.println("ChallengeName " + challenge.get().getName());
-//				System.out.println("Description: " + challenge.get().getDescription());
-//				for(int i = 0; i < challenge.get().getGoals().size(); i++) {
-//					System.out.println("Goals: " + challenge.get().getGoals().get(i));
-//					for(int j = 0; j < challenge.get().getGoals().get(i).getValidCommands().size(); j++) {
-//						System.out.println("Valid commands: "+  challenge.get().getGoals().get(i).getValidCommands().get(j));
-//					}
-//				}
-//				System.out.println("Description: " + challenge.get().getDescription());
-//				System.out.println("OS: : " + challenge.get().getOs());
+					
+				System.out.println("ChallengeName " + challenge.get().getName());
+				System.out.println("Description: " + challenge.get().getDescription());
+				for(int i = 0; i < challenge.get().getGoals().size(); i++) {
+					System.out.println("Goals: " + challenge.get().getGoals().get(i));
+					for(int j = 0; j < challenge.get().getGoals().get(i).getValidCommands().size(); j++) {
+						System.out.println("Valid commands: "+  challenge.get().getGoals().get(i).getValidCommands().get(j));
+					}
+				}
+				System.out.println("Description: " + challenge.get().getDescription());
+				System.out.println("OS: : " + challenge.get().getOs());
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -62,14 +65,13 @@ public class MainController implements Initializable {
 		loader.load();
 	}
 
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		
-
-	}
 
 	public BorderPane getView() {
 		return view;
+	}
+	
+	public ObjectProperty<Challenge> getChallenge() {
+		return challenge;
 	}
 
 }
