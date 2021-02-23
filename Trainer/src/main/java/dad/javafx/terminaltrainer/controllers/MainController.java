@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+
+
 import dad.javafx.terminaltrainer.cli.ExecutionResult;
 import dad.javafx.terminaltrainer.editor.model.Challenge;
 import dad.javafx.terminaltrainer.editor.ui.app.App;
@@ -15,6 +17,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
@@ -23,10 +27,17 @@ public class MainController {
 
 	// Model
 	ExecutionResult executionResult = new ExecutionResult();
-	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
+	// private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
+	private Challenge challenge = new Challenge();
 
 	@FXML
 	private BorderPane view;
+
+	@FXML
+    private TextField textChallengeName;
+
+    @FXML
+    private TextArea textDescription;
 
 	String path;
 
@@ -40,20 +51,35 @@ public class MainController {
 		if (chFile != null) {
 			try {
 				path = chFile.getAbsolutePath();
-				challenge.set(JSONUtils.fromJson(chFile, Challenge.class));
+				challenge = JSONUtils.fromJson(chFile, Challenge.class);
 
-				System.out.println("ChallengeName " + challenge.get().getName());
-				System.out.println("Description: " + challenge.get().getDescription());
-				for (int i = 0; i < challenge.get().getGoals().size(); i++) {
-					System.out.println("Goals: " + challenge.get().getGoals().get(i));
-					for (int j = 0; j < challenge.get().getGoals().get(i).getValidCommands().size(); j++) {
-						System.out.println(
-								"Valid commands: " + challenge.get().getGoals().get(i).getValidCommands().get(j));
+
+				textChallengeName.setText(challenge.getName());
+				textDescription.setText(challenge.getDescription());
+
+				System.out.println("ChallengeName " + challenge.getName());
+				System.out.println("Description: " + challenge.getDescription());
+				for (int i = 0; i < challenge.getGoals().size(); i++) {
+					System.out.println("Goals: " + challenge.getGoals().get(i));
+					for (int j = 0; j < challenge.getGoals().get(i).getValidCommands().size(); j++) {
+						System.out.println("Valid commands: " + challenge.getGoals().get(i).getValidCommands().get(j));
 					}
 				}
-				System.out.println("Description: " + challenge.get().getDescription());
-				System.out.println("OS: : " + challenge.get().getOs());
+				System.out.println("Description: " + challenge.getDescription());
+				System.out.println("OS: : " + challenge.getOs());
+				// challenge.set(JSONUtils.fromJson(chFile, Challenge.class));
 
+				/*
+				 * System.out.println("ChallengeName " + challenge.get().getName());
+				 * System.out.println("Description: " + challenge.get().getDescription());
+				 * for(int i = 0; i < challenge.get().getGoals().size(); i++) {
+				 * System.out.println("Goals: " + challenge.get().getGoals().get(i)); for(int j
+				 * = 0; j < challenge.get().getGoals().get(i).getValidCommands().size(); j++) {
+				 * System.out.println("Valid commands: "+
+				 * challenge.get().getGoals().get(i).getValidCommands().get(j)); } }
+				 * System.out.println("Description: " + challenge.get().getDescription());
+				 * System.out.println("OS: : " + challenge.get().getOs());
+				 */
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -70,8 +96,15 @@ public class MainController {
 		return view;
 	}
 
+	
+	public Challenge getChallenge() {
+		return this.challenge;
+	}
+	
+	/*
 	public ObjectProperty<Challenge> getChallenge() {
 		return challenge;
 	}
+	*/
 
 }

@@ -139,7 +139,7 @@ function Enable-PSAudit() {
 ##########################################################################
 
 <#
-    Checks if 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\TerminalTrainer' key exists,
+    Checks if 'HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\Application\TerminalTrainer' key exists,
     corresponding to TerminalTrainer event source
 #>
 function Test-EventSource() {
