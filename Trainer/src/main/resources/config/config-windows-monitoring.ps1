@@ -37,10 +37,14 @@ function Test-RegistryValue($Path, $Value) {
 #>
 function New-EventSource() {
     Write-Host "- Creating $App event source in Windows Registry"
-    New-Item -Path $EventSourcePath | Out-Null
-    New-ItemProperty -Path $EventSourcePath -Name CustomSource -PropertyType DWord -Value 1 | Out-Null
-    New-ItemProperty -Path $EventSourcePath -Name EventMessageFile -PropertyType ExpandString -Value "$env:windir\System32\EventCreate.exe" | Out-Null
-    New-ItemProperty -Path $EventSourcePath -Name TypesSupported -PropertyType DWord -Value 7 | Out-Null
+    try {
+        New-Item -Path $EventSourcePath | Out-Null
+        New-ItemProperty -Path $EventSourcePath -Name CustomSource -PropertyType DWord -Value 1 | Out-Null
+        New-ItemProperty -Path $EventSourcePath -Name EventMessageFile -PropertyType ExpandString -Value "$env:windir\System32\EventCreate.exe" | Out-Null
+        New-ItemProperty -Path $EventSourcePath -Name TypesSupported -PropertyType DWord -Value 7 | Out-Null
+    } catch {
+        Write-Host $_.Exception.Message        
+    }
 }
 
 <#
