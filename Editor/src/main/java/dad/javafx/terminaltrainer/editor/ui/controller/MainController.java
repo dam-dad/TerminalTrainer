@@ -10,7 +10,6 @@ import dad.javafx.terminaltrainer.editor.ui.app.App;
 import dad.javafx.terminaltrainer.utils.JSONUtils;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,7 +20,7 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class MainController implements Initializable {
-	
+
 	// controladores
 	ChallengeController challengeController = new ChallengeController();
 	GoalController goalController = new GoalController();
@@ -37,6 +36,11 @@ public class MainController implements Initializable {
 
 	String ruta;
 
+	/**
+	 * Loads the MainView.fxml view.
+	 * 
+	 * @throws IOException
+	 */
 	public MainController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainView.fxml"));
 		loader.setController(this);
@@ -44,36 +48,45 @@ public class MainController implements Initializable {
 	}
 
 	@Override
-	public void initialize(URL location, ResourceBundle resources) {//.terminaltrainer en usuarios. Bindfx con preferences(solo 1 instancia).
-		
+	public void initialize(URL location, ResourceBundle resources) {
+
+		this.getView().getStylesheets().clear();
+		this.getView().getStylesheets().add(App.getConfig().getTheme());
+		challengeController.getView().getStylesheets().clear();
+		challengeController.getView().getStylesheets().add(App.getConfig().getTheme());
+		goalController.getView().getStylesheets().clear();
+		goalController.getView().getStylesheets().add(App.getConfig().getTheme());
+
 		challengeController.setGoalController(goalController);
-		
-		split.setDividerPositions(0.5, 0.5);
+
+		split.setDividerPositions(App.config.getSplitPosLeft());
+
 		split.getItems().addAll(challengeController.getView(), goalController.getView());
 
-		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
-
+		challengeController.challengeProperty().bind(challenge);
 		challenge.set(new Challenge());
 
+		goalController.getView().disableProperty()
+				.bind(challengeController.getTableGoals().getSelectionModel().selectedItemProperty().isNull());
+
 	}
 
-	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
-		if (ov != null) {
-			challengeController.challengeProperty().unbind();
-			// TODO desbindear el resto de elementos
-		}
-
-		if (nv != null) {
-			challengeController.challengeProperty().bind(challenge);
-			// TODO bindear el resto de elementos
-		}
-	}
-
+	/**
+	 * Initializes a new challenge.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onNewAction(ActionEvent event) {
 		challenge.set(new Challenge());
 	}
 
+	/**
+	 * Opens a .challenge file with a FileChooser, and proceeds to set the challenge
+	 * properties.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onOpenAction(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
@@ -91,6 +104,11 @@ public class MainController implements Initializable {
 		}
 	}
 
+	/**
+	 * Saves the challenge properties with a FileChooser.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onSaveAction(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
@@ -108,8 +126,43 @@ public class MainController implements Initializable {
 		}
 	}
 
+	/**
+	 * Sets the app theme to a more dark one.
+	 * 
+	 * @param event
+	 */
+	@FXML
+	void onDarkThemeAction(ActionEvent event) {
+		this.getView().getStylesheets().clear();
+		this.getView().getStylesheets().add("/css/dark-theme.css");
+		challengeController.getView().getStylesheets().clear();
+		challengeController.getView().getStylesheets().add("/css/dark-theme.css");
+		goalController.getView().getStylesheets().clear();
+		goalController.getView().getStylesheets().add("/css/dark-theme.css");
+	}
+
+	/**
+	 * Sets the app theme to a lighter one(oh my eyes, the light).
+	 * 
+	 * @param event
+	 */
+	@FXML
+	void onLightThemeAction(ActionEvent event) {
+		this.getView().getStylesheets().clear();
+		this.getView().getStylesheets().add("/css/light-theme.css");
+		challengeController.getView().getStylesheets().clear();
+		challengeController.getView().getStylesheets().add("/css/light-theme.css");
+		goalController.getView().getStylesheets().clear();
+		goalController.getView().getStylesheets().add("/css/light-theme.css");
+
+	}
+
 	public BorderPane getView() {
 		return this.view;
+	}
+
+	public double getSplitPos() {
+		return split.getDividerPositions()[0];
 	}
 
 }

@@ -1,0 +1,22 @@
+{
+  "name": "Challenge para trainer",
+  "description": "Challenge para probar el proyecto trainer.",
+  "goals": [
+    {
+      "shell": "CMD",
+      "description": "Crear una carpeta en el escritorio llamada prueba",
+      "path": "C:\\Users",
+      "username": "User",
+      "validCommands": [
+        "mkdir Prueba",
+        "comando1",
+        "coamdno2",
+        "comando3",
+        "comando4",
+        "coamndo5"
+      ],
+      "tips": []
+    }
+  ],
+  "os": "WINDOWS"
+}

@@ -92,21 +92,17 @@ public class ChallengeController implements Initializable {
 
 		// Agrega los datos de el enum OS al combobox y selecciona el primero
 		comboOS.getItems().setAll(OS.values());
-		comboOS.getSelectionModel().selectFirst();
+		comboOS.getSelectionModel().select(0);
 	}
 
 	private void onSelectedItemChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
 
 		if (ov != null) {
-
 			goalController.setGoal(null);
-
 		}
 
 		if (nv != null) {
-
 			goalController.setGoal(nv);
-
 		}
 	}
 
@@ -126,6 +122,13 @@ public class ChallengeController implements Initializable {
 		}
 	}
 
+	/**
+	 * 
+	 * Adds a goal with defaults parameters to the list of goals.
+	 * 
+	 * @param event
+	 */
+	
 	@SuppressWarnings("static-access")
 	@FXML
 	void onAddGoalAction(ActionEvent event) {
@@ -142,6 +145,13 @@ public class ChallengeController implements Initializable {
 
 	}
 
+	
+	/**
+	 * 
+	 * Deletes the selected goal from the list of goals.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onRemoveGoalAction(ActionEvent event) {
 		tableGoals.getItems().remove(tableGoals.getSelectionModel().getSelectedItem());
@@ -149,6 +159,10 @@ public class ChallengeController implements Initializable {
 
 	public GridPane getView() {
 		return view;
+	}
+	
+	public TableView<Goal> getTableGoals() {
+		return this.tableGoals;
 	}
 
 	public final ObjectProperty<Challenge> challengeProperty() {

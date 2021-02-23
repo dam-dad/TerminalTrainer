@@ -1,5 +1,6 @@
-package dad.javafx.terminaltrainer.editor.model;
+package dad.javafx.terminaltrainer.trainer.model;
 
+import dad.javafx.terminaltrainer.editor.model.Shell;
 import javafx.beans.property.ListProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleListProperty;
@@ -89,10 +90,7 @@ public class Goal {
 	public final void setTips(final ObservableList<String> tips) {
 		this.tipsProperty().set(tips);
 	}
-	
-	/**
-	 * Overrides toString method to print its values.
-	 */
+
 	@Override
 	public String toString() {
 		return "Goal [shell=" + getShell() + ", description=" + getDescription() + ", path=" + getPath() + ", username=" + getUsername()
