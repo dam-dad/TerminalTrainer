@@ -6,8 +6,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dad.javafx.terminaltrainer.cli.ExecutionResult;
+import dad.javafx.terminaltrainer.editor.model.Challenge;
 import dad.javafx.terminaltrainer.editor.ui.app.App;
-import dad.javafx.terminaltrainer.trainer.model.Challenge;
 import dad.javafx.terminaltrainer.utils.JSONUtils;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -20,8 +20,8 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class MainController {
-	
-	//Model
+
+	// Model
 	ExecutionResult executionResult = new ExecutionResult();
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
 
@@ -29,7 +29,7 @@ public class MainController {
 	private BorderPane view;
 
 	String path;
-	
+
 	@FXML
 	void onLoadChallengeAction(ActionEvent event) {
 		FileChooser fileChooser = new FileChooser();
@@ -41,18 +41,19 @@ public class MainController {
 			try {
 				path = chFile.getAbsolutePath();
 				challenge.set(JSONUtils.fromJson(chFile, Challenge.class));
-					
+
 				System.out.println("ChallengeName " + challenge.get().getName());
 				System.out.println("Description: " + challenge.get().getDescription());
-				for(int i = 0; i < challenge.get().getGoals().size(); i++) {
+				for (int i = 0; i < challenge.get().getGoals().size(); i++) {
 					System.out.println("Goals: " + challenge.get().getGoals().get(i));
-					for(int j = 0; j < challenge.get().getGoals().get(i).getValidCommands().size(); j++) {
-						System.out.println("Valid commands: "+  challenge.get().getGoals().get(i).getValidCommands().get(j));
+					for (int j = 0; j < challenge.get().getGoals().get(i).getValidCommands().size(); j++) {
+						System.out.println(
+								"Valid commands: " + challenge.get().getGoals().get(i).getValidCommands().get(j));
 					}
 				}
 				System.out.println("Description: " + challenge.get().getDescription());
 				System.out.println("OS: : " + challenge.get().getOs());
-				
+
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -65,11 +66,10 @@ public class MainController {
 		loader.load();
 	}
 
-
 	public BorderPane getView() {
 		return view;
 	}
-	
+
 	public ObjectProperty<Challenge> getChallenge() {
 		return challenge;
 	}
