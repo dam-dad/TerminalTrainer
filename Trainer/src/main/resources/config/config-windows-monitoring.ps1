@@ -73,31 +73,6 @@ goto loop
 }
 
 <#
-	Generates CMD monitorization script
-#>
-function Generate-CmdAuditScript {
-    # There's a problem if the user uses options that are considered valid for "call" / we cannot ignore "call" because the variables wouldn't be expanded
-	$script = @"
-@echo off
-title Monitored CMD
-setlocal EnableDelayedExpansion
-echo.
-echo This terminal is being monitored by $App
-:loop
-echo.
-set OLDPWD=!CD!
-set COMMAND=
-set /P COMMAND=!CD!^>
-if "!COMMAND!" == "" goto loop
-call !COMMAND!
-set COMMAND=%COMMAND:"=\"%
-eventcreate /id 1 /L Application /T Information /SO $App /D "cmd:!USERNAME!:'!CD!':'!OLDPWD!':!COMMAND!" > nul
-goto loop
-"@
-	Set-Content $CmdAuditScriptPath $script
-}
-
-<#
 	Generates PowerShell monitorization script
 #>
 function Generate-PSAuditScript {
@@ -164,7 +139,7 @@ function Enable-PSAudit() {
 ##########################################################################
 
 <#
-    Checks if 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\TerminalTrainer' key exists,
+    Checks if 'HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\Application\TerminalTrainer' key exists,
     corresponding to TerminalTrainer event source
 #>
 function Test-EventSource() {
