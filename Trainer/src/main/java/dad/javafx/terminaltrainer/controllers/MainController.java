@@ -2,8 +2,8 @@ package dad.javafx.terminaltrainer.controllers;
 
 import java.io.File;
 import java.io.IOException;
-
-
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import dad.javafx.terminaltrainer.cli.ExecutionResult;
 import dad.javafx.terminaltrainer.editor.model.Challenge;
@@ -12,13 +12,14 @@ import dad.javafx.terminaltrainer.utils.JSONUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
-public class MainController {
+public class MainController implements Initializable {
 
 	// Model
 	ExecutionResult executionResult = new ExecutionResult();
@@ -81,6 +82,12 @@ public class MainController {
 	
 	public Challenge getChallenge() {
 		return this.challenge;
+	}
+
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	/*
