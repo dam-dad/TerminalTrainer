@@ -3,25 +3,15 @@ package dad.javafx.terminaltrainer.ui.app;
 import dad.javafx.terminaltrainer.cli.ExecutionResult;
 import dad.javafx.terminaltrainer.config.Config;
 import dad.javafx.terminaltrainer.controllers.MainController;
-import dad.javafx.terminaltrainer.editor.model.Goal;
+import dad.javafx.terminaltrainer.editor.model.Challenge;
 import dad.javafx.terminaltrainer.monitoring.ExecutedCommand;
 import dad.javafx.terminaltrainer.monitoring.Monitoring;
 import javafx.application.Application;
 import javafx.collections.ListChangeListener;
-import javafx.collections.ListChangeListener.Change;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import dad.javafx.terminaltrainer.cli.ExecutionResult;
-import dad.javafx.terminaltrainer.config.Config;
-import dad.javafx.terminaltrainer.controllers.MainController;
-import dad.javafx.terminaltrainer.monitoring.ExecutedCommand;
-import dad.javafx.terminaltrainer.monitoring.Monitoring;
-import dad.javafx.terminaltrainer.trainer.model.Challenge;
 import dad.javafx.terminaltrainer.ui.app.App;
 import dad.javafx.terminaltrainer.utils.Sleep;
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.ListChangeListener;
 
 public class App extends Application {
 	MainController controller;
@@ -81,7 +71,6 @@ public class App extends Application {
 		primaryStage.show();
 
 	}
-
 	public static void main(String[] args) {
 		launch(args);
 	}
