@@ -48,7 +48,6 @@ public class MainController {
 				path = chFile.getAbsolutePath();
 				challenge = JSONUtils.fromJson(chFile, Challenge.class);
 
-
 				textChallengeName.setText(challenge.getName());
 				textDescription.setText(challenge.getDescription());
 
@@ -62,19 +61,7 @@ public class MainController {
 				}
 				System.out.println("Description: " + challenge.getDescription());
 				System.out.println("OS: : " + challenge.getOs());
-				//challenge.set(JSONUtils.fromJson(chFile, Challenge.class));
-
-				/*
-				 * System.out.println("ChallengeName " + challenge.get().getName());
-				 * System.out.println("Description: " + challenge.get().getDescription());
-				 * for(int i = 0; i < challenge.get().getGoals().size(); i++) {
-				 * System.out.println("Goals: " + challenge.get().getGoals().get(i)); for(int j
-				 * = 0; j < challenge.get().getGoals().get(i).getValidCommands().size(); j++) {
-				 * System.out.println("Valid commands: "+
-				 * challenge.get().getGoals().get(i).getValidCommands().get(j)); } }
-				 * System.out.println("Description: " + challenge.get().getDescription());
-				 * System.out.println("OS: : " + challenge.get().getOs());
-				 */
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

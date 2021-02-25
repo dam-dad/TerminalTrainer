@@ -23,39 +23,41 @@ public class App extends Application {
 		Scene scene = new Scene(controller.getView());
 		Challenge challenge = controller.getChallenge();
 
+		challenge.setDescription(controller.getChallenge().getDescription());
+
 		if (!Config.CONFIG.isEnabled())
 			Config.CONFIG.enable();
 
 		Monitoring.start();
-		ExecutionResult executionResult = new ExecutionResult();
+		ExecutedCommand comando = new ExecutedCommand();
 
 		Monitoring.getExecutedCommands().addListener(new ListChangeListener<ExecutedCommand>() {
 			@Override
 			public void onChanged(Change<? extends ExecutedCommand> c) {
 				while (c.next()) {
 					c.getAddedSubList().stream().forEach(System.out::println);
+					comando.setCommand(c.getList().get(c.getList().size() - 1).getCommand());
 				}
 
-				/*
-					 for (int i = 0; i < challenge.getGoals().size(); i++) {
-						for (int j = 0; j < challenge.getGoals().get(i).getValidCommands().size(); j++) {
-	
-							System.out.println(challenge.getGoals().get(i).getValidCommands().get(j));
-							if (executionResult.getExecutedCommand()
-									.equals(challenge.getGoals().get(i).getValidCommands().get(j))) {
-	
-								System.out.println("MU BIEN MI NIÑO");
-	
-							} else {
-	
-								System.out.println("AY NO, NO PUEDE SEH");
-	
-							}
+				System.out.println("Comando ejecutado: " + comando.getCommand());
+
+				for (int i = 0; i < controller.getChallenge().getGoals().size(); i++) {
+					for (int j = 0; j < controller.getChallenge().getGoals().get(i).getValidCommands().size(); j++) {
+
+						System.out.println(controller.getChallenge().getGoals().get(i).getValidCommands().get(j));
+						if (comando.getCommand()
+								.equals(controller.getChallenge().getGoals().get(i).getValidCommands().get(j))) {
+
+							System.out.println("MU BIEN MI NIÑO");
+
+						} else {
+
+							System.out.println("AY NO, NO PUEDE SEH");
+
 						}
 					}
-				 */
+				}
 
-				
 			}
 		});
 
@@ -71,6 +73,7 @@ public class App extends Application {
 		primaryStage.show();
 
 	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}
