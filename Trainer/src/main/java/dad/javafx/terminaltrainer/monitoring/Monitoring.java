@@ -61,7 +61,7 @@ public class Monitoring {
 		return (MONITOR != null && MONITOR.isAlive());
 	}
 
-	public static ListProperty<ExecutedCommand> getExecutedCommands() {
+	public static ListProperty<ExecutedCommand> executedCommandsProperty() {
 		return COMMANDS;
 	}
 

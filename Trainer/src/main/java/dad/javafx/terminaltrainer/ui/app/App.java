@@ -2,16 +2,32 @@ package dad.javafx.terminaltrainer.ui.app;
 
 import dad.javafx.terminaltrainer.config.Config;
 import dad.javafx.terminaltrainer.controllers.MainController;
+import dad.javafx.terminaltrainer.monitoring.Monitoring;
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 import dad.javafx.terminaltrainer.ui.app.App;
 
 public class App extends Application {
 	MainController controller;
 
+	@Override
+	public void init() throws Exception {
+		// TODO Auto-generated method stub
+		if (!Config.CONFIG.isEnabled())
+			Config.CONFIG.enable();
+		Monitoring.start();
+		super.init();
+	}
+	
+	@Override
+	public void stop() throws Exception {
+		// TODO Auto-generated method stub
+		Monitoring.stop();
+		Config.CONFIG.disable();
+		super.stop();
+	}
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		controller = new MainController();
@@ -20,13 +36,6 @@ public class App extends Application {
 		primaryStage.setTitle("Trainer");
 		primaryStage.setScene(scene);
 		primaryStage.show();
-		primaryStage.setOnCloseRequest(new EventHandler<WindowEvent>() {
-			public void handle(WindowEvent we) {
-				System.out.println("Stage is closing");
-				Config.CONFIG.disable();
-				System.out.println(Config.CONFIG.isEnabled());
-			}
-		});
 	}
 
 	public static void main(String[] args) {

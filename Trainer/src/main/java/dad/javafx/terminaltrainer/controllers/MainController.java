@@ -5,13 +5,11 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import dad.javafx.terminaltrainer.cli.ExecutionResult;
-import dad.javafx.terminaltrainer.config.Config;
 import dad.javafx.terminaltrainer.editor.model.Challenge;
 import dad.javafx.terminaltrainer.editor.ui.app.App;
 import dad.javafx.terminaltrainer.monitoring.ExecutedCommand;
 import dad.javafx.terminaltrainer.monitoring.Monitoring;
 import dad.javafx.terminaltrainer.utils.JSONUtils;
-import dad.javafx.terminaltrainer.utils.Sleep;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -91,12 +89,8 @@ public class MainController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		if (!Config.CONFIG.isEnabled())
-			Config.CONFIG.enable();
 
-		Monitoring.start();
-
-		Monitoring.getExecutedCommands().addListener(new ListChangeListener<ExecutedCommand>() {
+		Monitoring.executedCommandsProperty().addListener(new ListChangeListener<ExecutedCommand>() {
 			@Override
 			public void onChanged(Change<? extends ExecutedCommand> c) {
 				while (c.next()) {
@@ -133,12 +127,14 @@ public class MainController implements Initializable {
 			}
 		});
 
+		/*
 		new Thread(() -> {
 			Sleep.minutes(5);
 			Monitoring.stop();
 			if (Config.CONFIG.isEnabled())
 				Config.CONFIG.disable();
 		}).start();
+		*/
 	}
 	
 	
