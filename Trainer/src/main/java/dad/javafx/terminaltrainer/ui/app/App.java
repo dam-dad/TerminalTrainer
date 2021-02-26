@@ -36,26 +36,23 @@ public class App extends Application {
 					c.getAddedSubList().stream().forEach(System.out::println);
 				}
 
-				/*
-					 for (int i = 0; i < challenge.getGoals().size(); i++) {
-						for (int j = 0; j < challenge.getGoals().get(i).getValidCommands().size(); j++) {
-	
-							System.out.println(challenge.getGoals().get(i).getValidCommands().get(j));
-							if (executionResult.getExecutedCommand()
-									.equals(challenge.getGoals().get(i).getValidCommands().get(j))) {
-	
-								System.out.println("MU BIEN MI NIÑO");
-	
-							} else {
-	
-								System.out.println("AY NO, NO PUEDE SEH");
-	
-							}
+				for (int i = 0; i < challenge.getGoals().size(); i++) {
+					for (int j = 0; j < challenge.getGoals().get(i).getValidCommands().size(); j++) {
+						System.out.println(challenge.getGoals().get(i).getValidCommands().get(j));
+						
+						if (executionResult.getExecutedCommand().equals(challenge.getGoals().get(i).getValidCommands().get(j))) {
+
+							System.out.println("MU BIEN MI NIÑO");
+
+						} else {
+
+							System.out.println("AY NO, NO PUEDE SEH");
+
 						}
 					}
-				 */
+				}
+				//System.out.println(controller.getChallenge().getDescription());
 
-				
 			}
 		});
 
@@ -71,6 +68,7 @@ public class App extends Application {
 		primaryStage.show();
 
 	}
+
 	public static void main(String[] args) {
 		launch(args);
 	}
