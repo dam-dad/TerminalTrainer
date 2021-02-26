@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import dad.javafx.terminaltrainer.ui.app.App;
 
 public class App extends Application {
-	MainController controller;
+	static MainController controller;
 
 	@Override
 	public void init() throws Exception {
@@ -19,7 +19,7 @@ public class App extends Application {
 		Monitoring.start();
 		super.init();
 	}
-	
+
 	@Override
 	public void stop() throws Exception {
 		// TODO Auto-generated method stub
@@ -27,7 +27,7 @@ public class App extends Application {
 		Config.CONFIG.disable();
 		super.stop();
 	}
-	
+
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		controller = new MainController();
@@ -40,6 +40,10 @@ public class App extends Application {
 
 	public static void main(String[] args) {
 		launch(args);
+	}
+
+	public static MainController getController() {
+		return controller;
 	}
 
 }

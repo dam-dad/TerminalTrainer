@@ -66,6 +66,11 @@
 			<artifactId>flexmark-all</artifactId>
 			<version>0.32.18</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.11.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -88,7 +93,7 @@
 							<bundleJre>true</bundleJre>
 							<customizedJre>false</customizedJre>
 							<winConfig>
-							<!-- <icoFile>icon-small.png</icoFile> -->
+								<!-- <icoFile>icon-small.png</icoFile> -->
 								<generateMsi>false</generateMsi>
 							</winConfig>
 							<organizationName>DAD</organizationName>
