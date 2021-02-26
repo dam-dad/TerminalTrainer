@@ -19,36 +19,5 @@
 		<maven.compiler.source>14</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
-	
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>io.github.fvarrui</groupId>
-				<artifactId>javapackager</artifactId>
-				<version>1.5.1</version>
-				<executions>
-					<execution>
-						<phase>package</phase>
-						<goals>
-							<goal>package</goal>
-						</goals>
-						<configuration>
-							<additionalResources>
-								<additionalResource>challenges</additionalResource>
-							</additionalResources>
-							<mainClass>dad.javafx.terminaltrainer.editor.Main</mainClass>
-							<mainClass>dad.javafx.terminaltrainer.Main</mainClass>
-							<bundleJre>true</bundleJre>
-							<winConfig>
-							<!-- <icoFile>icon-small.png</icoFile> -->
-								<generateMsi>false</generateMsi>
-							</winConfig>
-							<organizationName>TerminalTrainer</organizationName>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-		</plugins>
-	</build>
 
 </project>

@@ -68,4 +68,35 @@
 		</dependency>
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>io.github.fvarrui</groupId>
+				<artifactId>javapackager</artifactId>
+				<version>1.5.1</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>package</goal>
+						</goals>
+						<configuration>
+							<additionalResources>
+								<additionalResource>challenges</additionalResource>
+							</additionalResources>
+							<mainClass>dad.javafx.terminaltrainer.Main</mainClass>
+							<bundleJre>true</bundleJre>
+							<customizedJre>false</customizedJre>
+							<winConfig>
+							<!-- <icoFile>icon-small.png</icoFile> -->
+								<generateMsi>false</generateMsi>
+							</winConfig>
+							<organizationName>DAD</organizationName>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+
 </project>
