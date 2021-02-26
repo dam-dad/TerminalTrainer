@@ -3,7 +3,6 @@ package dad.javafx.terminaltrainer.editor.ui.app;
 import dad.javafx.terminaltrainer.editor.model.Memory;
 import dad.javafx.terminaltrainer.editor.ui.controller.MainController;
 import javafx.application.Application;
-import javafx.beans.binding.Bindings;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
