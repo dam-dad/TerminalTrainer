@@ -3,9 +3,11 @@ package dad.javafx.terminaltrainer.controllers;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
-import dad.javafx.terminaltrainer.cli.ExecutionResult;
 import dad.javafx.terminaltrainer.editor.model.Challenge;
+import dad.javafx.terminaltrainer.editor.model.Goal;
 import dad.javafx.terminaltrainer.editor.ui.app.App;
 import dad.javafx.terminaltrainer.monitoring.ExecutedCommand;
 import dad.javafx.terminaltrainer.monitoring.Monitoring;
@@ -23,24 +25,42 @@ import javafx.stage.FileChooser.ExtensionFilter;
 
 public class MainController implements Initializable {
 
-	// Model
-	ExecutionResult executionResult = new ExecutionResult();
+	private static int counterGoal;
+	private static int maxGoal;
+	private ArrayList<ArrayList<ExecutedCommand>> userResults;
 	// private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
-	private Challenge challenge = new Challenge();
+	private Challenge challenge;
 
 	@FXML
 	private BorderPane view;
 
 	@FXML
-    private TextField textChallengeName;
+	private TextField textChallengeName;
 
-    @FXML
-    private TextArea textDescription;
+	@FXML
+	private TextArea textDescription;
 
 	String path;
+	
+	
+	@FXML
+    void onDebugAction(ActionEvent event) {
+		for (ArrayList<ExecutedCommand> arrayList : userResults) {
+			System.out.println(userResults.indexOf(arrayList) + " | " + arrayList.toString());
+		}
+    }
+	
+	@FXML
+    void onPrintAction(ActionEvent event) throws IOException {
+		//WE HAVE TO CHANGE THIS INTO A PDF, THIS IS ONLY FOR DEBBUGING 
+		File file = new File("C:\\Users\\abcar\\Desktop\\archivoPrueba.json");
+		JSONUtils.toJson(file, userResults);
+    }
 
 	@FXML
 	void onLoadChallengeAction(ActionEvent event) {
+		view.setDisable(false);
+
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Open a challenge file.");
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("Challenge (*.challenge)", "*.challenge"));
@@ -48,23 +68,16 @@ public class MainController implements Initializable {
 		File chFile = fileChooser.showOpenDialog(App.getPrimaryStage());
 		if (chFile != null) {
 			try {
-				path = chFile.getAbsolutePath();
+				
 				challenge = JSONUtils.fromJson(chFile, Challenge.class);
 
 				textChallengeName.setText(challenge.getName());
 				textDescription.setText(challenge.getDescription());
-				/*
-				System.out.println("ChallengeName " + challenge.getName());
-				System.out.println("Description: " + challenge.getDescription());
-				for (int i = 0; i < challenge.getGoals().size(); i++) {
-					System.out.println("Goals: " + challenge.getGoals().get(i));
-					for (int j = 0; j < challenge.getGoals().get(i).getValidCommands().size(); j++) {
-						System.out.println("Valid commands: " + challenge.getGoals().get(i).getValidCommands().get(j));
-					}
-				}
-				System.out.println("Description: " + challenge.getDescription());
-				System.out.println("OS: : " + challenge.getOs());
-				*/
+
+				counterGoal = 0;
+				maxGoal = challenge.getGoals().size() - 1;
+
+				userResults = new ArrayList<>();
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -81,7 +94,6 @@ public class MainController implements Initializable {
 		return view;
 	}
 
-	
 	public Challenge getChallenge() {
 		return this.challenge;
 	}
@@ -94,49 +106,45 @@ public class MainController implements Initializable {
 			@Override
 			public void onChanged(Change<? extends ExecutedCommand> c) {
 				while (c.next()) {
-					System.out.println("ultimo comando :");
-					c.getAddedSubList().stream().forEach( command -> {
-						System.out.println("Comando: " + command.getCommand());
-						System.out.println("Pwd: " + command.getPwd());
-					});
-					
-				}
-				
-				/*
-				System.out.println("Comando ejecutado: " + comando.getCommand());
+					c.getAddedSubList().stream().forEach(command -> {
+						Goal currentGoal = challenge.getGoals().get(counterGoal);
 
-				for (int i = 0; i < challenge.getGoals().size(); i++) {
-					for (int j = 0; j < challenge.getGoals().get(i).getValidCommands().size(); j++) {
+						// Compare
+						System.out.println("comando:" + currentGoal.getValidCommands().contains(command.getCommand()));
+						System.out.println("PWD: " + currentGoal.getPath().equals(command.getOldPwd()));
+						System.out.println("Shell:" + currentGoal.getShell().equals(command.getShell()));
+						System.out.println("Username: " + currentGoal.getUsername().equals(command.getUsername()));
+						
+						System.out.println(currentGoal.getShell().toString() +" "+command.getShell().toUpperCase());
 
-						System.out.println(challenge.getGoals().get(i).getValidCommands().get(j));
-						if (comando.getCommand()
-								.equals(challenge.getGoals().get(i).getValidCommands().get(j))) {
-
-							System.out.println("MU BIEN MI NIÑO");
-
-						} else {
-
-							System.out.println("AY NO, NO PUEDE SEH");
-
+						
+						if (currentGoal.getValidCommands().contains(command.getCommand())
+								&& currentGoal.getPath().equals(command.getOldPwd())
+								&& currentGoal.getShell().toString().equals(command.getShell().toUpperCase())
+								&& currentGoal.getUsername().equals(command.getUsername())) 
+						{
+							if (counterGoal < maxGoal) {
+								counterGoal++;
+								System.out.println("PASANDO A OTRO ENUNCIADO");
+							}else {
+								view.setDisable(true);
+								System.out.println("ACABASTE!");
+							}
 						}
-					}
-				}
-				
-				*/
 
+						// write here in temporal file
+						if(userResults.size()-1 >= counterGoal) {
+							userResults.get(counterGoal).add(command);
+						}else {
+							ArrayList<ExecutedCommand> list = new ArrayList<>();
+							list.add(command);
+							userResults.add(list);
+						}
+
+					});
+				}
 			}
 		});
-
-		/*
-		new Thread(() -> {
-			Sleep.minutes(5);
-			Monitoring.stop();
-			if (Config.CONFIG.isEnabled())
-				Config.CONFIG.disable();
-		}).start();
-		*/
 	}
-	
-	
 
 }
