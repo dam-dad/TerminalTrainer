@@ -66,6 +66,9 @@
 							<goal>package</goal>
 						</goals>
 						<configuration>
+						<additionalResources>
+								<additionalResource>README.md</additionalResource>
+							</additionalResources>
 							<mainClass>dad.javafx.terminaltrainer.editor.Main</mainClass>
 							<bundleJre>true</bundleJre>
 							<customizedJre>false</customizedJre>

@@ -64,7 +64,7 @@ public class PSEventMonitor extends ShellMonitor {
 	}
 
 	/**
-	 * Implementa el trabajo realizado por el monitorizador
+	 * Implements monitoring's work.
 	 */
 	@Override
 	public void doWork() {
@@ -117,9 +117,9 @@ public class PSEventMonitor extends ShellMonitor {
 	}
 	
 	/**
-	 * Traduce el ID de usuario (SID) en un nombre (username) 
-	 * @param sid Identificador del usuario
-	 * @return Nombre del usuario 
+	 * Translates user's ID  (SID) to a name (username) 
+	 * @param sid User's identifier
+	 * @return Username
 	 */
 	private String resolveUsername(String sid) {
 		Map<String, Object> data = new HashMap<>();

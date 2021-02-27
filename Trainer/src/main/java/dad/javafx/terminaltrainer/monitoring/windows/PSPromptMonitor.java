@@ -48,7 +48,7 @@ public class PSPromptMonitor extends ShellMonitor {
 	}
 
 	/**
-	 * Implementa el trabajo realizado por el monitorizador
+	 * Implements monitor's work.
 	 */
 	@Override
 	public void doWork() {
