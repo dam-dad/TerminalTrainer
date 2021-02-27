@@ -2,6 +2,7 @@ package dad.javafx.terminaltrainer.ui.app;
 
 import dad.javafx.terminaltrainer.config.Config;
 import dad.javafx.terminaltrainer.controllers.MainController;
+import dad.javafx.terminaltrainer.controllers.MainTrainerController;
 import dad.javafx.terminaltrainer.monitoring.Monitoring;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -9,7 +10,7 @@ import javafx.stage.Stage;
 import dad.javafx.terminaltrainer.ui.app.App;
 
 public class App extends Application {
-	static MainController controller;
+	static MainTrainerController controller;
 
 	@Override
 	public void init() throws Exception {
@@ -30,7 +31,7 @@ public class App extends Application {
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
-		controller = new MainController();
+		controller = new MainTrainerController();
 
 		Scene scene = new Scene(controller.getView());
 		primaryStage.setTitle("Trainer");
@@ -42,7 +43,7 @@ public class App extends Application {
 		launch(args);
 	}
 
-	public static MainController getController() {
+	public static MainTrainerController getController() {
 		return controller;
 	}
 

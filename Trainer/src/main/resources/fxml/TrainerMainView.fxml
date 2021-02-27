@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane fx:id="view" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <MenuBar BorderPane.alignment="CENTER">
+        <menus>
+          <Menu mnemonicParsing="false" text="File">
+            <items>
+              <MenuItem onAction="#onLoadChallengeAction" text="_Load challenge">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="L" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator>
+                  </MenuItem>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Edit">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Delete" />
+                  <MenuItem mnemonicParsing="false" onAction="#onDebugAction" text="Debug" />
+                  <MenuItem mnemonicParsing="false" onAction="#onPrintAction" text="Print data (PDF)" />
+                  <Menu mnemonicParsing="false" text="Theme...">
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#OnLightThemeAction" text="Light" />
+                        <MenuItem mnemonicParsing="false" onAction="#OnDarkThemeAction" text="Dark" />
+                    </items>
+                  </Menu>
+            </items>
+          </Menu>
+          <Menu mnemonicParsing="false" text="Help">
+            <items>
+              <MenuItem mnemonicParsing="false" text="About" />
+            </items>
+          </Menu>
+        </menus>
+      </MenuBar>
+   </top>
+   <center>
+      <SplitPane fx:id="split" prefHeight="160.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>
