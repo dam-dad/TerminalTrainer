@@ -146,6 +146,13 @@ public class MainController implements Initializable {
 								 */
 
 								userResults.get(selectedIndex).add(command);
+								
+								if(currentGoal.getShell().toString().equals(command.getShell().toUpperCase())){
+									System.out.println("Correcto");
+								}else {
+									System.out.println("Error");
+								}
+								System.out.println(currentGoal.getShell().toString() + " " + command.getShell().toUpperCase());
 
 								if (currentGoal.getValidCommands().contains(command.getCommand())
 										&& currentGoal.getPath().equals(command.getOldPwd())

@@ -50,7 +50,7 @@ The **Description** column describes what you have to accomplished with the exec
 
 The **Shell** column will be the terminal you will be creating the challenge for. For example: `cmd`, `PowerShell`.
 
-The **PWD** column will determine the path(location) where you execut the commands.
+The **PWD** column will determine the path(location) where you execute the commands.
 
 The **User** tells you which user you have to be logged as to do the challenge. For example, if you  have a user with more permissions.
 

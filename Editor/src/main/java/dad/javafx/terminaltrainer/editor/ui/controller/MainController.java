@@ -6,6 +6,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import dad.javafx.terminaltrainer.editor.model.Challenge;
+import dad.javafx.terminaltrainer.editor.reports.MainReport;
 import dad.javafx.terminaltrainer.editor.ui.app.App;
 import dad.javafx.terminaltrainer.utils.JSONUtils;
 import javafx.beans.property.ObjectProperty;
@@ -18,6 +19,7 @@ import javafx.scene.control.SplitPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import net.sf.jasperreports.engine.JRException;
 
 public class MainController implements Initializable {
 
@@ -157,8 +159,17 @@ public class MainController implements Initializable {
 
 	}
 
+	@FXML
+	void onGenerateReportAction(ActionEvent event) throws JRException, IOException {
+		MainReport.generarPdf(challenge.get());
+	}
+
 	public BorderPane getView() {
 		return this.view;
+	}
+
+	public ChallengeController getChallengeController() {
+		return challengeController;
 	}
 
 	public double getSplitPos() {

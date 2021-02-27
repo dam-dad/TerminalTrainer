@@ -16,7 +16,53 @@
         "coamndo5"
       ],
       "tips": []
+    },
+    {
+      "shell": "CMD",
+      "description": "Crear una carpeta en el escritorio llamada manolete",
+      "path": "C:\\Users",
+      "username": "User",
+      "validCommands": [
+        "mkdir Prueba",
+        "comando1",
+        "coamdno2",
+        "comando3",
+        "comando4",
+        "coamndo5"
+      ],
+      "tips": []
+    },
+        {
+      "shell": "CMD",
+      "description": "Crear una carpeta en el escritorio llamada vfvfvf",
+      "path": "C:\\Users",
+      "username": "User",
+      "validCommands": [
+        "mkdir Prueba",
+        "comando1",
+        "coamdno2",
+        "comando3",
+        "comando4",
+        "coamndo5"
+      ],
+      "tips": []
+    },
+        {
+      "shell": "CMD",
+      "description": "Crear una carpeta en el escritorio llamada ffff",
+      "path": "C:\\Users",
+      "username": "User",
+      "validCommands": [
+        "mkdir Prueba",
+        "comando1",
+        "coamdno2",
+        "comando3",
+        "comando4",
+        "coamndo5"
+      ],
+      "tips": []
     }
+
   ],
   "os": "WINDOWS"
 }

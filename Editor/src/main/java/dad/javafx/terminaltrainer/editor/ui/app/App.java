@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 public class App extends Application {
 	private static Stage primaryStage;
 
-	private MainController controller;
+	private static MainController controller;
 
 	public static Memory config = new Memory();
 
@@ -36,6 +36,7 @@ public class App extends Application {
 		primaryStage.getIcons().add(new Image("/images/icon-small.png"));
 		primaryStage.show();
 	}
+
 	/**
 	 * Loads the property file from the .terminaltrainer folder.
 	 */
@@ -43,12 +44,13 @@ public class App extends Application {
 	public void init() throws Exception {
 		config.loadFile();
 	}
+
 	/**
 	 * Saves a property file.
 	 */
 	@Override
 	public void stop() throws Exception {
-		
+
 		config.setTheme(controller.getView().getStylesheets().get(0).toString());
 
 		config.setSplitPosLeft(controller.getSplitPos());
@@ -61,6 +63,10 @@ public class App extends Application {
 
 	public static Memory getConfig() {
 		return config;
+	}
+
+	public static MainController getController() {
+		return controller;
 	}
 
 	public static void main(String[] args) {

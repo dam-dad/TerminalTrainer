@@ -51,6 +51,11 @@
 			<artifactId>commons-io</artifactId>
 			<version>2.8.0</version>
 		</dependency>
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>6.11.0</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -66,14 +71,14 @@
 							<goal>package</goal>
 						</goals>
 						<configuration>
-						<additionalResources>
+							<additionalResources>
 								<additionalResource>README.md</additionalResource>
 							</additionalResources>
 							<mainClass>dad.javafx.terminaltrainer.editor.Main</mainClass>
 							<bundleJre>true</bundleJre>
 							<customizedJre>false</customizedJre>
 							<winConfig>
-							<!-- <icoFile>icon-small.png</icoFile> -->
+								<icoFile>icon-big.ico</icoFile>
 								<generateMsi>false</generateMsi>
 							</winConfig>
 							<organizationName>DAD</organizationName>
