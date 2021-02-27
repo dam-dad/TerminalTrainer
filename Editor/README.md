@@ -12,7 +12,7 @@
 
 The app can be downloaded from  [here.][id]
 
-[id]: http://google.com/
+[id]: https://github.com/dam-dad/TerminalTrainer/releases/tag/1.0
 
 **Screenshots**
 
