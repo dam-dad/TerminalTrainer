@@ -30,6 +30,7 @@ public class GoalController implements Initializable {
 
 	// Model
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
+	private int tryCounter;
 
 	@FXML
 	private GridPane view;
@@ -74,6 +75,11 @@ public class GoalController implements Initializable {
 										&& currentGoal.getUsername().equals(command.getUsername())) {
 									// CORRECT, CHOOSE ANOTHER EXERCISE
 									listGoals.getSelectionModel().selectNext();
+								}else {
+									tryCounter++;
+									if(tryCounter >= 4) {
+										//notification goes here
+									}
 								}
 
 							});
