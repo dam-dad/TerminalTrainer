@@ -81,6 +81,7 @@
 				<version>1.5.1</version>
 				<executions>
 					<execution>
+					<id>bundling-for-windowsTrainer</id>
 						<phase>package</phase>
 						<goals>
 							<goal>package</goal>
@@ -98,6 +99,18 @@
 							</winConfig>
 							<organizationName>DAD</organizationName>
 						</configuration>
+					</execution>
+					<execution>
+						<id>bundling-for-linuxTrainer</id>
+						<phase>package</phase>
+						<goals>
+							<goal>package</goal>
+						</goals>
+						<configuration>
+                		<platform>linux</platform>
+                		<createTarball>true</createTarball>
+						<jdkPath>C:\Program Files\AdoptOpenJDK\jdk-15.0.2.7-hotspot</jdkPath>
+					</configuration>
 					</execution>
 				</executions>
 			</plugin>
