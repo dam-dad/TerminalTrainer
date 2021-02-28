@@ -34,7 +34,7 @@
 		<dependency>
 			<groupId>org.controlsfx</groupId>
 			<artifactId>controlsfx</artifactId>
-			<version>9.0.0</version>
+			<version>11.1.0</version>
 		</dependency>
 		<dependency>
 			<groupId>com.jfoenix</groupId>
@@ -93,7 +93,7 @@
 							<bundleJre>true</bundleJre>
 							<customizedJre>false</customizedJre>
 							<winConfig>
-								<!-- <icoFile>icon-small.png</icoFile> -->
+								<icoFile>icon-big.ico</icoFile>
 								<generateMsi>false</generateMsi>
 							</winConfig>
 							<organizationName>DAD</organizationName>
