@@ -31,6 +31,7 @@ The project has the following packages:
 * `dad.javafx.terminaltrainer.editor.ui.app` The app's window.
 * `dad.javafx.terminaltrainer.editor.ui.controller` Functionality of the app.
 * `dad.javafx.terminaltrainer.editor.utils` Tool to read/write to/from JSON  format.
+* `dad.javafx.terminaltrainer.editor.reports` Classes to generate reports.
 
 
 
