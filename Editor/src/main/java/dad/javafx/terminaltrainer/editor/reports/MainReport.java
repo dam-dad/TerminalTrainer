@@ -15,26 +15,8 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.view.JasperViewer;
 
 public class MainReport {
-
-	public static void vistaPrevia() throws JRException {
-
-		// compila el informe
-		JasperReport report = JasperCompileManager.compileReport(MainReport.class.getResourceAsStream("/reports/result.jrxml"));
-
-		// crea el mapa de parámetros para el informe (en este caso vacío)
-		Map<String, Object> parameters = new HashMap<String, Object>();
-
-		// generamos el informe (combinamos informe + datos)
-		JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters,
-				new JRBeanCollectionDataSource(ResultDataProvider.getChallenges()));
-
-		// visualiza el informe generado
-		JasperViewer.viewReport(jasperPrint);
-
-	}
 
 	public static void generarPdf(Challenge challenge) throws JRException, IOException {
 
@@ -50,7 +32,7 @@ public class MainReport {
 		// generamos el informe (combinamos el informe compilado con los datos)
 		JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters,new JRBeanCollectionDataSource(challenge.getGoals()));
 
-		// exporta el informe a un fichero PDF
+		// exporta el informe a un fichero PDF 
 		JasperExportManager.exportReportToPdfFile(jasperPrint, "pdf/result.pdf");
 
 		// Abre el archivo PDF generado con el programa predeterminado del sistema

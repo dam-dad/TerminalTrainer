@@ -4,10 +4,8 @@ import dad.javafx.terminaltrainer.config.Config;
 import dad.javafx.terminaltrainer.controllers.MainController;
 import dad.javafx.terminaltrainer.monitoring.Monitoring;
 import javafx.application.Application;
-import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.Window;
 import dad.javafx.terminaltrainer.ui.app.App;
 
 public class App extends Application {
