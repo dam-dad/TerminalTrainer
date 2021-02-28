@@ -76,6 +76,7 @@ public class MainController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
 		tabChallenge.setContent(challengeController.getView());
+		tabGoal.setContent(goalController.getView());
 		
 		
 		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
