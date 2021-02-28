@@ -95,7 +95,7 @@ public class Goal {
 	 */
 	@Override
 	public String toString() {
-		return "- GOAL: " + this.description;
+		return "- GOAL: " + this.description.get();
 	}
 	
 	

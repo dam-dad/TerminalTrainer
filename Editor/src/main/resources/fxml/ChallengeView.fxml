@@ -56,11 +56,11 @@
          <font>
             <Font name="System Bold" size="17.0" />
          </font></Label>
-      <JFXTextField fx:id="textNameChallenge" focusColor="#20d2ff" styleClass="field" unFocusColor="#6e6e6e" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <JFXTextField fx:id="textNameChallenge" focusColor="#20d2ff" styleClass="text-inputCustom" unFocusColor="#6e6e6e" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin></JFXTextField>
-      <JFXTextArea fx:id="textDescriptionChallengue" focusColor="#20d2ff" styleClass="field" unFocusColor="#6e6e6e" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <JFXTextArea fx:id="textDescriptionChallengue" focusColor="#20d2ff" styleClass="text-inputCustom" unFocusColor="#6e6e6e" GridPane.columnIndex="1" GridPane.rowIndex="2">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" />
          </GridPane.margin></JFXTextArea>
@@ -78,7 +78,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <JFXComboBox fx:id="comboOS" focusColor="#20d2ff" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Select an option.." styleClass="field" unFocusColor="#6e6e6e" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <JFXComboBox fx:id="comboOS" focusColor="#20d2ff" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" promptText="Select an option.." styleClass="text-inputCustom" unFocusColor="#6e6e6e" GridPane.columnIndex="1" GridPane.rowIndex="3">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
