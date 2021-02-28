@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 
 import dad.javafx.terminaltrainer.editor.model.Goal;
@@ -42,7 +43,7 @@ public class GoalController implements Initializable {
 	private JFXButton btnRemoveTip;
 
 	@FXML
-	private JFXTextField textDescription;
+	private JFXTextArea textDescriptionArea;
 
 	@FXML
 	private JFXComboBox<Shell> comboShell;
@@ -59,7 +60,6 @@ public class GoalController implements Initializable {
 	@FXML
 	private JFXListView<String> listTips;
 
-	
 	/**
 	 * 
 	 * Adds a default command to the list of commands of the selected goal.
@@ -86,10 +86,10 @@ public class GoalController implements Initializable {
 		listTips.getSelectionModel().selectLast();
 	}
 
-	
 	/**
 	 * 
-	 * Deletes the command which is selected from the list of commands of the selected goal.
+	 * Deletes the command which is selected from the list of commands of the
+	 * selected goal.
 	 * 
 	 * @param event
 	 */
@@ -130,26 +130,26 @@ public class GoalController implements Initializable {
 
 	private void onGoalsChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
 		if (ov != null) {
-			
-			textDescription.textProperty().unbindBidirectional(ov.descriptionProperty());
-			textDescription.clear();
-			
+
+			textDescriptionArea.textProperty().unbindBidirectional(ov.descriptionProperty());
+			textDescriptionArea.clear();
+
 			comboShell.valueProperty().unbindBidirectional(ov.shellProperty());
 			comboShell.getSelectionModel().clearSelection();
 
 			textPWD.textProperty().unbindBidirectional(ov.pathProperty());
 			textPWD.clear();
-			
+
 			textUser.textProperty().unbindBidirectional(ov.usernameProperty());
 			textUser.clear();
-			
+
 			listCommands.setItems(FXCollections.observableArrayList());
 			listTips.setItems(FXCollections.observableArrayList());
-			
+
 		}
 
 		if (nv != null) {
-			textDescription.textProperty().bindBidirectional(nv.descriptionProperty());
+			textDescriptionArea.textProperty().bindBidirectional(nv.descriptionProperty());
 			comboShell.valueProperty().bindBidirectional(nv.shellProperty());
 			textPWD.textProperty().bindBidirectional(nv.pathProperty());
 			textUser.textProperty().bindBidirectional(nv.usernameProperty());
