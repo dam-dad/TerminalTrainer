@@ -16,9 +16,11 @@ The app can be downloaded from  [here.][id]
 
 **Screenshots**
 
-![editor-dark](C:\Users\Aitor\Pictures\CapturasTT\editor-dark.PNG)
+![editor-light](C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\editor-light.PNG)
 
-![editor-ejemplo](C:\Users\Aitor\Pictures\CapturasTT\editor-ejemplo.PNG)![editor-light](C:\Users\Aitor\Pictures\CapturasTT\editor-light.PNG)
+![editor-dark](C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\editor-dark.PNG)
+
+![editor-ejemplo](C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\editor-ejemplo.PNG)
 
 
 
