@@ -6,7 +6,7 @@
       "shell": "CMD",
       "description": "Crear una carpeta en el escritorio llamada ffff",
       "path": "C:\\Users\\Aitor\\Desktop",
-      "username": "User",
+      "username": "Aitor",
       "validCommands": [
         "mkdir Prueba",
         "comando1",

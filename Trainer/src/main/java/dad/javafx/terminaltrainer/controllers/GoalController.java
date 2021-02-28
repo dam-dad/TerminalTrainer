@@ -61,15 +61,18 @@ public class GoalController implements Initializable {
 					public void run() {
 						while (c.next()) {
 							c.getAddedSubList().stream().forEach(command -> {
-
+								Goal currentGoal = listGoals.getSelectionModel().getSelectedItem();
 								if (checkCommandResult(command)) {
 									// CORRECT, CHOOSE ANOTHER EXERCISE
 									listGoals.getSelectionModel().getSelectedItem().setDescription("GOAL DONE!");
+									Notifications.create().title("Good job!")
+									.text("The executed command is valid.")
+									.showInformation();
 									listGoals.getSelectionModel().selectNext();
 									resetTryCounter();
 								} else {
 									tryCounter++;
-									Goal currentGoal = listGoals.getSelectionModel().getSelectedItem();
+									
 									if (tryCounter % 5 == 0) {
 
 										if (!currentGoal.getTips().isEmpty()) {
