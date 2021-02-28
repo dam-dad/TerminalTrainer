@@ -21,11 +21,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
 public class MainController implements Initializable {
-	
+
 	// Model
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
-	
-	//Controllers
+
+	// Controllers
 	GoalController goalController = new GoalController();
 	ChallengeController challengeController = new ChallengeController();
 
@@ -40,12 +40,22 @@ public class MainController implements Initializable {
 
 	@FXML
 	void OnDarkThemeAction(ActionEvent event) {
-
+		this.getView().getStylesheets().clear();
+		this.getView().getStylesheets().add("/css/dark-theme.css");
+		challengeController.getView().getStylesheets().clear();
+		challengeController.getView().getStylesheets().add("/css/dark-theme.css");
+		goalController.getView().getStylesheets().clear();
+		goalController.getView().getStylesheets().add("/css/dark-theme.css");
 	}
 
 	@FXML
 	void OnLightThemeAction(ActionEvent event) {
-
+		this.getView().getStylesheets().clear();
+		this.getView().getStylesheets().add("/css/light-theme.css");
+		challengeController.getView().getStylesheets().clear();
+		challengeController.getView().getStylesheets().add("/css/light-theme.css");
+		goalController.getView().getStylesheets().clear();
+		goalController.getView().getStylesheets().add("/css/light-theme.css");
 	}
 
 	@FXML
@@ -66,7 +76,7 @@ public class MainController implements Initializable {
 			}
 		}
 	}
-	
+
 	public MainController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/MainViewTrainer.fxml"));
 		loader.setController(this);
@@ -78,14 +88,11 @@ public class MainController implements Initializable {
 		// TODO Auto-generated method stub
 		tabChallenge.setContent(challengeController.getView());
 		tabGoal.setContent(goalController.getView());
-		
-		
+
 		challenge.addListener((o, ov, nv) -> onChallengeChanged(o, ov, nv));
 		challenge.set(new Challenge());
 	}
 
-	
-	
 	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
 		if (ov != null) {
 			challengeController.challengeProperty().unbindBidirectional(challenge);

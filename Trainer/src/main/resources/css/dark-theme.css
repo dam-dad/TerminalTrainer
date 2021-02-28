@@ -6,8 +6,14 @@
     -fx-text-fill: #000000;
 }
 
-.label, .text-input, .combo-box .list-cell{
+
+
+.label, .text-inputCustom, .combo-box .list-cell{
     -fx-text-fill: #ffffff;
+}
+
+.list-cell .text-input{
+	-fx-text-fill: black;
 }
 
 .combo-box .text-field:focused {
@@ -37,6 +43,8 @@
 .btn:hover {
     -fx-background-color: #c5c5c5;
 }
+
+
 
 
 
@@ -117,5 +125,6 @@
     -fx-border-color: -fx-box-border;
     -fx-border-insets: 0;
 }
+
 
 
