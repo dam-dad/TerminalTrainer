@@ -61,3 +61,7 @@ In the <span style='color:turquoise'>blue menu</span>, in the file submenu on to
 
 In the <span style='color:turquoise'>blue menu</span>, in the **edit** submenu on top of the app, we can change the theme of our app.
 
+
+
+A folder called `.terminaltrainer` will be created in **your** user folder with the appearance of the app when you closed it.
+
