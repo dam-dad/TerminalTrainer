@@ -5,6 +5,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.controlsfx.control.Notifications;
+
 import dad.javafx.terminaltrainer.editor.model.Challenge;
 import dad.javafx.terminaltrainer.ui.app.App;
 import dad.javafx.terminaltrainer.utils.JSONUtils;
@@ -70,6 +72,10 @@ public class MainController implements Initializable {
 
 				challenge.set(JSONUtils.fromJson(chFile, Challenge.class));
 				goalController.resetTryCounter();
+				Notifications.create().title("Info.")
+				.text("The challenge chosen has to be executed in the following terminal:  " + challenge.get().getGoals().get(0).getShell().toString())
+				.showInformation();
+				
 
 			} catch (Exception e) {
 				e.printStackTrace();

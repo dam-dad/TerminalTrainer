@@ -4,7 +4,7 @@
   "goals": [
     {
       "shell": "CMD",
-      "description": "Crear una carpeta en el escritorio llamada prueba",
+      "description": "Crear una carpeta en el escritorio llamada ffff",
       "path": "C:\\Users\\Aitor\\Desktop",
       "username": "User",
       "validCommands": [
@@ -15,7 +15,10 @@
         "comando4",
         "coamndo5"
       ],
-      "tips": []
+      "tips": [
+        "haz esto tontopolla",
+        "Tip 2"
+      ]
     },
     {
       "shell": "CMD",
@@ -34,7 +37,7 @@
     },
     {
       "shell": "CMD",
-      "description": "Crear una carpeta en el escritorio llamada vfvfvf",
+      "description": "Crear una carpeta en el escritorio llamada prueba",
       "path": "C:\\Users\\Aitor\\Desktop",
       "username": "User",
       "validCommands": [
@@ -45,11 +48,15 @@
         "comando4",
         "coamndo5"
       ],
-      "tips": []
+      "tips": [
+        "haz esto",
+        "default tip",
+        "default tip"
+      ]
     },
     {
       "shell": "CMD",
-      "description": "Crear una carpeta en el escritorio llamada ffff",
+      "description": "Crear una carpeta en el escritorio llamada vfvfvf",
       "path": "C:\\Users\\Aitor\\Desktop",
       "username": "User",
       "validCommands": [

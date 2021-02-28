@@ -4,7 +4,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXCheckBox;
+import org.controlsfx.control.Notifications;
+
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextArea;
 
@@ -21,28 +22,20 @@ import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.GridPane;
-import javafx.scene.paint.Color;
-import javafx.util.Callback;
 
 public class GoalController implements Initializable {
 
 	// Model
 	private ObjectProperty<Challenge> challenge = new SimpleObjectProperty<>();
 	private int tryCounter = 1;
+	private int tipCounter = 0;
 
 	@FXML
 	private GridPane view;
 
 	@FXML
 	private JFXListView<Goal> listGoals;
-
 
 	@FXML
 	private JFXTextArea textDescription;
@@ -58,8 +51,6 @@ public class GoalController implements Initializable {
 				textDescription.setText(newValue.getDescription());
 			}
 		});
-		
-		
 
 		Monitoring.executedCommandsProperty().addListener(new ListChangeListener<ExecutedCommand>() {
 			@Override
@@ -68,8 +59,6 @@ public class GoalController implements Initializable {
 
 					@Override
 					public void run() {
-
-						// TODO Auto-generated method stub
 						while (c.next()) {
 							c.getAddedSubList().stream().forEach(command -> {
 
@@ -78,13 +67,30 @@ public class GoalController implements Initializable {
 									listGoals.getSelectionModel().getSelectedItem().setDescription("GOAL DONE!");
 									listGoals.getSelectionModel().selectNext();
 									resetTryCounter();
-									//setBackgroundCompletedGoal(command);
 								} else {
 									tryCounter++;
-									if (tryCounter % 4 == 0) {
-										// notification goes here
-										
+									Goal currentGoal = listGoals.getSelectionModel().getSelectedItem();
+									if (tryCounter % 5 == 0) {
+
+										if (!currentGoal.getTips().isEmpty()) {
+											if (tipCounter >= currentGoal.getTips().size()) {
+												tipCounter = 0;
+											}
+											Notifications.create().title("Need some help?")
+													.text("Try something with " + currentGoal.getTips().get(tipCounter))
+													.showInformation();
+											tipCounter++;
+
+										}
+
 									}
+									if (!currentGoal.getShell().toString().equals(command.getShell().toUpperCase())) {
+										Notifications.create().title("Wrong terminal.")
+												.text("You are using the wrong terminal. You should be using "
+														+ currentGoal.getShell().toString())
+												.showError();
+									}
+
 								}
 
 							});
@@ -92,12 +98,17 @@ public class GoalController implements Initializable {
 					}
 
 				});
-				
-				
+
 			}
 		});
 	}
 
+	/**
+	 * Compares the current goal with the executed parameter command.
+	 * 
+	 * @param command
+	 * @return true if they are equal.
+	 */
 	public boolean checkCommandResult(ExecutedCommand command) {
 		boolean result = false;
 		Goal currentGoal = listGoals.getSelectionModel().getSelectedItem();
@@ -109,21 +120,6 @@ public class GoalController implements Initializable {
 		}
 
 		return result;
-	}
-	
-	public void setBackgroundCompletedGoal(ExecutedCommand command) {
-		listGoals.setCellFactory(lv -> new ListCell<Goal>() {
-
-            @Override
-            protected void updateItem(Goal item, boolean empty) {
-                super.updateItem(item, empty);
-                if (checkCommandResult(command)) {
-                	this.setBackground(new Background(new BackgroundFill(Color.RED, CornerRadii.EMPTY, Insets.EMPTY)));
-                } else {
-                	this.setBackground(Background.EMPTY);
-                }
-            }
-        });
 	}
 
 	private void onChallengeChanged(ObservableValue<? extends Challenge> o, Challenge ov, Challenge nv) {
@@ -140,6 +136,7 @@ public class GoalController implements Initializable {
 
 	public void resetTryCounter() {
 		tryCounter = 1;
+		tipCounter = 0;
 	}
 
 	public GoalController() throws IOException {
