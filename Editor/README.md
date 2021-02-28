@@ -1,30 +1,32 @@
 # 					Terminal Trainer Editor
 
-**Members**
+### Members
 
 * Steven Francisco Arteaga Mesa
-
 * Alberto Barroso Carrillo
-
 * Aitor Romojaro Martínez
 
-**Instalation**
+
+
+### Installation
 
 The app can be downloaded from  [here.][id]
 
 [id]: https://github.com/dam-dad/TerminalTrainer/releases/tag/1.0
 
-**Screenshots**
-
-<img src="/src/main/resources/screenshots/editor-dark.PNG"/>
-
-<img src="/src/main/resources/screenshots/editor-light.PNG"/>
-
-<img src="/src/main/resources/screenshots/editor-ejemplo.PNG"/>
 
 
+### Screenshots
 
-**Documentation**
+![text](src/main/resources/screenshots/editor-light.png)
+
+![text](src/main/resources/screenshots/editor-dark.png)
+
+![text](src/main/resources/screenshots/editor-ejemplo.png)
+
+
+
+### Documentation
 
 The project has the following packages:
 
@@ -37,7 +39,7 @@ The project has the following packages:
 
 
 
-**Help**
+### Help
 
 Terminal Trainer's Editor main purpose is to create .challenge files with the **name**, **description**, **operative system** and **goals** of a challenge.
 
