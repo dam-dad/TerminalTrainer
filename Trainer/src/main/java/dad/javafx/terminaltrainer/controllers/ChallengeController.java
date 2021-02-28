@@ -49,7 +49,9 @@ public class ChallengeController implements Initializable {
 		if (nv != null) {
 			textDescription.textProperty().bindBidirectional(nv.descriptionProperty());
 			textName.textProperty().bindBidirectional(nv.nameProperty());
-			textOS.setText(nv.osProperty().toString());
+			if(nv.getOs() != null) {
+				textOS.setText(nv.osProperty().toString());
+			}
 		}
 	}
 
