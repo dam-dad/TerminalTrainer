@@ -75,6 +75,7 @@ public class GoalController implements Initializable {
 										&& currentGoal.getUsername().equals(command.getUsername())) {
 									// CORRECT, CHOOSE ANOTHER EXERCISE
 									listGoals.getSelectionModel().selectNext();
+									tryCounter = 0;
 								}else {
 									tryCounter++;
 									if(tryCounter >= 4) {
@@ -102,6 +103,10 @@ public class GoalController implements Initializable {
 			listGoals.itemsProperty().bindBidirectional(nv.goalsProperty());
 			listGoals.getSelectionModel().selectFirst();
 		}
+	}
+	
+	public void resetTryCounter() {
+		tryCounter = 0;
 	}
 
 	public GoalController() throws IOException {

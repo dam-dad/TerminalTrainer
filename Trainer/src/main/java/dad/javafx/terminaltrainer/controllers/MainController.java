@@ -59,6 +59,7 @@ public class MainController implements Initializable {
 			try {
 
 				challenge.set(JSONUtils.fromJson(chFile, Challenge.class));
+				goalController.resetTryCounter();
 
 			} catch (Exception e) {
 				e.printStackTrace();
