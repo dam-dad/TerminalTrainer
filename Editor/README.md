@@ -16,17 +16,11 @@ The app can be downloaded from  [here.][id]
 
 **Screenshots**
 
+![alt text](C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\src\main\resources\screenshots\editor-dark.PNG)
 
+![alt text](C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\src\main\resources\screenshots\editor-light.PNG)
 
-```
-<img src="C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\src\main\resources\screenshots\editor-dark.PNG" width=""/>
-```
-
-![editor-dark](C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\src\main\resources\screenshots\editor-dark.PNG)
-
-![editor-light](C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\src\main\resources\screenshots\editor-light.PNG)
-
-![editor-ejemplo](C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\src\main\resources\screenshots\editor-ejemplo.PNG)
+![alt text](C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\src\main\resources\screenshots\editor-ejemplo.PNG)
 
 
 
