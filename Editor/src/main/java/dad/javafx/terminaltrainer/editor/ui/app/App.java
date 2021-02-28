@@ -32,7 +32,7 @@ public class App extends Application {
 		config.posYProperty().bind(primaryStage.yProperty());
 
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Terminal Trainer");
+		primaryStage.setTitle("Editor");
 		primaryStage.getIcons().add(new Image("/images/icon-small.png"));
 		primaryStage.show();
 	}

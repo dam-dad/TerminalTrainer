@@ -1,2 +1,2 @@
 # TerminalTrainer
-Entrenador de línea de comandos
+Your ideal trainer to practice commands on any terminal.

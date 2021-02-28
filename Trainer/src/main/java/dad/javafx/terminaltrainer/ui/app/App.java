@@ -5,6 +5,7 @@ import dad.javafx.terminaltrainer.controllers.MainController;
 import dad.javafx.terminaltrainer.monitoring.Monitoring;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import dad.javafx.terminaltrainer.ui.app.App;
 
@@ -39,6 +40,7 @@ public class App extends Application {
 		Scene scene = new Scene(mainController.getView());
 		primaryStage.setScene(scene);
 		primaryStage.setTitle("Trainer");
+		primaryStage.getIcons().add(new Image("/images/icon-big.png"));
 		primaryStage.show();
 	}
 
