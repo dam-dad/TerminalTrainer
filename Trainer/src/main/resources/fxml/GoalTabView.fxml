@@ -17,7 +17,7 @@
       <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
    </columnConstraints>
    <children>
-      <JFXTextArea fx:id="textDescription" focusColor="#6184ee" promptText="Goal description..." styleClass="text-inputCustom" GridPane.columnIndex="1" GridPane.rowSpan="2147483647">
+      <JFXTextArea fx:id="textDescription" editable="false" focusColor="#6184ee" promptText="Goal description..." styleClass="text-inputCustom" GridPane.columnIndex="1" GridPane.rowSpan="2147483647">
          <GridPane.margin>
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </GridPane.margin>
