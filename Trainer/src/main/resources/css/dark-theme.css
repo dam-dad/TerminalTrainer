@@ -2,6 +2,22 @@
     -fx-background-color: #000000;
 }
 
+
+.tab-pane *.tab-header-area *.tab-header-background {
+  -fx-background-color:transparent;
+}
+
+.tab-pane {
+  -fx-tab-min-width:120px;
+  -fx-tab-max-width:120px;
+}
+
+
+.tab:selected {
+    -fx-background-color: #ABF0FF;
+}
+
+
 .menu .label {
     -fx-text-fill: #000000;
 }
