@@ -1,7 +1,10 @@
 package dad.javafx.terminaltrainer.controllers;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -73,9 +76,9 @@ public class MainController implements Initializable {
 				challenge.set(JSONUtils.fromJson(chFile, Challenge.class));
 				goalController.resetTryCounter();
 				Notifications.create().title("Info.")
-				.text("The challenge chosen has to be executed in the following terminal:  " + challenge.get().getGoals().get(0).getShell().toString())
-				.showInformation();
-				
+						.text("The challenge chosen has to be executed in the following terminal:  "
+								+ challenge.get().getGoals().get(0).getShell().toString())
+						.showInformation();
 
 			} catch (Exception e) {
 				e.printStackTrace();

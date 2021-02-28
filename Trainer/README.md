@@ -16,13 +16,7 @@ The app can be downloaded from  [here.][id]
 
 
 
-### Screenshots
-
-![text](src/main/resources/screenshots/Captura.PNG)
-
-![text](src/main/resources/screenshots/pestanagoal.PNG)
-
-### Documentation
+### Documentaton
 
 The project has the following packages:
 

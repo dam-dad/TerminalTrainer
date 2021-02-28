@@ -14,18 +14,6 @@ The app can be downloaded from  [here.][id]
 
 [id]: https://github.com/dam-dad/TerminalTrainer/releases/tag/1.0
 
-
-
-### Screenshots
-
-![text](src/main/resources/screenshots/editor-light.png)
-
-![text](src/main/resources/screenshots/editor-dark.png)
-
-![text](src/main/resources/screenshots/editor-ejemplo.png)
-
-
-
 ### Documentation
 
 The project has the following packages:
