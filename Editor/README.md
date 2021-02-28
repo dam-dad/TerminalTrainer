@@ -16,7 +16,9 @@ The app can be downloaded from  [here.][id]
 
 **Screenshots**
 
-![editor-light](C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\editor-light.PNG)
+![editor-dark](https://github.com/dam-dad/TerminalTrainer/tree/main/Editor/src/main/resources/screenshots/editor-dark.PNG)
+
+
 
 ![editor-dark](C:\Users\Aitor\eclipse-workspaceDAD\TerminalTrainer\Editor\editor-dark.PNG)
 
