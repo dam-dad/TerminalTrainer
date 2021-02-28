@@ -5,7 +5,7 @@
     {
       "shell": "CMD",
       "description": "Crear una carpeta en el escritorio llamada prueba",
-      "path": "C:\\Users",
+      "path": "C:\\Users\\Aitor\\Desktop",
       "username": "User",
       "validCommands": [
         "mkdir Prueba",
@@ -20,7 +20,7 @@
     {
       "shell": "CMD",
       "description": "Crear una carpeta en el escritorio llamada manolete",
-      "path": "C:\\Users",
+      "path": "C:\\Users\\Aitor\\Desktop",
       "username": "User",
       "validCommands": [
         "mkdir Prueba",
@@ -32,10 +32,10 @@
       ],
       "tips": []
     },
-        {
+    {
       "shell": "CMD",
       "description": "Crear una carpeta en el escritorio llamada vfvfvf",
-      "path": "C:\\Users",
+      "path": "C:\\Users\\Aitor\\Desktop",
       "username": "User",
       "validCommands": [
         "mkdir Prueba",
@@ -47,10 +47,10 @@
       ],
       "tips": []
     },
-        {
+    {
       "shell": "CMD",
       "description": "Crear una carpeta en el escritorio llamada ffff",
-      "path": "C:\\Users",
+      "path": "C:\\Users\\Aitor\\Desktop",
       "username": "User",
       "validCommands": [
         "mkdir Prueba",
@@ -62,7 +62,6 @@
       ],
       "tips": []
     }
-
   ],
   "os": "WINDOWS"
 }

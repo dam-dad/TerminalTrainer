@@ -7,7 +7,7 @@
 <?import javafx.scene.input.KeyCodeCombination?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane fx:id="view" prefHeight="650.0" prefWidth="1200.0" stylesheets="@../css/dark-theme.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="view" prefHeight="650.0" prefWidth="1200.0" stylesheets="@../css/dark-theme.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <MenuBar prefHeight="26.0" prefWidth="1138.0" styleClass="menubar" BorderPane.alignment="CENTER">
         <menus>
@@ -27,7 +27,7 @@
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="S" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
-              <MenuItem onAction="#onGenerateReportAction" text="_Generar informe">
+              <MenuItem onAction="#onGenerateReportAction" text="_Generate report">
                      <accelerator>
                         <KeyCodeCombination alt="UP" code="G" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
