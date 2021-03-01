@@ -12,7 +12,7 @@
 
 The app can be downloaded from  [here.][id]
 
-[id]: https://github.com/dam-dad/TerminalTrainer/releases/tag/1.0
+[id]: https://github.com/dam-dad/TerminalTrainer/releases/latest
 
 ### Documentation
 
@@ -25,7 +25,7 @@ The project has the following packages:
 * `dad.javafx.terminaltrainer.editor.utils` Tool to read/write to/from JSON  format.
 * `dad.javafx.terminaltrainer.editor.reports` Classes to generate reports.
 
-
+![iamge](src/main/resources/screenshots/editor-dark.PNG)
 
 ### Help
 
