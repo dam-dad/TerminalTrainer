@@ -86,6 +86,7 @@
                             <goal>package</goal>
                         </goals>
                         <configuration>
+						<administratorRequired>true</administratorRequired>
                             <additionalResources>
                                 <additionalResource>challenges</additionalResource>
                             </additionalResources>

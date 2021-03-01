@@ -33,10 +33,10 @@ public class MainReport {
 		JasperPrint jasperPrint = JasperFillManager.fillReport(report, parameters,new JRBeanCollectionDataSource(challenge.getGoals()));
 
 		// exporta el informe a un fichero PDF 
-		JasperExportManager.exportReportToPdfFile(jasperPrint, "pdf/result.pdf");
+		JasperExportManager.exportReportToPdfFile(jasperPrint, System.getProperty("user.home") + File.separator + "result.pdf");
 
 		// Abre el archivo PDF generado con el programa predeterminado del sistema
-		Desktop.getDesktop().open(new File("pdf/result.pdf"));
+		Desktop.getDesktop().open(new File(System.getProperty("user.home") + File.separator + "result.pdf"));
 	}
 
 	public static void main(String[] args) throws JRException, IOException {
