@@ -37,35 +37,14 @@ function Test-RegistryValue($Path, $Value) {
 #>
 function New-EventSource() {
     Write-Host "- Creating $App event source in Windows Registry"
-    New-Item -Path $EventSourcePath | Out-Null
-    New-ItemProperty -Path $EventSourcePath -Name CustomSource -PropertyType DWord -Value 1 | Out-Null
-    New-ItemProperty -Path $EventSourcePath -Name EventMessageFile -PropertyType ExpandString -Value "$env:windir\System32\EventCreate.exe" | Out-Null
-    New-ItemProperty -Path $EventSourcePath -Name TypesSupported -PropertyType DWord -Value 7 | Out-Null
-}
-
-<#
-	Generates CMD monitorization script
-#>
-function Generate-CmdAuditScript {
-    # There's a problem if the user uses options that are considered valid for "call" / we cannot ignore "call" because the variables wouldn't be expanded
-	$script = @"
-@echo off
-title Monitored CMD
-setlocal EnableDelayedExpansion
-echo.
-echo This terminal is being monitored by $App
-:loop
-echo.
-set OLDPWD=!CD!
-set COMMAND=
-set /P COMMAND=!CD!^>
-if "!COMMAND!" == "" goto loop
-call !COMMAND!
-set COMMAND=%COMMAND:"=\"%
-eventcreate /id 1 /L Application /T Information /SO $App /D "cmd:!USERNAME!:'!CD!':'!OLDPWD!':!COMMAND!" > nul
-goto loop
-"@
-	Set-Content $CmdAuditScriptPath $script
+    try {
+        New-Item -Path $EventSourcePath | Out-Null
+        New-ItemProperty -Path $EventSourcePath -Name CustomSource -PropertyType DWord -Value 1 | Out-Null
+        New-ItemProperty -Path $EventSourcePath -Name EventMessageFile -PropertyType ExpandString -Value "$env:windir\System32\EventCreate.exe" | Out-Null
+        New-ItemProperty -Path $EventSourcePath -Name TypesSupported -PropertyType DWord -Value 7 | Out-Null
+    } catch {
+        Write-Host $_.Exception.Message        
+    }
 }
 
 <#
@@ -160,7 +139,7 @@ function Enable-PSAudit() {
 ##########################################################################
 
 <#
-    Checks if 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\TerminalTrainer' key exists,
+    Checks if 'HKLM:\SYSTEM\CurrentControlSet\Services\EventLog\Application\TerminalTrainer' key exists,
     corresponding to TerminalTrainer event source
 #>
 function Test-EventSource() {

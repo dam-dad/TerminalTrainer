@@ -3,7 +3,6 @@ package dad.javafx.terminaltrainer.editor.ui.app;
 import dad.javafx.terminaltrainer.editor.model.Memory;
 import dad.javafx.terminaltrainer.editor.ui.controller.MainController;
 import javafx.application.Application;
-import javafx.beans.binding.Bindings;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -11,9 +10,9 @@ import javafx.stage.Stage;
 public class App extends Application {
 	private static Stage primaryStage;
 
-	private MainController controller;
+	private static MainController controller;
 
-	Memory config = new Memory();
+	public static Memory config = new Memory();
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
@@ -31,27 +30,43 @@ public class App extends Application {
 		primaryStage.setY(config.getPosY());
 		config.posXProperty().bind(primaryStage.xProperty());
 		config.posYProperty().bind(primaryStage.yProperty());
-		
-		//controller.setSplitDivider(config.getSplitPosLeft(), config.getSplitPosRight());
-		
+
 		primaryStage.setScene(scene);
-		primaryStage.setTitle("Terminal Trainer");
-		// primaryStage.getIcons().add(new Image("/images/cv64x64.png"));
+		primaryStage.setTitle("Editor");
+		primaryStage.getIcons().add(new Image("/images/icon-small.png"));
 		primaryStage.show();
 	}
-	
+
+	/**
+	 * Loads the property file from the .terminaltrainer folder.
+	 */
 	@Override
 	public void init() throws Exception {
 		config.loadFile();
 	}
 
+	/**
+	 * Saves a property file.
+	 */
 	@Override
 	public void stop() throws Exception {
+
+		config.setTheme(controller.getView().getStylesheets().get(0).toString());
+
+		config.setSplitPosLeft(controller.getSplitPos());
 		config.saveFile();
 	}
 
 	public static Stage getPrimaryStage() {
 		return primaryStage;
+	}
+
+	public static Memory getConfig() {
+		return config;
+	}
+
+	public static MainController getController() {
+		return controller;
 	}
 
 	public static void main(String[] args) {

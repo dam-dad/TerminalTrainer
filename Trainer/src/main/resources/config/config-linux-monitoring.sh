@@ -27,7 +27,7 @@ function disable-monitoring() {
 	then
 		echo "- Removing PROMPT_COMMAND variable from $bashrc"
 		sed -i "/$pattern/d" $bashrc
-		set -i "/^echo.*$app.*$/d" $bashrc
+                sed -i "/^echo -e .*$app.*$/d" $bashrc
 	else
 		echo "- PROMPT_COMMAND variable doesn't exist in $bashrc"
 	fi

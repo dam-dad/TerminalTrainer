@@ -1,0 +1,74 @@
+{
+  "name": "Challenge para trainer",
+  "description": "Challenge para probar el proyecto trainer.",
+  "goals": [
+    {
+      "shell": "CMD",
+      "description": "Crear una carpeta en el escritorio llamada ffff",
+      "path": "C:\\Users\\Aitor\\Desktop",
+      "username": "Aitor",
+      "validCommands": [
+        "mkdir Prueba",
+        "comando1",
+        "coamdno2",
+        "comando3",
+        "comando4",
+        "coamndo5"
+      ],
+      "tips": [
+        "haz esto tontopolla",
+        "Tip 2"
+      ]
+    },
+    {
+      "shell": "CMD",
+      "description": "Crear una carpeta en el escritorio llamada manolete",
+      "path": "C:\\Users\\Aitor\\Desktop",
+      "username": "User",
+      "validCommands": [
+        "mkdir Prueba",
+        "comando1",
+        "coamdno2",
+        "comando3",
+        "comando4",
+        "coamndo5"
+      ],
+      "tips": []
+    },
+    {
+      "shell": "CMD",
+      "description": "Crear una carpeta en el escritorio llamada prueba",
+      "path": "C:\\Users\\Aitor\\Desktop",
+      "username": "User",
+      "validCommands": [
+        "mkdir Prueba",
+        "comando1",
+        "coamdno2",
+        "comando3",
+        "comando4",
+        "coamndo5"
+      ],
+      "tips": [
+        "haz esto",
+        "default tip",
+        "default tip"
+      ]
+    },
+    {
+      "shell": "CMD",
+      "description": "Crear una carpeta en el escritorio llamada vfvfvf",
+      "path": "C:\\Users\\Aitor\\Desktop",
+      "username": "User",
+      "validCommands": [
+        "mkdir Prueba",
+        "comando1",
+        "coamdno2",
+        "comando3",
+        "comando4",
+        "coamndo5"
+      ],
+      "tips": []
+    }
+  ],
+  "os": "WINDOWS"
+}

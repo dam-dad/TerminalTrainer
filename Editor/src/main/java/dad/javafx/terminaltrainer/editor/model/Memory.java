@@ -19,9 +19,13 @@ public class Memory {
 	private DoubleProperty ancho;
 	private DoubleProperty posX;
 	private DoubleProperty posY;
-	private DoubleProperty splitPosLeft;
-	private DoubleProperty splitPosRight;
+	private DoubleProperty splitPos;
+	private String theme;
 
+	/**
+	 * Initializes the path variable to the user's home path and creates a folder
+	 * named ".terminaltrainer" which has a property file named "window.config"
+	 */
 	public Memory() {
 		pathDirectorio = System.getProperty("user.home") + File.separator + ".terminaltrainer";
 		pathFichero = pathDirectorio + File.separator + "window.config";
@@ -30,10 +34,16 @@ public class Memory {
 		ancho = new SimpleDoubleProperty();
 		posX = new SimpleDoubleProperty();
 		posY = new SimpleDoubleProperty();
-		splitPosLeft = new SimpleDoubleProperty();
-		splitPosRight = new SimpleDoubleProperty();
+		splitPos = new SimpleDoubleProperty();
 	}
 
+	/**
+	 * Saves a file with default properties(height, width, location, theme and the
+	 * split position) for the stage.
+	 * 
+	 * @throws FileNotFoundException
+	 * @throws IOException
+	 */
 	public void saveFile() throws FileNotFoundException, IOException {
 		try (OutputStream fichero = new FileOutputStream(pathFichero)) {
 			Properties prop = new Properties();
@@ -42,8 +52,8 @@ public class Memory {
 			prop.setProperty("size.height", alto.get() + "");
 			prop.setProperty("location.x", posX.get() + "");
 			prop.setProperty("location.y", posY.get() + "");
-			prop.setProperty("positionLeft.Divider", splitPosLeft.get() + "");
-			prop.setProperty("positionRight.Divider", splitPosRight.get() + "");
+			prop.setProperty("positionLeft.Divider", splitPos.get() + "");
+			prop.setProperty("theme", theme + "");
 
 			prop.store(fichero, null);
 		} catch (Exception e) {
@@ -52,6 +62,10 @@ public class Memory {
 
 	}
 
+	/**
+	 * Loads a file that sets the stage height, width, location, theme and the split
+	 * position.
+	 */
 	public void loadFile() {
 		try {
 
@@ -64,13 +78,15 @@ public class Memory {
 			if (created) {
 				try (OutputStream output = new FileOutputStream(memory.getPath())) {
 					Properties prop = new Properties();
+					theme = getClass().getResource("/css/light-theme.css").toString();
+					System.out.println(theme);
 
 					prop.setProperty("size.width", "1200");
 					prop.setProperty("size.height", "650");
 					prop.setProperty("location.x", "440");
 					prop.setProperty("location.y", "244");
 					prop.setProperty("positionLeft.Divider", "0.5");
-					prop.setProperty("positionRight.Divider", "0.5");
+					prop.setProperty("theme", theme);
 
 					prop.store(output, null);
 				} catch (IOException ex) {
@@ -87,9 +103,8 @@ public class Memory {
 				ancho.set(Double.parseDouble(prop.getProperty("size.width")));
 				posX.set(Double.parseDouble(prop.getProperty("location.x")));
 				posY.set(Double.parseDouble(prop.getProperty("location.y")));
-				splitPosLeft.set(Double.parseDouble(prop.getProperty("positionLeft.Divider")));
-				splitPosRight.set(Double.parseDouble(prop.getProperty("positionRight.Divider")));
-
+				splitPos.set(Double.parseDouble(prop.getProperty("positionLeft.Divider")));
+				theme = prop.getProperty("theme");
 			} catch (IOException ex) {
 				ex.printStackTrace();
 			}
@@ -148,7 +163,7 @@ public class Memory {
 	}
 
 	public final DoubleProperty splitPosLeftProperty() {
-		return this.splitPosLeft;
+		return this.splitPos;
 	}
 
 	public final double getSplitPosLeft() {
@@ -159,16 +174,12 @@ public class Memory {
 		this.splitPosLeftProperty().set(splitPosLeft);
 	}
 
-	public final DoubleProperty splitPosRightProperty() {
-		return this.splitPosRight;
+	public String getTheme() {
+		return theme;
 	}
 
-	public final double getSplitPosRight() {
-		return this.splitPosRightProperty().get();
-	}
-
-	public final void setSplitPosRight(final double splitPosRight) {
-		this.splitPosRightProperty().set(splitPosRight);
+	public void setTheme(String theme) {
+		this.theme = theme;
 	}
 
 }

@@ -89,11 +89,13 @@ public class Goal {
 	public final void setTips(final ObservableList<String> tips) {
 		this.tipsProperty().set(tips);
 	}
-
+	
+	/**
+	 * Overrides toString method to print its values.
+	 */
 	@Override
 	public String toString() {
-		return "Goal [shell=" + getShell() + ", description=" + getDescription() + ", path=" + getPath() + ", username=" + getUsername()
-				+ ", validCommands=" + getValidCommands() + ", tips=" + getTips() + "]";
+		return "- GOAL: " + this.description.get();
 	}
 	
 	

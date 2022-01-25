@@ -66,6 +66,8 @@ public class ChallengeController implements Initializable {
 
 	@FXML
 	private TableColumn<Goal, String> userColumn;
+	
+	static Challenge challengeResult = new Challenge();
 
 	public ChallengeController() throws IOException {
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/ChallengeView.fxml"));
@@ -92,7 +94,7 @@ public class ChallengeController implements Initializable {
 
 		// Agrega los datos de el enum OS al combobox y selecciona el primero
 		comboOS.getItems().setAll(OS.values());
-		comboOS.getSelectionModel().selectFirst();
+		comboOS.getSelectionModel().select(0);
 	}
 
 	private void onSelectedItemChanged(ObservableValue<? extends Goal> o, Goal ov, Goal nv) {
@@ -119,9 +121,21 @@ public class ChallengeController implements Initializable {
 			textNameChallenge.textProperty().bindBidirectional(nv.nameProperty());
 			comboOS.valueProperty().bindBidirectional(nv.osProperty());
 			tableGoals.setItems(nv.getGoals());
+			
+			challengeResult.setName(nv.nameProperty().toString());
+			challengeResult.setDescription(nv.descriptionProperty().toString());
+			challengeResult.setOs(comboOS.valueProperty().get());
+			
 		}
 	}
 
+	/**
+	 * 
+	 * Adds a goal with defaults parameters to the list of goals.
+	 * 
+	 * @param event
+	 */
+	
 	@SuppressWarnings("static-access")
 	@FXML
 	void onAddGoalAction(ActionEvent event) {
@@ -138,6 +152,13 @@ public class ChallengeController implements Initializable {
 
 	}
 
+	
+	/**
+	 * 
+	 * Deletes the selected goal from the list of goals.
+	 * 
+	 * @param event
+	 */
 	@FXML
 	void onRemoveGoalAction(ActionEvent event) {
 		tableGoals.getItems().remove(tableGoals.getSelectionModel().getSelectedItem());
@@ -170,5 +191,11 @@ public class ChallengeController implements Initializable {
 	public void setGoalController(GoalController goalController) {
 		this.goalController = goalController;
 	}
+
+	public static Challenge getChallengeResult() {
+		return challengeResult;
+	}
+	
+	
 
 }
