@@ -24,7 +24,7 @@ public class Main {
 		});
 
 		new Thread(() -> {
-			Sleep.minutes(1);
+			Sleep.minutes(10);
 			Monitoring.stop();
 			if (Config.CONFIG.isEnabled()) Config.CONFIG.disable();
 		}).start();
